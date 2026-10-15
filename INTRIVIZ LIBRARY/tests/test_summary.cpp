@@ -14,9 +14,9 @@ int main() {
 
     const double nan_val = std::numeric_limits<double>::quiet_NaN();
 
-    // -------------------------------------------------------------
+    // ------------------------------------------------------------
     // Test 1: Normal dataset with numeric and text columns
-    // -------------------------------------------------------------
+    // ------------------------------------------------------------
     {
         Dataset ds;
         ds.add_text_column("category", {"GroupA", "GroupB", "GroupC", "GroupD"});

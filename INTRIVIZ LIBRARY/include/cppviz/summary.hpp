@@ -36,4 +36,3 @@ std::vector<ColumnSummary> describe(const Dataset& data);
 std::string to_string(const std::vector<ColumnSummary>& summaries);
 
 } 
-// namespace cppviz

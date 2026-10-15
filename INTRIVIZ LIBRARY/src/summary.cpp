@@ -113,4 +113,3 @@ std::string to_string(const std::vector<ColumnSummary>& summaries) {
 }
 
 }
- // namespace cppviz
