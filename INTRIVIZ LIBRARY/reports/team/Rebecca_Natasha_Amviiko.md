@@ -17,3 +17,23 @@ This test file verifies the correctness of the canvas implementation. It checks 
 ## How the files work together
 
 The header declares the public contract for the canvas, the implementation file provides the actual drawing logic, and the test file ensures that the behavior is reliable and consistent. Together, these files provide an essential foundation for the library's future plotting and image-generation features, making it easier to draw shapes, create scenes, and export images.
+
+# Week 2
+
+## Files added
+
+### `include/cppviz/draw.hpp`
+
+This header declares the public drawing functions for `cppviz::Canvas`. It provides functions for drawing lines, rectangle outlines and fills, and circle outlines and fills, including optional line thickness and documented handling of invalid circle radii.
+
+### `src/draw.cpp`
+
+This source file implements the drawing functions. It uses Bresenham's algorithm for lines and the midpoint circle algorithm for circle outlines, while filled shapes are drawn by setting their covered pixels. Rectangle dimensions are normalized when negative, invalid negative circle radii throw `InvalidArgument`, and the Canvas safely clips pixels outside its bounds.
+
+### `tests/test_draw.cpp`
+
+This test file verifies line drawing in different directions, clipping and thickness, rectangle outlines and fills, circle outlines and fills, and handling of zero or negative circle radii.
+
+## How the files work together
+
+The header defines the drawing API, the implementation applies shapes to the pixel grid provided by `Canvas`, and the tests check that the shapes, boundary behavior, and validation work as expected. Together, these files add the basic shape-drawing operations needed to create plots and other graphics.
