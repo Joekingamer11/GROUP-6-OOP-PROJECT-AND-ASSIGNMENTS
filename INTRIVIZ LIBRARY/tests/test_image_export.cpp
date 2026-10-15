@@ -70,16 +70,16 @@ int main() {
     CHECK(ppm_bytes.size() >= 13);
 
     // ASCII header check
-    std::string header_str(ppm_bytes.begin(), ppm_bytes.begin() + 13);
+    std::string header_str(ppm_bytes.begin(), ppm_bytes.begin() + 11);
     CHECK_EQ(header_str, std::string("P6\n3 2\n255\n"));
 
-    // Total file size: 13 header bytes + 18 pixel bytes = 31 bytes
-    CHECK_EQ(ppm_bytes.size(), static_cast<std::size_t>(31));
+    // Total file size: 11 header bytes + 18 pixel bytes = 29 bytes
+    CHECK_EQ(ppm_bytes.size(), static_cast<std::size_t>(29));
 
     // First pixel (0,0) in top row: Red (255, 0, 0)
-    CHECK_EQ(ppm_bytes[13], 255);
-    CHECK_EQ(ppm_bytes[14], 0);
-    CHECK_EQ(ppm_bytes[15], 0);
+    CHECK_EQ(ppm_bytes[11], 255);
+    CHECK_EQ(ppm_bytes[12], 0);
+    CHECK_EQ(ppm_bytes[13], 0);
 
     // ========================================================================
     // 2. Windows 24-bit BMP Export Tests
@@ -91,8 +91,8 @@ int main() {
     CHECK_EQ(bmp_bytes.size(), static_cast<std::size_t>(78));
 
     // BITMAPFILEHEADER verification
-    CHECK_EQ(bmp_bytes, static_cast<std::uint8_t>('B'));
-    CHECK_EQ(bmp_bytes[16], static_cast<std::uint8_t>('M'));
+    CHECK_EQ(bmp_bytes[0], static_cast<std::uint8_t>('B'));
+    CHECK_EQ(bmp_bytes[1], static_cast<std::uint8_t>('M'));
     CHECK_EQ(read_u32(bmp_bytes, 2), static_cast<std::uint32_t>(78)); // bfSize
     CHECK_EQ(read_u16(bmp_bytes, 6), static_cast<std::uint16_t>(0));  // bfReserved1
     CHECK_EQ(read_u16(bmp_bytes, 8), static_cast<std::uint16_t>(0));  // bfReserved2
@@ -156,7 +156,7 @@ int main() {
     CHECK_EQ(read_binary_file(save_bmp_file).size(), static_cast<std::size_t>(78));
 
     save_image(canvas, save_ppm_file);
-    CHECK_EQ(read_binary_file(save_ppm_file).size(), static_cast<std::size_t>(31));
+    CHECK_EQ(read_binary_file(save_ppm_file).size(), static_cast<std::size_t>(29));
 
     save_image(canvas, "temp_test_upper.BMP");
     CHECK_EQ(read_binary_file("temp_test_upper.BMP").size(), static_cast<std::size_t>(78));

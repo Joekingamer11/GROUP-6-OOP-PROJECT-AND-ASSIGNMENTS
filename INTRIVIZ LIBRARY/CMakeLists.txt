@@ -30,6 +30,10 @@ endif()
 
 # ---- 2. Examples: examples/foo.cpp becomes a program called foo ---------
 if(INTRIVIZ_BUILD_EXAMPLES)
+  add_executable(week1_showcase ${CMAKE_CURRENT_SOURCE_DIR}/data/input/week1_showcase.cpp)
+  target_link_libraries(week1_showcase PRIVATE intriviz)
+  target_compile_definitions(week1_showcase PRIVATE INTRIVIZ_DATA_DIR="${CMAKE_CURRENT_SOURCE_DIR}/data")
+
   file(GLOB INTRIVIZ_EXAMPLES CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/examples/*.cpp)
   foreach(example_src ${INTRIVIZ_EXAMPLES})
     get_filename_component(example_name ${example_src} NAME_WE)
