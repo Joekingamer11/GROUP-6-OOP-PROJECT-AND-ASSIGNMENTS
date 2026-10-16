@@ -14,3 +14,16 @@ This test file verifies Dataset creation, column operations, data access, error 
 ## How the files work together
 
 The public headers expose the version and Dataset interfaces, and the corresponding source files implement them. CMake compiles the source files into the library, while `test_dataset.cpp` checks the Dataset behavior.
+
+# Week 2
+
+## Files added to the repository
+
+### `include/cppviz/dataset.hpp`
+This header defines the `cppviz::Dataset` class, including support for column names, row access, validation, and tabular data management.
+
+### `src/dataset.cpp`
+This source file implements the dataset logic for working with numeric and text columns, row selection, missing-value detection, and error handling.
+
+### `tests/test_dataset.cpp`
+This file contains tests covering dataset creation, column operations, row selection, missing values, and error conditions.
