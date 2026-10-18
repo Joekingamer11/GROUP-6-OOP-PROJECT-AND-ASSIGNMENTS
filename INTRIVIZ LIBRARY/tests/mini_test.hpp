@@ -19,8 +19,7 @@ inline int g_failures = 0;
     auto _a = (a); \
     auto _b = (b); \
     if (!(_a == _b)) { \
-        std::cerr << __FILE__ << ":" << __LINE__ << " failed: " #a " == " #b \
-                  << " (" << _a << " vs " << _b << ")\n"; \
+        std::cerr << __FILE__ << ":" << __LINE__ << " failed: " #a " == " #b "\n"; \
         ++::cppviz::g_failures; \
     } \
 } while(0)

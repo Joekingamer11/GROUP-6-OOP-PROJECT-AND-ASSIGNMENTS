@@ -12,17 +12,16 @@ CategoricalScale::CategoricalScale(std::vector<std::string> names, double range_
 }
 
 double CategoricalScale::map(double value) const {
-    double domain_len = dmax_ - dmin_;
-    if (domain_len == 0.0) return rmin_;
-    double t = (value - dmin_) / domain_len;
-    return rmin_ + t * (rmax_ - rmin_);
+    const double domain_len = domain_max_ - domain_min_;
+    const double t = (value - domain_min_) / domain_len;
+    return range_min_ + t * (range_max_ - range_min_);
 }
 
 double CategoricalScale::invert(double pixel) const {
-    double range_len = rmax_ - rmin_;
-    if (range_len == 0.0) return dmin_;
-    double t = (pixel - rmin_) / range_len;
-    return dmin_ + t * (dmax_ - dmin_);
+    const double range_len = range_max_ - range_min_;
+    if (range_len == 0.0) return domain_min_;
+    const double t = (pixel - range_min_) / range_len;
+    return domain_min_ + t * (domain_max_ - domain_min_);
 }
 
 std::vector<double> CategoricalScale::tick_values() const {
@@ -44,7 +43,7 @@ std::string CategoricalScale::tick_label(double value) const {
 
 double CategoricalScale::band_width() const {
     if (names_.empty()) return 0.0;
-    return std::abs(rmax_ - rmin_) / static_cast<double>(names_.size());
+    return std::abs(range_max_ - range_min_) / static_cast<double>(names_.size());
 }
 
 std::size_t CategoricalScale::category_count() const {

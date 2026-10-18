@@ -23,30 +23,30 @@ int main() {
     draw_text(canvas_i, 5, 5, "I", text_color, 1);
 
     // Nothing should spill left or right of the cell
-    CHECK(canvas_i.get_pixel(4, 5) == Color{0, 0, 0});
-    CHECK(canvas_i.get_pixel(11, 5) == Color{0, 0, 0});
+    CHECK((canvas_i.get_pixel(4, 5) == Color{0, 0, 0}));
+    CHECK((canvas_i.get_pixel(11, 5) == Color{0, 0, 0}));
 
     // Columns 0 and 4 of the 'I' glyph are empty
     for (int y = 5; y <= 11; ++y) {
-        CHECK(canvas_i.get_pixel(5, y) == Color{0, 0, 0});
-        CHECK(canvas_i.get_pixel(9, y) == Color{0, 0, 0});
+        CHECK((canvas_i.get_pixel(5, y) == Color{0, 0, 0}));
+        CHECK((canvas_i.get_pixel(9, y) == Color{0, 0, 0}));
     }
 
     // The gap column after the character is untouched
     for (int y = 5; y <= 11; ++y) {
-        CHECK(canvas_i.get_pixel(10, y) == Color{0, 0, 0});
+        CHECK((canvas_i.get_pixel(10, y) == Color{0, 0, 0}));
     }
 
     // The stem of the 'I' runs down column 2 (x = 7)
     for (int y = 5; y <= 11; ++y) {
-        CHECK(canvas_i.get_pixel(7, y) == text_color);
+        CHECK((canvas_i.get_pixel(7, y) == text_color));
     }
 
     // 3. Empty strings leave the canvas alone
     Canvas canvas_empty(20, 20, Color{0, 0, 0});
     draw_text(canvas_empty, 2, 2, "", text_color, 1);
     draw_text_vertical(canvas_empty, 2, 2, "", text_color, 1);
-    CHECK(canvas_empty.get_pixel(2, 2) == Color{0, 0, 0});
+    CHECK((canvas_empty.get_pixel(2, 2) == Color{0, 0, 0}));
 
     // 4. Text near or off the edge should not crash
     Canvas canvas_clip(15, 15, Color{0, 0, 0});
@@ -63,7 +63,7 @@ int main() {
     for (int x = 0; x < 50; ++x) {
         for (int y = 0; y < 50; ++y) {
             if (x < 10 || x > 16 || y < 10 || y > 21) {
-                CHECK(canvas_v.get_pixel(x, y) == Color{0, 0, 0});
+                CHECK((canvas_v.get_pixel(x, y) == Color{0, 0, 0}));
             }
         }
     }

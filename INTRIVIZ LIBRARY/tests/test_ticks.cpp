@@ -13,9 +13,9 @@ int main() {
 
     //On fractional domain
     auto frac_ticks = nice_ticks(0.15, 0.85, 5);
-    CHECK(frac_ticks.size(), >= 2u);
-    CHECK(frac_ticks.front(), <= 0.15);
-    CHECK(frac_ticks.back(), >= 0.85);
+    CHECK(frac_ticks.size() >= 2u);
+    CHECK(frac_ticks.front() <= 0.15);
+    CHECK(frac_ticks.back() >= 0.85);
 
     //Log_ticks powers of 10
     auto l_ticks = log_ticks(0.1, 1000);
@@ -26,7 +26,7 @@ int main() {
     //format_tick tests
     CHECK_EQ(format_tick(20), "20");
     CHECK_EQ(format_tick(2.5), "2.5");
-    CHECK_EQ(format_tick(0.0), "0.0");
+    CHECK_EQ(format_tick(0.0), "0");
 
     //padded_range normal and constant values
     auto pad = padded_range({10.0, 20.0,}, 0.05);
@@ -42,5 +42,5 @@ int main() {
     CHECK_THROWS(log_ticks(-1.0, 10.0), InvalidArgument);
     CHECK_THROWS(padded_range({}, 0.1), DataError);
 
-    return 0;
+    return finish();
 }
