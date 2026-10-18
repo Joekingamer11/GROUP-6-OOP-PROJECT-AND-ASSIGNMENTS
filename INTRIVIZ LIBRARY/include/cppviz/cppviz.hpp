@@ -1,7 +1,8 @@
-#pragma once 
-namespace cppviz { 
-    const char\* version(); 
+#pragma once
 
-} 
-    #include "include/cppviz/types.hpp" 
-    #include "cppviz/error.hpp"
+#include "cppviz/error.hpp"
+#include "cppviz/types.hpp"
+
+namespace cppviz {
+const char* version();
+}

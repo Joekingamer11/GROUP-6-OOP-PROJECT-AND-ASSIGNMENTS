@@ -28,8 +28,8 @@ int main() {
     CHECK(!ds.is_numeric("day"));
 
     // 3. Verify accessors
-    CHECK_NEAR(ds.numeric("bill"), 10.5, 1e-9);
-    CHECK_EQ(ds.text("day")[10], std::string("Fri"));
+    CHECK_NEAR(ds.numeric("bill")[0], 10.5, 1e-9);
+    CHECK_EQ(ds.text("day")[1], std::string("Fri"));
 
     // 4. Invalid inputs & type checks
     CHECK_THROWS(ds.add_numeric_column("bill", {5.0, 5.0, 5.0}), InvalidArgument); // Duplicate name
@@ -45,10 +45,10 @@ int main() {
     // 6. Select rows and reordering
     Dataset sub = ds.select_rows({2, 0});
     CHECK_EQ(sub.row_count(), 2);
-    CHECK_NEAR(sub.numeric("bill"), 15.2, 1e-9);
-    CHECK_NEAR(sub.numeric("bill")[10], 10.5, 1e-9);
-    CHECK_EQ(sub.text("day"), std::string("Sat"));
-    CHECK_EQ(sub.text("day")[10], std::string("Thu"));
+    CHECK_NEAR(sub.numeric("bill")[0], 15.2, 1e-9);
+    CHECK_NEAR(sub.numeric("bill")[1], 10.5, 1e-9);
+    CHECK_EQ(sub.text("day")[0], std::string("Sat"));
+    CHECK_EQ(sub.text("day")[1], std::string("Thu"));
 
     // Out-of-bounds row selection
     CHECK_THROWS(ds.select_rows({5}), InvalidArgument);

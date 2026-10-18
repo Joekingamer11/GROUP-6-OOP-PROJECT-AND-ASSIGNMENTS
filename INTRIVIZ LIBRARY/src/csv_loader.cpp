@@ -82,10 +82,16 @@ Dataset parse_csv(const std::string& text, const CsvOptions& options) {
     std::size_t start_row = 0;
 
     if (options.has_header) {
-        col_names = rows;
+        if (rows.empty()) {
+            return Dataset();
+        }
+        col_names = rows.front();
         start_row = 1;
     } else {
-        std::size_t num_cols = rows.size();
+        if (rows.empty()) {
+            return Dataset();
+        }
+        std::size_t num_cols = rows.front().size();
         for (std::size_t i = 0; i < num_cols; ++i) {
             col_names.push_back("col" + std::to_string(i));
         }
