@@ -15,10 +15,8 @@ Member contributions:
 - **Member 10, Kalema Titus Larry:**  Wrote the preprocessing functions (`preprocess.hpp` / `preprocess.cpp`: `drop_missing`, `fill_missing`, `filter_rows`, `select_columns`, `normalize_minmax`, `standardize`) with `test_preprocess.cpp`; made small fixes to `text_util` and `mini_test.hpp` that teammates asked for.
 
 Team results:
-- CONFIRM: a fresh clone builds with `cmake -S . -B build` and `cmake --build build`.
-- CONFIRM: `ctest` runs and N tests pass.
-- CONFIRM: a program loads a CSV, drops missing rows, calls `describe` and prints the table.
-
+- A fresh clone builds with `cmake -S . -B build` and `cmake --build build`.
+- `ctest` runs and N tests pass.
 
 ## In Progress
 - Better pogrammes that use this code to showcase its abilities.
@@ -45,4 +43,3 @@ Team results:
 - Tool: Claude (Anthropic) & Microsoft Copilot
 - Purpose: Troubleshooting code and Creation of suitable example programme for the week.
 - Reason: Errors were insanely difficult to rectify on our own and we didn't have suggestions for a sample of our work for this week.
-
