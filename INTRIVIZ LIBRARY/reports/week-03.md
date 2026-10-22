@@ -1,4 +1,4 @@
-# Week 2 Progress Report
+# Week 3 Progress Report
 
 ## Completed
 Member contributions:
@@ -28,7 +28,7 @@ Team results:
 
 
 ## Next Week
-- Week 3 coding (19 to 25 October), one segment per member:
+- Week 4 coding (19 to 25 October), one segment per member:
   - Member 1: `Figure` class
   - Member 2: `Axes` class (plot frame, scales, ticks)
   - Member 3: title and axis labels
