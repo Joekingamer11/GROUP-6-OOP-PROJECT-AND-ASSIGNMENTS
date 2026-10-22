@@ -279,52 +279,43 @@ Total Test time (real) = 0.92 sec
 #### Member 1 (Lead & Integrator) — KIMULI JOSEPH
 * **Modules Written:** `CMakeLists.txt`, `src/version.cpp`, `include/cppviz/cppviz.hpp`, `categorical_scale.hpp`/`.cpp`, `figure.hpp`/`.cpp`, `quick.hpp`/`.cpp`.
 * **Tests & Examples:** `test_categorical_scale.cpp`, `test_figure.cpp`, `test_quick.cpp`, `example_load_and_describe.cpp`.
-* **Code Reviews:** Reviewed Member 2 and Member 10 pull requests; managed repository releases and week-by-week build integrations.
+* **Code Reviews:** Reviewed every member's pull requests; managed repository releases and week-by-week build integrations.
 
 #### Member 2 — NANGOSHA ANNE MARY
 * **Modules Written:** `types.hpp`, `error.hpp`/`.cpp`, `validation.hpp`/`.cpp`, `axes.hpp`/`.cpp`.
 * **Tests & Examples:** `test_types.cpp`, `test_error.cpp`, `test_validation.cpp`, `test_axes.cpp`, `test_invalid_inputs.cpp`.
-* **Code Reviews:** Reviewed Member 3 pull requests; conducted fresh-machine build verification tests.
 
 #### Member 3 — NAKIBUULE MARIA LIZ
 * **Modules Written:** `dataset.hpp`/`.cpp`, `groupby.hpp`/`.cpp`, `labels.hpp`/`.cpp`.
 * **Tests & Examples:** `test_dataset.cpp`, `test_groupby.cpp`, `test_labels.cpp`, `example_swarmplot.cpp`, `data/input/tips_sample.csv`.
-* **Code Reviews:** Reviewed Member 4 pull requests.
 
 #### Member 4 — ANNA KAGEMULO MTABAZI
 * **Modules Written:** `csv_loader.hpp`/`.cpp`, `summary.hpp`/`.cpp`, `annotation.hpp`/`.cpp`.
 * **Tests & Examples:** `test_csv_loader.cpp`, `test_summary.cpp`, `test_annotation.cpp`, `example_pointplot.cpp`, `example_annotations.cpp`, `data/input/scores_sample.csv`.
-* **Code Reviews:** Reviewed Member 5 pull requests.
 
 #### Member 5 — RWOTOLARA SUNDAY JUNIOR
 * **Modules Written:** `stats.hpp`/`.cpp`, `pointplot.hpp`/`.cpp`.
 * **Tests & Examples:** `test_stats.cpp`, `test_pointplot.cpp`, `test_swarmplot_layout.cpp` (independent cross-test), `example_heatmap.cpp`, `data/input/measurements_sample.csv`.
-* **Code Reviews:** Reviewed Member 6 pull requests.
 
 #### Member 6 — KWAGALA REBECCA
 * **Modules Written:** `scale.hpp`/`.cpp`, `ticks.hpp`/`.cpp`, `swarmplot.hpp`/`.cpp`.
 * **Tests & Examples:** `test_scale.cpp`, `test_ticks.cpp`, `test_swarmplot.cpp`, `test_pointplot_cross.cpp` (independent cross-test), `test_scales_integration.cpp`.
-* **Code Reviews:** Reviewed Member 7 pull requests.
 
 #### Member 7 — AMVIIKO REBECCA NATASHA
 * **Modules Written:** `canvas.hpp`/`.cpp`, `draw.hpp`/`.cpp`, `heatmap.hpp`/`.cpp`.
 * **Tests & Examples:** `test_canvas.cpp`, `test_draw.cpp`, `test_heatmap.cpp`, `test_figure_integration.cpp`, `test_colorbar_heatmap.cpp`.
-* **Code Reviews:** Reviewed Member 8 pull requests.
 
 #### Member 8 — KALULE WEGNA
 * **Modules Written:** `font.hpp`/`.cpp`, `theme.hpp`/`.cpp`, `image_export.hpp`/`.cpp`.
 * **Tests & Examples:** `test_font.cpp`, `test_theme.cpp`, `test_image_export.cpp`.
-* **Code Reviews:** Reviewed Member 9 pull requests.
 
 #### Member 9 — KADAMA HUMPHREY ARTHUR
 * **Modules Written:** `colormap.hpp`/`.cpp`, `colorbar.hpp`/`.cpp`.
 * **Tests & Examples:** `test_colormap.cpp`, `test_colorbar.cpp`, `example_dashboard.cpp`.
-* **Code Reviews:** Reviewed Member 10 pull requests.
 
 #### Member 10 — KALEMA TITUS LARRY
 * **Modules Written:** `tests/mini_test.hpp`, `text_util.hpp`/`.cpp`, `preprocess.hpp`/`.cpp`, `legend.hpp`/`.cpp`.
 * **Tests & Examples:** `test_mini_test.cpp`, `test_text_util.cpp`, `test_preprocess.cpp`, `test_legend.cpp`, `test_pipeline.cpp`, `test_large_data.cpp` (10,000-row stress test), `example_themes.cpp`.
-* **Code Reviews:** Reviewed Member 1 pull requests.
 
 ---
 
