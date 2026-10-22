@@ -28,7 +28,7 @@ int main() {
         CHECK_EQ(summaries.size(), 1);
 
         // 2. Verify numeric column stats
-        const auto& s = summaries;
+        const auto& s = summaries[0];
         CHECK_EQ(s.name, "score");
         CHECK_EQ(s.count, 4);
         CHECK_NEAR(s.mean, 25.0, 1e-6);
@@ -51,7 +51,7 @@ int main() {
         auto summaries = describe(ds);
         CHECK_EQ(summaries.size(), 1);
 
-        const auto& s = summaries;
+        const auto& s = summaries[0];
         // Count must accurately reflect non-NaN values
         CHECK_EQ(s.count, 3);
         CHECK_NEAR(s.mean, 3.0, 1e-6); // mean of {1.0, 3.0, 5.0}
@@ -91,9 +91,9 @@ int main() {
 
         auto summaries_single = describe(ds_single);
         CHECK_EQ(summaries_single.size(), 1);
-        CHECK_EQ(summaries_single.count, 1);
-        CHECK_NEAR(summaries_single.mean, 42.0, 1e-6);
-        CHECK_NEAR(summaries_single.stddev, 0.0, 1e-6);
+        CHECK_EQ(summaries_single[0].count, 1);
+        CHECK_NEAR(summaries_single[0].mean, 42.0, 1e-6);
+        CHECK_NEAR(summaries_single[0].stddev, 0.0, 1e-6);
 
         // Case B: Column where all values are missing
         Dataset ds_all_nan;
@@ -101,9 +101,9 @@ int main() {
 
         auto summaries_all_nan = describe(ds_all_nan);
         CHECK_EQ(summaries_all_nan.size(), 1);
-        CHECK_EQ(summaries_all_nan.count, 0);
-        CHECK_NEAR(summaries_all_nan.mean, 0.0, 1e-6);
-        CHECK_NEAR(summaries_all_nan.stddev, 0.0, 1e-6);
+        CHECK_EQ(summaries_all_nan[0].count, 0);
+        CHECK_NEAR(summaries_all_nan[0].mean, 0.0, 1e-6);
+        CHECK_NEAR(summaries_all_nan[0].stddev, 0.0, 1e-6);
 
         // Case C: Empty Dataset
         Dataset ds_empty;
