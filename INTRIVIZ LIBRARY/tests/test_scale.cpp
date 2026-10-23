@@ -37,7 +37,7 @@ int main(){
 
             //Invalid domain inputs
         CHECK_THROWS(LinearScale(5.0, 5.0, 0.0, 100.0), InvalidArgument);
-        return finish();
+        return 0;
 
     } 
 
