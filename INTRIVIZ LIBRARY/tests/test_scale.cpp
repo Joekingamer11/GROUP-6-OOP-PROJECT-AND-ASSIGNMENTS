@@ -18,7 +18,7 @@ int main(){
         CHECK_NEAR(scale.invert(100.0), 10.0, 1e-9);
 
             //reversed pixel range
-        LinearScale reversed_scale(10.0, 0.0, 100.0, 0.0);~
+        LinearScale reversed_scale(10.0, 0.0, 100.0, 0.0);
         CHECK_NEAR(reversed_scale.map(0.0), 100.0, 1e-9);
         CHECK_NEAR(reversed_scale.map(5.0), 50.0, 1e-9);
         CHECK_NEAR(reversed_scale.map(10.0), 0.0, 1e-9);

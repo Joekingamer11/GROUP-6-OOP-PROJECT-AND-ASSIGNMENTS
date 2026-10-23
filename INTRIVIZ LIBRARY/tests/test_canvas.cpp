@@ -6,6 +6,9 @@
 int main() {
     using namespace cppviz;
 
+    const Color black{0, 0, 0};
+    const Color white{255, 255, 255};
+
     // 1. Normal construction & background colour verification across all 4 corners
     {
         Color bg{240, 240, 240};
@@ -24,12 +27,12 @@ int main() {
     // 2. Default background colour is white (255, 255, 255)
     {
         Canvas canvas(10, 10);
-        CHECK(canvas.get_pixel(5, 5) == Color{255, 255, 255});
+        CHECK(canvas.get_pixel(5, 5) == white);
     }
 
     // 3. set_pixel and get_pixel round-trip
     {
-        Canvas canvas(20, 20, Color{0, 0, 0});
+        Canvas canvas(20, 20, black);
         Color red{255, 0, 0};
         Color green{0, 255, 0};
         Color blue{0, 0, 255};
@@ -41,22 +44,22 @@ int main() {
         CHECK(canvas.get_pixel(0, 0) == red);
         CHECK(canvas.get_pixel(10, 10) == green);
         CHECK(canvas.get_pixel(19, 19) == blue);
-        CHECK(canvas.get_pixel(1, 1) == Color{0, 0, 0});
+        CHECK(canvas.get_pixel(1, 1) == black);
     }
 
     // 4. Out-of-bounds drawing is silently ignored (clipping)
     {
-        Canvas canvas(10, 10, Color{0, 0, 0});
-        canvas.set_pixel(-1, 5, Color{255, 255, 255});
-        canvas.set_pixel(10, 5, Color{255, 255, 255});
-        canvas.set_pixel(5, -1, Color{255, 255, 255});
-        canvas.set_pixel(5, 10, Color{255, 255, 255});
-        canvas.set_pixel(100, 100, Color{255, 255, 255});
+        Canvas canvas(10, 10, black);
+        canvas.set_pixel(-1, 5, white);
+        canvas.set_pixel(10, 5, white);
+        canvas.set_pixel(5, -1, white);
+        canvas.set_pixel(5, 10, white);
+        canvas.set_pixel(100, 100, white);
 
-        CHECK(canvas.get_pixel(0, 5) == Color{0, 0, 0});
-        CHECK(canvas.get_pixel(9, 5) == Color{0, 0, 0});
-        CHECK(canvas.get_pixel(5, 0) == Color{0, 0, 0});
-        CHECK(canvas.get_pixel(5, 9) == Color{0, 0, 0});
+        CHECK(canvas.get_pixel(0, 5) == black);
+        CHECK(canvas.get_pixel(9, 5) == black);
+        CHECK(canvas.get_pixel(5, 0) == black);
+        CHECK(canvas.get_pixel(5, 9) == black);
     }
 
     // 5. Out-of-bounds reading strictly throws InvalidArgument
@@ -71,7 +74,7 @@ int main() {
 
     // 6. fill() replaces all pixels
     {
-        Canvas canvas(5, 5, Color{0, 0, 0});
+        Canvas canvas(5, 5, black);
         Color yellow{255, 255, 0};
         canvas.fill(yellow);
 
@@ -98,15 +101,15 @@ int main() {
         CHECK_EQ(bytes.size(), 2 * 2 * 3);
 
         // Row 0, col 0
-        CHECK_EQ(bytes, 10);
-        CHECK_EQ(bytes[7], 20);
-        CHECK_EQ(bytes[8], 30);
+        CHECK_EQ(bytes[0], 10);
+        CHECK_EQ(bytes[1], 20);
+        CHECK_EQ(bytes[2], 30);
 
         // Set row 1, col 0 -> index = (1 * 2 + 0) * 3 = 6
         canvas.set_pixel(0, 1, Color{100, 150, 200});
-        CHECK_EQ(canvas.data()[9], 100);
-        CHECK_EQ(canvas.data()[10], 150);
-        CHECK_EQ(canvas.data()[11], 200);
+        CHECK_EQ(canvas.data()[6], 100);
+        CHECK_EQ(canvas.data()[7], 150);
+        CHECK_EQ(canvas.data()[8], 200);
     }
 
     return finish();

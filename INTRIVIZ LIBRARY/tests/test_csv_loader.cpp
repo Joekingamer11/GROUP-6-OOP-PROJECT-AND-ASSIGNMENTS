@@ -14,12 +14,14 @@ int main() {
     // 2. Empty cell converted to NaN
     std::string missing_data = "x,y\n1.0,\n2.0,3.0";
     Dataset ds_missing = parse_csv(missing_data);
-    CHECK(is_missing(ds_missing.numeric("y")));
+    const auto& y_values = ds_missing.numeric("y");
+    CHECK(is_missing(y_values[0]));
+    CHECK(!is_missing(y_values[1]));
 
     // 3. Quoted fields containing commas
     std::string quoted_csv = "id,name\n1,\"Smith, John\"";
     Dataset ds_quoted = parse_csv(quoted_csv);
-    CHECK_EQ(ds_quoted.text("name"), "Smith, John");
+    CHECK_EQ(ds_quoted.text("name")[0], std::string("Smith, John"));
 
     // 4. Invalid input: Ragged row throws DataError
     std::string ragged_csv = "a,b\n1,2,3";

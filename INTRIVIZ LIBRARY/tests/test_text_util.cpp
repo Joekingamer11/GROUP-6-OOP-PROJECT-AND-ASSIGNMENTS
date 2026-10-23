@@ -12,10 +12,10 @@ int main() {
     // Test split
     auto parts = split("a,b,,c", ',');
     CHECK_EQ(parts.size(), 4u);
-    CHECK_EQ(parts, "a");
-    CHECK_EQ(parts, "b");
-    CHECK_EQ(parts, "");
-    CHECK_EQ(parts, "c");
+    CHECK_EQ(parts[0], std::string("a"));
+    CHECK_EQ(parts[1], std::string("b"));
+    CHECK_EQ(parts[2], std::string(""));
+    CHECK_EQ(parts[3], std::string("c"));
 
     // Test to_lower
     CHECK_EQ(to_lower("Hello WORLD 123!"), "hello world 123!");
