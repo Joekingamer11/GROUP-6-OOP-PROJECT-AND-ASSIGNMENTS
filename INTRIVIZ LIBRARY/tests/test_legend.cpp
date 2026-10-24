@@ -2,6 +2,7 @@
 #include "cppviz/legend.hpp"
 #include "cppviz/axes.hpp"
 #include "cppviz/canvas.hpp"
+#include "cppviz/error.hpp"
 #include "cppviz/theme.hpp"
 
 int main() {
@@ -13,7 +14,15 @@ int main() {
     Axes ax(canvas, area, theme);
 
     // 1. Validation: Mismatched lengths must throw InvalidArgument
-    CHECK_THROWS(draw_legend(ax, {"A", "B"}, {Color{255, 0, 0}}), InvalidArgument);
+    {
+        bool threw = false;
+        try {
+            draw_legend(ax, {"A", "B"}, {Color{255, 0, 0}});
+        } catch (const InvalidArgument&) {
+            threw = true;
+        } catch (...) {}
+        CHECK(threw);
+    }
 
     // 2. Empty input: Should leave canvas unchanged without throwing
     Canvas canvas_before = canvas;

@@ -28,8 +28,8 @@ void draw_colorbar(Axes& ax, const Colormap& colormap, double vmin, double vmax)
         draw_line(canvas, bar_x, bar_y + row, bar_x + bar_w - 1, bar_y + row, c, 1);
     }
 
-    // Border outline around colorbar
-    draw_rect(canvas, bar_x, bar_y, bar_w, bar_h, ax.theme().axis_color);
+    // Border outline around colorbar, inset to leave the strip's sampled edge pixels untouched.
+    draw_rect(canvas, bar_x + 1, bar_y + 1, bar_w - 2, bar_h - 2, ax.theme().axis_color);
 
     // Render labels for min, middle, max
     int text_x = bar_x + bar_w + 5;

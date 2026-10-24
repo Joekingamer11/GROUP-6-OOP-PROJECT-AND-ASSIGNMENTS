@@ -28,8 +28,16 @@ int main() {
     CHECK_NEAR(filled.numeric("score")[3], 99.0, 1e-9);
 
     // Test fill_missing error cases
-    CHECK_THROWS(fill_missing(ds, "nonexistent", 0.0), DataError);
-    CHECK_THROWS(fill_missing(ds, "category", 0.0), DataError);
+    {
+        bool threw = false;
+        try { fill_missing(ds, "nonexistent", 0.0); } catch (const DataError&) { threw = true; } catch (...) {}
+        CHECK(threw);
+    }
+    {
+        bool threw = false;
+        try { fill_missing(ds, "category", 0.0); } catch (const DataError&) { threw = true; } catch (...) {}
+        CHECK(threw);
+    }
 
     // 3. Test filter_rows
     Dataset filtered = filter_rows(ds, "val", [](double v) { return v > 2.5; });
@@ -37,14 +45,26 @@ int main() {
     CHECK_NEAR(filtered.numeric("val")[0], 3.0, 1e-9);
 
     // Filter error cases
-    CHECK_THROWS(filter_rows(ds, "unknown", [](double) { return true; }), DataError);
-    CHECK_THROWS(filter_rows(ds, "category", [](double) { return true; }), DataError);
+    {
+        bool threw = false;
+        try { filter_rows(ds, "unknown", [](double) { return true; }); } catch (const DataError&) { threw = true; } catch (...) {}
+        CHECK(threw);
+    }
+    {
+        bool threw = false;
+        try { filter_rows(ds, "category", [](double) { return true; }); } catch (const DataError&) { threw = true; } catch (...) {}
+        CHECK(threw);
+    }
 
     // 4. Test select_columns
     Dataset sub = select_columns(ds, {"val", "category"});
     CHECK_EQ(sub.column_count(), 2u);
     CHECK_EQ(sub.column_names(), (std::vector<std::string>{"val", "category"}));
-    CHECK_THROWS(select_columns(ds, {"val", "missing"}), DataError);
+    {
+        bool threw = false;
+        try { select_columns(ds, {"val", "missing"}); } catch (const DataError&) { threw = true; } catch (...) {}
+        CHECK(threw);
+    }
 
     // 5. Test normalize_minmax
     std::vector<double> vec = {2.0, 4.0, 6.0};
@@ -55,8 +75,16 @@ int main() {
     CHECK_NEAR(norm[2], 1.0, 1e-9);
 
     // normalize_minmax error on constant or empty vector
-    CHECK_THROWS(normalize_minmax({5.0, 5.0, 5.0}), DataError);
-    CHECK_THROWS(normalize_minmax({}), DataError);
+    {
+        bool threw = false;
+        try { normalize_minmax({5.0, 5.0, 5.0}); } catch (const DataError&) { threw = true; } catch (...) {}
+        CHECK(threw);
+    }
+    {
+        bool threw = false;
+        try { normalize_minmax({}); } catch (const DataError&) { threw = true; } catch (...) {}
+        CHECK(threw);
+    }
 
     // 6. Test standardize
     std::vector<double> std_vec = {10.0, 20.0, 30.0};
@@ -65,8 +93,16 @@ int main() {
     CHECK_NEAR(zscores[1], 0.0, 1e-9);
 
     // standardize error on constant or empty vector
-    CHECK_THROWS(standardize({4.0, 4.0}), DataError);
-    CHECK_THROWS(standardize({}), DataError);
+    {
+        bool threw = false;
+        try { standardize({4.0, 4.0}); } catch (const DataError&) { threw = true; } catch (...) {}
+        CHECK(threw);
+    }
+    {
+        bool threw = false;
+        try { standardize({}); } catch (const DataError&) { threw = true; } catch (...) {}
+        CHECK(threw);
+    }
 
     return finish();
 }

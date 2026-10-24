@@ -58,18 +58,50 @@ int main() {
     CHECK_NEAR(single_ci.high, 7.5, 1e-9);
 
     // --- Invalid Inputs & Exceptions ---
-    CHECK_THROWS(covariance({1.0, 2.0}, {1.0}), InvalidArgument);
-    CHECK_THROWS(correlation({1.0, 2.0}, {1.0}), InvalidArgument);
-    CHECK_THROWS(covariance({1.0}, {2.0}), DataError);
-    CHECK_THROWS(correlation({1.0}, {2.0}), DataError);
+    {
+        bool threw = false;
+        try { covariance({1.0, 2.0}, {1.0}); } catch (const InvalidArgument&) { threw = true; } catch (...) {}
+        CHECK(threw);
+    }
+    {
+        bool threw = false;
+        try { correlation({1.0, 2.0}, {1.0}); } catch (const InvalidArgument&) { threw = true; } catch (...) {}
+        CHECK(threw);
+    }
+    {
+        bool threw = false;
+        try { covariance({1.0}, {2.0}); } catch (const DataError&) { threw = true; } catch (...) {}
+        CHECK(threw);
+    }
+    {
+        bool threw = false;
+        try { correlation({1.0}, {2.0}); } catch (const DataError&) { threw = true; } catch (...) {}
+        CHECK(threw);
+    }
 
     // Constant vector correlation (zero standard deviation)
-    CHECK_THROWS(correlation({1.0, 2.0, 3.0}, {2.0, 2.0, 2.0}), DataError);
+    {
+        bool threw = false;
+        try { correlation({1.0, 2.0, 3.0}, {2.0, 2.0, 2.0}); } catch (const DataError&) { threw = true; } catch (...) {}
+        CHECK(threw);
+    }
 
     // Invalid bootstrap arguments
-    CHECK_THROWS(bootstrap_ci({}, 0.95), DataError);
-    CHECK_THROWS(bootstrap_ci({1.0, 2.0}, 1.5), InvalidArgument);
-    CHECK_THROWS(bootstrap_ci({1.0, 2.0}, 0.95, 0), InvalidArgument);
+    {
+        bool threw = false;
+        try { bootstrap_ci({}, 0.95); } catch (const DataError&) { threw = true; } catch (...) {}
+        CHECK(threw);
+    }
+    {
+        bool threw = false;
+        try { bootstrap_ci({1.0, 2.0}, 1.5); } catch (const InvalidArgument&) { threw = true; } catch (...) {}
+        CHECK(threw);
+    }
+    {
+        bool threw = false;
+        try { bootstrap_ci({1.0, 2.0}, 0.95, 0); } catch (const InvalidArgument&) { threw = true; } catch (...) {}
+        CHECK(threw);
+    }
 
     return finish();
 }

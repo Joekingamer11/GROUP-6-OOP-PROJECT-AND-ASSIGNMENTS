@@ -45,3 +45,6 @@ int main() {
         PointI pt_max = ax.to_pixel(1.0, 1.0);
         CHECK(canvas.get_pixel(pt_max.x, pt_max.y) == c_max);
     }
+
+    return finish();
+}
