@@ -205,29 +205,26 @@ g++ -std=c++17 main.cpp -lcppviz -o my_plot_app
 
 ### 7. Examples
 
-The library includes seven standalone runnable examples located in `examples/`:
+The library includes six standalone runnable examples located in `examples/`:
 
 1. **`examples/example_load_and_describe.cpp`**
    * **Demonstrates:** CSV loading (`tips_sample.csv`), missing row filtering (`drop_missing`), computing column statistics, and formatting an aligned text summary table.
    * **Output:** Terminal text table output.
-2. **`examples/example_swarmplot.cpp`**
-   * **Demonstrates:** Ingesting categorical dataset and creating a swarm plot of total bill amounts categorized by day of week using `quick_swarmplot`.
+2. **`examples/example_week_2.cpp`**
+   * **Demonstrates:** CSV parsing, missing-value cleanup, and statistical summaries.
+   * **Output Writes:** `data/output/week2_showcase.bmp`
+3. **`examples/example_week3_showcase.cpp`**
+   * **Demonstrates:** A combined point and swarm plot with summary statistics and confidence intervals.
+   * **Output Writes:** `data/output/week3_showcase.bmp`
+4. **`examples/example_swarmplot.cpp`**
+   * **Demonstrates:** Swarm plot score distributions across two groups.
    * **Output Writes:** `data/output/example_swarmplot.bmp`
-3. **`examples/example_pointplot.cpp`**
-   * **Demonstrates:** Plotting average test scores per group with 95% bootstrap confidence interval error bars using `quick_pointplot`.
+5. **`examples/example_pointplot.cpp`**
+   * **Demonstrates:** Mean scores across groups with bootstrap confidence intervals.
    * **Output Writes:** `data/output/example_pointplot.bmp`
-4. **`examples/example_annotations.cpp`**
-   * **Demonstrates:** Manual `Figure` composition, custom axis labels, drawing horizontal reference lines at data averages, text annotations, and directional vector arrows.
-   * **Output Writes:** `data/output/example_annotations.bmp`
-5. **`examples/example_heatmap.cpp`**
-   * **Demonstrates:** Computing a Pearson correlation matrix from multi-column data (`measurements_sample.csv`) and rendering an annotated matrix heatmap with a `viridis` colorbar.
+6. **`examples/example_heatmap.cpp`**
+   * **Demonstrates:** An annotated heatmap of correlations between three subjects.
    * **Output Writes:** `data/output/example_heatmap.bmp`
-6. **`examples/example_dashboard.cpp`**
-   * **Demonstrates:** Multi-chart dashboard generation producing swarm plots, point plots, and heatmaps from a unified dataset, exporting in both BMP and PNG image formats.
-   * **Output Writes:** `data/output/dashboard_swarm.bmp`, `data/output/dashboard_point.bmp`, `data/output/dashboard_heatmap.png`
-7. **`examples/example_themes.cpp`**
-   * **Demonstrates:** Rendering the same dataset across all four theme presets (`theme_white`, `theme_whitegrid`, `theme_darkgrid`, `theme_dark`).
-   * **Output Writes:** `data/output/theme_white.bmp`, `data/output/theme_whitegrid.bmp`, `data/output/theme_darkgrid.bmp`, `data/output/theme_dark.bmp`
 
 ---
 
