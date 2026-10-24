@@ -18,7 +18,7 @@
 - Managing 10 different contributors through pull requests will make it hard to avoid merge conflicts.
 
 ## Next Week
-- Week 1 coding (5 to 11 October), one segment per member (numbers follow the members table in the README):
+- Week 2 coding (5 to 11 October), one segment per member (numbers follow the members table in the README):
   - Member 1: `CMakeLists.txt` checks, `src/version.cpp`, umbrella header
   - Member 2: `types.hpp`, `error.hpp`
   - Member Nakibuule Maria Liz: `Dataset` class

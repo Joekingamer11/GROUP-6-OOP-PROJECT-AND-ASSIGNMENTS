@@ -32,6 +32,15 @@ class LinearScale : public Scale {
     std::vector<double> tick_values() const override;
     std::string tick_label(double value) const override;
 };
+class LogScale : public Scale {
+    public:
+    LogScale(double domain_min, double domain_max, double range_min, double range_max);
+
+    double map(double value) const override;
+    double invert(double pixel) const override;
+    std::vector<double> tick_values() const override;
+    std::string tick_label(double value) const override;
+};
 }
 
 
