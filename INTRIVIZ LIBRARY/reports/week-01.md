@@ -1,37 +1,47 @@
-# Week 1 Progress Report
+# Week 2 Progress Report
 
 ## Completed
-- Received the C++ group project instructions and the Group 6 allocation: a Seaborn-style data visualization library in C++ (data loading, preprocessing, statistical summaries, swarm plots, point plots, heatmaps, axis scaling, labels and annotations, plot rendering, image export).
-- Read the instructions as a group and listed the requirements: reusable library, folder structure, tests, hand-typed README, Git/GitHub workflow, weekly reports, AI declaration, deadline 5 November 2026.
-- Agreed a five-week plan with ten members: a weekly schedule, the files each member owns each week, and the function signatures the modules will share. The plan was drafted with AI help (see AI Use) and reviewed by the team.
-- Named the library **INTRIVIZ** and added the `INTRIVIZ LIBRARY` folder to the group repository on 3 October (commit "FIRST COMMIT"). It contains the standard project skeleton:
-  - `CMakeLists.txt` (C++17; builds the library, examples and tests; install rules; target and macros named after INTRIVIZ)
-  - `LICENSE` (MIT; copyright line edited by the team) and `.gitignore`
-  - `README.md` with the group members table and an outline of the sections to be written
-  - `.gitkeep` placeholders that keep the empty folders `data/input`, `data/output`, `examples`, `include/intriviz`, `reports/team`, `src` and `tests`
-- Fixed the order of the group members table in the README, with Member 1 as team lead.
+Member contributions :
 
+- **Member 1 (lead), Kimuli Joseph:**  Wrote `CMakeLists.txt` checks, `src/version.cpp` and the umbrella header `intriviz.hpp`; reviewed every member's pull requests; merged the week's pull requests in dependency order.
+- **Member 2, Nangosha Anne Mary:**  Wrote `types.hpp` (`Color`, `PointI`, `PointD`, `Rect`, `Margins`) and `error.hpp` / `error.cpp` (exception classes and `require()`), with tests.
+- **Member 3, Nakibuule Maria Liz:**  Wrote the `Dataset` class (`dataset.hpp` / `dataset.cpp`): numeric and text columns, accessors that throw `DataError`, `select_rows`; wrote `test_dataset.cpp`.
+- **Member 4, Anna Kagemulo Mtabazi:**  Wrote the CSV loader (`csv_loader.hpp` / `csv_loader.cpp`): `parse_csv`, `load_csv`, quote handling, type detection, missing cells; wrote `test_csv_loader.cpp`.
+- **Member 5, Rwotolara Sunday Junior:**  Wrote the basic statistics (`stats.hpp` / `stats.cpp`): `mean`, `median`, `variance`, `stddev`, `min_value`, `max_value`, `quantile`; wrote `test_stats.cpp`.
+- **Member 6, Kwagala Rebecca:**  Wrote the abstract `Scale` class and `LinearScale` (`scale.hpp` / `scale.cpp`) with `map` and `invert`; wrote `test_scale.cpp`.
+- **Member 7, Amviiko Rebecca Natasha:**  Wrote the `Canvas` class (`canvas.hpp` / `canvas.cpp`): pixel storage, `set_pixel`, `get_pixel`, `fill`; wrote `test_canvas.cpp`.
+- **Member 8, Kalule Wegna:** Wrote the image export functions (`image_export.hpp` / `image_export.cpp`): `write_ppm`, `write_bmp`, `save_image`; wrote `test_image_export.cpp`.
+- **Member 9, Kadama Humphrey Arthur:** Wrote the colour module (`colormap.hpp` / `colormap.cpp`): hex parsing, `blend`, the "deep" palette and the `Colormap` class; wrote `test_colormap.cpp`.
+- **Member 10, Kalema Titus Larry:**  Wrote the test helper `mini_test.hpp` and the text utilities (`text_util.hpp` / `text_util.cpp`: `trim`, `split`, `to_lower`, `try_parse_double`) with tests.
+
+Team results :
+- A fresh clone builds with `cmake -S . -B build` and `cmake --build build`.
+- `ctest` runs and N tests pass.
+
+## In Progress
+- Confirmation of the generation of a bmp image after running tests.
+- Suggestion and Implementation of various example files for future tests.
 
 ## Challenges/Blockers
-- "Before the beginning of the week" can be read two ways for the weekly reports. We are submitting each report on the Sunday before the week it covers.
-- Most of us are beginners with C++ and Git, so the first week includes practice with branches and pull requests.
-- Managing 10 different contributors through pull requests will make it hard to avoid merge conflicts.
+- A lot of errors post merging of the code.
+- Heavy reliance on AI to solve errors encountered due to schedule clashes with each member's personal time.
+- Minor merge conflicts that were later rectified.
 
 ## Next Week
-- Week 2 coding (5 to 11 October), one segment per member (numbers follow the members table in the README):
-  - Member 1: `CMakeLists.txt` checks, `src/version.cpp`, umbrella header
-  - Member 2: `types.hpp`, `error.hpp`
-  - Member Nakibuule Maria Liz: `Dataset` class
-  - Member 4: CSV loader
-  - Member 5: basic statistics
-  - Member 6: `Scale` and `LinearScale`
-  - Member 7: `Canvas`
-  - Member 8: BMP and PPM image export
-  - Member 9: colour parsing, palette and `Colormap`
-  - Member 10: test helper (`mini_test.hpp`) and text utilities
-- Each member opens a pull request by Thursday; reviews on Friday; Member 1 merges on Saturday.
-- Goal: a fresh clone builds with CMake, `ctest` runs, and a canvas can be saved as a BMP image.
+- Week  coding (12 to 18 October), one segment per member:
+  - Member 1: `CategoricalScale`, first example program
+  - Member 2: `validation` helpers
+  - Member 3: `group_by`
+  - Member 4: `describe` summary table, missing-value tokens in the CSV loader
+  - Member 5: correlation and bootstrap confidence intervals
+  - Member 6: tick marks and `LogScale`
+  - Member 7: line, rectangle and circle drawing
+  - Member 8: bitmap font
+  - Member 9: named colormaps and contrast colour
+  - Member 10: preprocessing functions
+- Pull requests by Thursday, reviews on Friday, merges before Sunday.
 
 ## AI Use
-- Tool: Claude (Anthropic)
-- Reason: We are beginners and needed a clear plan and a shared structure so ten people could work in parallel. The team reviewed and adjusted the output, and the member who owns each file will be able to explain it.
+- Tool: Claude (Anthropic) & Microsoft Copilot
+- Purpose: Error Rectification and Code Breakdown
+- Reason: Some errors were beyond our means of rectification and required more time to resolve that we did not have.
