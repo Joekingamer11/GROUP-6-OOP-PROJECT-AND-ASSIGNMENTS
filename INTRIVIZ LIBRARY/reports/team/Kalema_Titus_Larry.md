@@ -27,3 +27,18 @@ This source file implements the preprocessing functions described in the header.
 ### `tests/test_preprocess.cpp`
 
 This test file validates the preprocessing logic through unit tests for dropping missing rows, filling missing values, filtering rows, selecting columns, min-max normalization, and z-score standardization.
+
+# Week 3
+## Files added
+
+### `include/cppviz/legend.hpp`
+
+This header declares the `draw_legend` function, which draws a boxed categorical color key inside the plot area with an optional title.
+
+### `src/legend.cpp`
+
+This source file implements legend rendering, including the background box, title, category color swatches, and labels. It validates that the category names and colors have matching lengths.
+
+### `tests/test_legend.cpp`
+
+This test file checks legend input validation, verifies that empty input leaves the canvas unchanged, and confirms that rendering modifies the canvas with the expected category colors.
