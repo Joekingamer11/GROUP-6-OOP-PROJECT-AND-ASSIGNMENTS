@@ -83,3 +83,24 @@ The header is the public interface. Anything that needs to draw text includes it
 - Reason: Typing 64 glyphs by hand would have taken hours, and the bit-shifting logic for the rotated version was tricky to work out from scratch.
 
 I typed the files into the project myself. AI was used as a helper, not to produce the whole module. I read through the code line by line, watched videos on bitmap fonts and on how C++ writes bits, and I can explain what every function does and why.
+
+# Week 3
+
+## Files added
+
+### `include/cppviz/theme.hpp`
+This header defines the `Theme` struct, which holds colors and sizes for the plot background, axes, grid, and text. It also declares four preset functions.
+
+### `src/theme.cpp`
+This file implements the four presets. `theme_white` and `theme_whitegrid` are light. `theme_darkgrid` uses a light grey plot area with white grid lines. `theme_dark` is for dark mode.
+
+### `tests/test_theme.cpp`
+This file checks that the presets are set up correctly. It verifies the grid settings, checks specific colors, and makes sure the dark theme is actually darker than the white theme.
+
+## How the files work together
+The rest of the library uses these themes to style the plots. By passing a Theme into the drawing functions, we can change how the axes, grids, and text look without touching the drawing code itself.
+
+## AI use
+- Tool: Notebook AI
+- Purpose: Helped write the comments in the header file and the complex code.
+- Reason: Wanted the struct to be well-documented. 
