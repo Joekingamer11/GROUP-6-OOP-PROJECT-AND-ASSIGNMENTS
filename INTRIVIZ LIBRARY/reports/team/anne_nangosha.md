@@ -51,3 +51,14 @@
 - axes.hpp: Declares the `Axes` class, which connects a canvas, plot area, theme, and x/y scales.
 - axes.cpp: Implements data-to-pixel coordinate mapping and draws the plot frame, optional grid lines, axis lines, ticks, and labels.
 - test_axes.cpp: Tests plot-area pixel ranges, scale mapping, errors when scales are unset, and frame drawing.
+
+
+## WEEK-04
+
+## FILES
+
+- test_invalid_inputs.cpp
+
+## DESCRIPTION OF NEW FILES
+
+- test_invalid_inputs.cpp: Adds tests for invalid inputs across validation helpers, canvas bounds and dimensions, scale domains and ranges, and axes with unset scales. It also checks that valid scales map coordinates correctly.
