@@ -1,11 +1,3 @@
-/*
-ANNA KAGEMULO MTABAZI 25/T/08565/PS
-Summary of the C++ Visualization Library
-This header file provides a summary of the C++ Visualization Library (cppviz). 
-It includes essential components and functionalities that facilitate the visualization of data structures and algorithms in C++.
-The library is designed to be compatible with the C++14 standard, ensuring modern features and optimizations are available for developers.
- */
-
  #pragma once
 
 #include <cstddef>
