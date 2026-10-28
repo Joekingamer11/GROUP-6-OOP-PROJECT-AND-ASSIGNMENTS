@@ -170,4 +170,4 @@ Interval bootstrap_ci(const std::vector<double>& v, double level, int n_boot, un
     return Interval{quantile(boot_means, low_q), quantile(boot_means, high_q)};
 }
 
-} // namespace cppviz
+}

@@ -28,3 +28,19 @@ Member 9 expanded the colormap module for Week 2 ("Data Processing and Drawing T
 1. Named Colormaps: make_colormap() builds Colormap instances configured with color stops for viridis, magma, coolwarm, and gray.
 2. Wrap-Around Indexing: palette_color() safely retrieves palette colors using index % palette.size(), throwing InvalidArgument if the vector is empty.
 3. Accessibility & Contrast: luminance() measures perceived brightness (0.299*R + 0.587*G + 0.114*B), and contrast_text_color() automatically returns white for dark backgrounds and black for light ones.
+
+
+# Member 9 (Humphrey Arthur) — Week 3 Report
+
+## Files Created
+* include/cppviz/colorbar.hpp: Public header declaring draw_colorbar() to render vertical color gradient bars beside plot areas.
+* src/colorbar.cpp: Source implementation for gradient strip rendering, boundary outline drawing, and min/middle/max tick label placement.
+* tests/test_colorbar.cpp: CTest executable verifying gradient endpoint color accuracy and exception handling for invalid vmin/vmax ranges.
+
+## What Member 9 Added
+Member 9 introduced the colorbar module for Week 3 ("Plots and Figure Integration"), providing the color scale legend for heatmaps and continuous plot visualizations.
+
+## How the Code Works
+1. Range Validation: draw_colorbar() validates that vmin < vmax, throwing InvalidArgument if inputs are equal or inverted.
+2. Gradient Strip Rendering: Positioned 15 pixels to the right of ax.area(), drawing horizontal pixel lines sampled from colormap.at(t) where t scales from 1.0 (top) to 0.0 (bottom).
+3. Text Annotations: Places formatted tick labels for vmax (top), average value (middle), and vmin (bottom) adjacent to the gradient strip using ax.theme().text_color.

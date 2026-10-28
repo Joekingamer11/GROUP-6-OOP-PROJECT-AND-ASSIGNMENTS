@@ -38,3 +38,16 @@
 
 - error.hpp: Adjusted the custom error definitions to support the validation layer by ensuring the library has consistent exception classes and the require() helper used in input checks.
 
+## WEEK-03
+
+## FILES
+
+- axes.hpp
+- axes.cpp
+- test_axes.cpp
+
+## DESCRIPTION OF NEW FILES
+
+- axes.hpp: Declares the `Axes` class, which connects a canvas, plot area, theme, and x/y scales.
+- axes.cpp: Implements data-to-pixel coordinate mapping and draws the plot frame, optional grid lines, axis lines, ticks, and labels.
+- test_axes.cpp: Tests plot-area pixel ranges, scale mapping, errors when scales are unset, and frame drawing.
