@@ -57,3 +57,26 @@ This new test file exercises point-plot rendering with and without confidence in
 
 ### How these files work together
 The point-plot header exposes the options and function to library users. The implementation uses dataset grouping and the statistics API to compute category means and bootstrap confidence intervals, then draws the results on the supplied axes. The new tests cover both rendered output and invalid-input behavior. The Week 3 bootstrap changes in the statistics module provide the confidence intervals used by the plot.
+
+# Week 4 Progress Report
+
+## My Week 4 Files and Modifications
+
+### `data/input/measurements_sample.csv`
+This new sample dataset contains 30 observations across four numeric measurements: `length`, `width`, `height`, and `weight`. The values are correlated, making the file useful as example input for calculating and visualizing relationships between measurements.
+
+
+### `tests/test_swarmplot_layout.cpp`
+This new test file exercises the `swarm_layout` helper independently of the swarmplot renderer. It checks that points in the same category stay at least two marker radii apart, verifies the number of positions for categories with one observation each, and confirms that empty data and a missing category column raise `DataError`.
+
+### `include/cppviz/stats.hpp`
+This existing public header now documents the statistics API with Doxygen comments. The descriptions cover the univariate functions, covariance and correlation, correlation-matrix generation, and bootstrap confidence intervals, including their parameters, return values, and relevant error conditions. The function declarations and statistical behavior are unchanged.
+
+### `include/cppviz/pointplot.hpp`
+This existing header now documents `PointplotOptions` and the `pointplot` function. The comments explain the visual options and describe the expected columns and possible input errors, making the public point-plot API clearer to library users.
+
+### `src/pointplot.cpp`
+The implementation has been reorganized into clearly identified stages for input validation, category statistics, scale setup, frame drawing, and mark rendering. The plotting logic remains the same; the error message for data with no usable groups was clarified to refer to “valid observation groups.”
+
+### How these files work together
+The sample CSV provides correlated measurements for visualization examples, while the heatmap example shows a complete annotated-heatmap workflow. The swarm-layout tests check spacing and invalid-input behavior in the swarmplot helper. The updated public headers explain the statistics and point-plot APIs, and the implementation’s step labels make its existing rendering flow easier to follow.
