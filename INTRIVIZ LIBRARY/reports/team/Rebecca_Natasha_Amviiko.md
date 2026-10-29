@@ -57,3 +57,23 @@ This test file checks a 2-by-2 heatmap rendered with the viridis colormap. It sa
 ## How the files work together
 
 The header provides the heatmap options and public function, the implementation uses the axes, scales, drawing, and colormap functionality to render the matrix, and the test checks that values map to the expected colors. Together, these files add heatmap visualization to the library.
+
+# Week 4
+
+## Files added and updated
+
+### `include/cppviz/canvas.hpp`
+
+This header received clearer documentation for the Canvas pixel layout, pixel access, fill operation, and raw RGB data buffer.
+
+### `tests/test_colorbar_heatmap.cpp`
+
+This test file verifies colorbar and heatmap integration. It checks heatmap cell colors and colorbar endpoints, custom `vmin` and `vmax` scaling, standalone colorbar rendering, and errors for invalid colorbar ranges.
+
+### `tests/test_figure_integration.cpp`
+
+This test file exercises Figure integration by drawing shapes and text, saving a BMP, and checking its file headers and dimensions. It also checks custom margins and Figure move construction and assignment.
+
+## How the files work together
+
+The Canvas header documents the pixel buffer and access methods used throughout rendering. The integration tests exercise these drawing and image-export capabilities through `Figure`, and verify that heatmaps, colorbars, and figure configuration work together as expected.

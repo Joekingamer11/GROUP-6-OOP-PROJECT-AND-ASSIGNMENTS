@@ -1,17 +1,41 @@
 #include <cppviz/cppviz.hpp>
-#include <filesystem>
+#include <iostream>
+#include <string>
 
 int main() {
-    auto data = cppviz::parse_csv("group,score\nControl,5\nControl,6\nControl,7\nTreatment,6\nTreatment,8\nTreatment,9\n");
-    cppviz::Theme theme = cppviz::theme_whitegrid();
-    theme.background = cppviz::Color{248, 249, 250};
-    theme.grid_color = cppviz::Color{222, 226, 230};
-    theme.axis_color = cppviz::Color{33, 37, 41};
-    theme.text_color = cppviz::Color{33, 37, 41};
-    cppviz::Figure fig(980, 620, theme);
-    cppviz::Margins margins; margins.left = 70; margins.right = 30; margins.top = 40; margins.bottom = 70; fig.set_margins(margins);
-    cppviz::SwarmplotOptions opts; opts.marker_radius = 6; opts.color_by_category = true; cppviz::swarmplot(fig.axes(), data, "group", "score", opts);
-    cppviz::draw_title(fig.axes(), "Swarm Plot: Score Distribution"); cppviz::draw_xlabel(fig.axes(), "Group"); cppviz::draw_ylabel(fig.axes(), "Score");
-    auto output = std::filesystem::path(INTRIVIZ_DATA_DIR) / "output"; std::filesystem::create_directories(output); fig.save((output / "example_swarmplot.bmp").string());
+    try {
+        // Resolve data path via CPPVIZ_DATA_DIR CMake macro
+        std::string input_path = std::string(CPPVIZ_DATA_DIR) + "/input/tips_sample.csv";
+        std::string output_path = "data/output/example_swarmplot.bmp";
+
+        std::cout << "Loading dataset from: " << input_path << "\n";
+
+        // Load CSV and clean rows containing missing values
+        cppviz::Dataset raw_data = cppviz::load_csv(input_path);
+        cppviz::Dataset clean_data = cppviz::drop_missing(raw_data);
+
+        std::cout << "Loaded " << raw_data.row_count() << " rows (" 
+                  << clean_data.row_count() << " rows after dropping missing data).\n";
+
+        // Generate swarm plot figure via high-level quick API
+        cppviz::Figure fig = cppviz::quick_swarmplot(
+            clean_data, 
+            "day", 
+            "total_bill", 
+            "Total Bill by Day ($)"
+        );
+
+        // Save output BMP image
+        fig.save(output_path);
+        std::cout << "Swarm plot successfully saved to: " << output_path << "\n";
+
+    } catch (const cppviz::VizError& e) {
+        std::cerr << "cppviz Error: " << e.what() << "\n";
+        return 1;
+    } catch (const std::exception& e) {
+        std::cerr << "Unexpected Error: " << e.what() << "\n";
+        return 1;
+    }
+
     return 0;
 }

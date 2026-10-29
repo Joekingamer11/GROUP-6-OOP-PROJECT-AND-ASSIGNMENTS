@@ -7,9 +7,12 @@
 namespace cppviz {
 
     //to generate round, evenly spaced "nice" ticks for a given range
+    
+    /*Target: desired approximate no. of tick marks(6)
+    Returns: vector of nicely spaced tick values
+    Throws InvalidArgument when min > max, target_count < 2, and bounds are NaN*/
     std::vector<double> nice_ticks(double min, double max, 
         int target_count = 6);
-
 
     //to generate base-10 logarithmic tick marks (powers of 10) within [min, max]
     //it gives an invalid argument if min<= 0, max <= 0, min> max or bound are NaN

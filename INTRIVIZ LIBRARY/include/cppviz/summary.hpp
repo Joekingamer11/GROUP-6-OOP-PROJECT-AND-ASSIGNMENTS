@@ -20,10 +20,15 @@ struct ColumnSummary {
     double max = 0.0;                      // Maximum value
 };
 
-/// Computes descriptive statistics for every numeric column in the dataset.
-/// Skips text columns and ignores missing values (NaN) [1, 3].
-std::vector<ColumnSummary> describe(const Dataset& data);
+/// Computes summary statistics for all numeric columns in a Dataset.
+/// Skips text columns and ignores missing values (NaN).
+/// @param data Input Dataset table.
+/// @return List of ColumnSummary structures.
 
+std::vector<ColumnSummary> describe(const Dataset& data);
+/// Formats column summary structures into a neatly aligned ASCII text table.
+/// @param summaries List of column summaries.
+/// @return Formatted string containing the formatted ASCII table.
 /// Formats a list of column summaries into a neatly aligned ASCII text table [1, 3].
 std::string to_string(const std::vector<ColumnSummary>& summaries);
 

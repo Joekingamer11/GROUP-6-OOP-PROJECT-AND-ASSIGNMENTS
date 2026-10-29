@@ -42,3 +42,18 @@ This source file implements legend rendering, including the background box, titl
 ### `tests/test_legend.cpp`
 
 This test file checks legend input validation, verifies that empty input leaves the canvas unchanged, and confirms that rendering modifies the canvas with the expected category colors.
+
+# Week 4
+## Files added
+
+### `tests/test_pipeline.cpp`
+
+This test file validates an end-to-end data workflow: parsing CSV data, removing rows with missing values, grouping the cleaned data, and checking statistical summaries.
+
+### `tests/test_large_data.cpp`
+
+This test file stress-tests missing-value removal, grouping, and statistical calculations on a 10,000-row dataset, and checks that processing completes within the expected time.
+
+### `examples/example_themes.cpp`
+
+This example renders a swarm plot using each of the four theme presets and saves the resulting images.

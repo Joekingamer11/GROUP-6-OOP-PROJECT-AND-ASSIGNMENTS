@@ -104,3 +104,18 @@ The rest of the library uses these themes to style the plots. By passing a Theme
 - Tool: Notebook AI
 - Purpose: Helped write the comments in the header file and the complex code.
 - Reason: Wanted the struct to be well-documented. 
+
+# Week 4
+
+## Files updated
+
+### `include/cppviz/image_export.hpp` and `src/image_export.cpp`
+I added the `write_png` function as a stretch goal. Writing a PNG from scratch is tricky because it requires a zlib wrapper, Adler-32 checksums, and CRC-32 checksums for the chunks. The code implements these manually. Because writing a real compression algorithm is out of scope, the function uses uncompressed "stored" deflate blocks. The file is valid, but larger than a normal PNG. I also added `save_image` support for `.png` and wrote doc comments for the headers.
+
+### Documentation Updates
+I went through `font.hpp`, `theme.hpp`, and `image_export.hpp` and replaced the long generated comments with short, clear explanations of what each function does and what it throws.
+
+## AI use
+- Tool: Notebook AI
+- Purpose: Helped write the CRC-32 and Adler-32 checksum logic for the PNG writer, and the documentation comments.
+- Reason: The math for PNG chunks is very specific and I didn't want to get the bitwise operations wrong. I reviewed the code to make sure it makes sense. If the PNG code causes issues during review, I will drop it and list it as a limitation in the main README as the guide suggested.

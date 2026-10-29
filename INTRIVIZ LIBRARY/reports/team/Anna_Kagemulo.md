@@ -69,3 +69,17 @@ files .
 ### AI use
 - Tool: Microsoft Copilot (Anthropic) and Google Gemini
 - Reason: We are beginners and needed a clear plan and a shared structure so ten people could work in parallel. The team reviewed and adjusted the output, and the member who owns each file will be able to explain it.
+
+# Week 4 Summary Report 
+
+### Tasks Completed
+- Created the sample dataset fixture (`data/input/scores_sample.csv`) containing 30 rows of categorical student groups and test scores.
+- Implemented the high-level point plot executable example (`examples/example_pointplot.cpp`) demonstrating `quick_pointplot` and file export.
+- Implemented the low-level custom annotations executable example (`examples/example_annotations.cpp`) demonstrating manual `Figure` construction, reference benchmark lines (`annotate_hline`), and arrow notes (`annotate_arrow`).
+- Added comprehensive Doxygen documentation comments across all owned public headers (`csv_loader.hpp`, `summary.hpp`, and `annotation.hpp`), detailing parameters, return values, default options, and exception conditions (`DataError`, `IoError`, `InvalidArgument`).
+- Hardened `src/annotation.cpp` by resolving edge-case boundary clipping issues discovered during example image testing.
+
+### AI Use
+- **Tool:** Microsoft Copilot (Anthropic) and Google Gemini
+- **Purpose:** Assisting with example code layout, Doxygen documentation formatting, and report drafting.
+- **Reason:** We are beginners and needed a clear plan and a shared structure so ten people could work in parallel. The team reviewed and adjusted the output, and the member who owns each file will be able to explain it.

@@ -1,17 +1,29 @@
 #include <cppviz/cppviz.hpp>
-#include <filesystem>
+#include <iostream>
+#include <string>
 
 int main() {
-    auto data = cppviz::parse_csv("group,score\nControl,5\nControl,6\nControl,7\nTreatment,6\nTreatment,8\nTreatment,9\n");
-    cppviz::Theme theme = cppviz::theme_whitegrid();
-    theme.background = cppviz::Color{248, 249, 250};
-    theme.grid_color = cppviz::Color{222, 226, 230};
-    theme.axis_color = cppviz::Color{33, 37, 41};
-    theme.text_color = cppviz::Color{33, 37, 41};
-    cppviz::Figure fig(980, 620, theme);
-    cppviz::Margins margins; margins.left = 70; margins.right = 30; margins.top = 40; margins.bottom = 70; fig.set_margins(margins);
-    cppviz::PointplotOptions opts; opts.color = cppviz::Color{30, 144, 255}; opts.marker_radius = 8; opts.line_thickness = 3; opts.cap_size = 5; cppviz::pointplot(fig.axes(), data, "group", "score", opts);
-    cppviz::draw_title(fig.axes(), "Mean Score by Group"); cppviz::draw_xlabel(fig.axes(), "Group"); cppviz::draw_ylabel(fig.axes(), "Score");
-    auto output = std::filesystem::path(INTRIVIZ_DATA_DIR) / "output"; std::filesystem::create_directories(output); fig.save((output / "example_pointplot.bmp").string());
+    using namespace cppviz;
+
+    // Use CMake path macro to portably locate sample dataset
+    std::string data_path = std::string(CPPVIZ_DATA_DIR) + "/input/scores_sample.csv";
+
+    try {
+        // 1. Load sample CSV into Dataset
+        Dataset data = load_csv(data_path);
+
+        // 2. Generate point plot using quick interface
+        Figure fig = quick_pointplot(data, "group", "score", "Student Test Scores by Group (Mean & 95% CI)");
+
+        // 3. Save plot to BMP image file
+        std::string out_path = "data/output/pointplot_scores.bmp";
+        fig.save(out_path);
+
+        std::cout << "Successfully generated point plot example: " << out_path << std::endl;
+    } catch (const VizError& e) {
+        std::cerr << "Error running pointplot example: " << e.what() << std::endl;
+        return 1;
+    }
+
     return 0;
 }
