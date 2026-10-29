@@ -1,4 +1,4 @@
-# AI Use Declaration — Group 6 (cppviz C++ Data Visualization Library)
+# AI Use Declaration — Group 6 (INTRIVIZ C++ Data Visualization Library)
 
 ## 1. Executive Policy Statement & Compliance Framework
 
