@@ -1,4 +1,5 @@
 #pragma once
+
 #include <cstdint>
 #include <vector>
 #include "cppviz/types.hpp"
@@ -6,10 +7,10 @@
 namespace cppviz {
 
 /**
- * @brief Represents a 2D grid of RGB pixels stored in row-major order.
+ * @brief Represents a 2D grid of RGB pixels stored in contiguous row-major memory.
  * 
- * Top-left corner is at (0, 0). Pixel data is stored continuously as 24-bit RGB
- * (3 bytes per pixel) row-by-row, top row first.
+ * Top-left corner is positioned at pixel coordinate (0, 0). Pixel data is stored
+ * continuously as 24-bit RGB (3 bytes per pixel) row-by-row, top row first.
  */
 class Canvas {
 public:
@@ -31,26 +32,29 @@ public:
     /**
      * @brief Sets the color of the pixel at coordinate (x, y).
      * 
-     * Silently ignores coordinates outside the valid canvas bounds [0, width) x [0, height)
+     * Silently ignores coordinates outside valid bounds [0, width) x [0, height)
      * to facilitate safe shape drawing and boundary clipping.
      */
     void set_pixel(int x, int y, Color c);
 
     /**
      * @brief Retrieves the color of the pixel at coordinate (x, y).
+     * @param x X pixel coordinate.
+     * @param y Y pixel coordinate.
+     * @return Color struct at the specified coordinate.
      * @throws InvalidArgument If (x, y) is outside canvas bounds.
      */
     Color get_pixel(int x, int y) const;
 
     /**
-     * @brief Fills the entire canvas with the specified color.
+     * @brief Fills the entire canvas buffer with the specified color.
+     * @param c Color struct to fill all pixels.
      */
     void fill(Color c);
 
     /**
      * @brief Provides read-only access to the underlying raw RGB byte buffer.
-     * 
-     * Buffer size is width * height * 3 bytes, ordered row-by-row from top to bottom.
+     * @return Const reference to byte vector of size width * height * 3.
      */
     const std::vector<std::uint8_t>& data() const;
 
