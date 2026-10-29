@@ -83,3 +83,39 @@ The header is the public interface. Anything that needs to draw text includes it
 - Reason: Typing 64 glyphs by hand would have taken hours, and the bit-shifting logic for the rotated version was tricky to work out from scratch.
 
 I typed the files into the project myself. AI was used as a helper, not to produce the whole module. I read through the code line by line, watched videos on bitmap fonts and on how C++ writes bits, and I can explain what every function does and why.
+
+# Week 3
+
+## Files added
+
+### `include/cppviz/theme.hpp`
+This header defines the `Theme` struct, which holds colors and sizes for the plot background, axes, grid, and text. It also declares four preset functions.
+
+### `src/theme.cpp`
+This file implements the four presets. `theme_white` and `theme_whitegrid` are light. `theme_darkgrid` uses a light grey plot area with white grid lines. `theme_dark` is for dark mode.
+
+### `tests/test_theme.cpp`
+This file checks that the presets are set up correctly. It verifies the grid settings, checks specific colors, and makes sure the dark theme is actually darker than the white theme.
+
+## How the files work together
+The rest of the library uses these themes to style the plots. By passing a Theme into the drawing functions, we can change how the axes, grids, and text look without touching the drawing code itself.
+
+## AI use
+- Tool: Notebook AI
+- Purpose: Helped write the comments in the header file and the complex code.
+- Reason: Wanted the struct to be well-documented. 
+
+# Week 4
+
+## Files updated
+
+### `include/cppviz/image_export.hpp` and `src/image_export.cpp`
+I added the `write_png` function as a stretch goal. Writing a PNG from scratch is tricky because it requires a zlib wrapper, Adler-32 checksums, and CRC-32 checksums for the chunks. The code implements these manually. Because writing a real compression algorithm is out of scope, the function uses uncompressed "stored" deflate blocks. The file is valid, but larger than a normal PNG. I also added `save_image` support for `.png` and wrote doc comments for the headers.
+
+### Documentation Updates
+I went through `font.hpp`, `theme.hpp`, and `image_export.hpp` and replaced the long generated comments with short, clear explanations of what each function does and what it throws.
+
+## AI use
+- Tool: Notebook AI
+- Purpose: Helped write the CRC-32 and Adler-32 checksum logic for the PNG writer, and the documentation comments.
+- Reason: The math for PNG chunks is very specific and I didn't want to get the bitwise operations wrong. I reviewed the code to make sure it makes sense. If the PNG code causes issues during review, I will drop it and list it as a limitation in the main README as the guide suggested.

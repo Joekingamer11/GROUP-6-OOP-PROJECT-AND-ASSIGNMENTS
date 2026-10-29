@@ -37,3 +37,23 @@ This test file verifies line drawing in different directions, clipping and thick
 ## How the files work together
 
 The header defines the drawing API, the implementation applies shapes to the pixel grid provided by `Canvas`, and the tests check that the shapes, boundary behavior, and validation work as expected. Together, these files add the basic shape-drawing operations needed to create plots and other graphics.
+
+# Week 3
+
+## Files added
+
+### `include/cppviz/heatmap.hpp`
+
+This header declares the heatmap API and the `HeatmapOptions` configuration. It lets users choose a colormap, enable cell-value annotations and a colorbar, and provide the value range used for color scaling.
+
+### `src/heatmap.cpp`
+
+This source file implements heatmap rendering on an `Axes` object. It maps matrix values to colors from the selected colormap, draws each value as a cell, uses a neutral gray for NaN values, and optionally draws cell annotations and a colorbar. It also checks that the matrix and label dimensions are compatible.
+
+### `tests/test_heatmap.cpp`
+
+This test file checks a 2-by-2 heatmap rendered with the viridis colormap. It samples the minimum and maximum cells to verify that they receive the corresponding endpoint colors.
+
+## How the files work together
+
+The header provides the heatmap options and public function, the implementation uses the axes, scales, drawing, and colormap functionality to render the matrix, and the test checks that values map to the expected colors. Together, these files add heatmap visualization to the library.

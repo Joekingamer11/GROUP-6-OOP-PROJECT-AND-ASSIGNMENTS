@@ -84,7 +84,8 @@ void annotate_arrow(Axes& ax, double x_from, double y_from, double x_to, double 
 
     // Compute arrowhead wing points at +/- 150 degrees (5*pi/6) from shaft direction
     const double head_length = 10.0;
-    const double angle_offset = 150.0 * (M_PI / 180.0);
+    constexpr double pi = std::acos(-1.0);
+    const double angle_offset = 150.0 * (pi / 180.0);
 
     double angle1 = angle + angle_offset;
     double angle2 = angle - angle_offset;
