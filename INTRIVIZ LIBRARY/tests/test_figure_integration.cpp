@@ -8,6 +8,7 @@
 
 #include <cstdint>
 #include <cstdio>
+#include <filesystem>
 #include <fstream>
 #include <string>
 #include <vector>
@@ -52,6 +53,8 @@ int main() {
     using namespace intriviz;
 
     const std::string test_output_path = "temp_figure_integration_test.bmp";
+
+    std::filesystem::create_directories("data/output");
 
     // 1. Create a Figure with custom dimensions and theme
     {
@@ -117,7 +120,7 @@ int main() {
     {
         Figure fig(500, 400, theme_white());
         Margins custom_margins{50, 50, 30, 30};
-        fig.set_margins(custom_margins);
+        CHECK_NOTHROW(fig.set_margins(custom_margins));
 
         const Rect& area = fig.axes().area();
         CHECK_EQ(area.x, 50);
@@ -139,7 +142,7 @@ int main() {
         CHECK(fig2.canvas().get_pixel(5, 5) == expected_pixel);
 
         // Move assign fig3 from fig2
-        Figure fig3(100, 100);
+        Figure fig3(300, 200);
         fig3 = std::move(fig2);
         CHECK_EQ(fig3.canvas().width(), 300);
         CHECK_EQ(fig3.canvas().height(), 200);

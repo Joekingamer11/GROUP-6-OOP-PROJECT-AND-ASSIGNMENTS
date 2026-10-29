@@ -3,9 +3,11 @@
 #include "intriviz/dataset.hpp"
 #include "intriviz/error.hpp"
 #include <cstdio>
+#include <filesystem>
 
 int main() {
     using namespace intriviz;
+    std::filesystem::create_directories("data/output");
 
     // 1. Prepare sample dataset
     Dataset data;

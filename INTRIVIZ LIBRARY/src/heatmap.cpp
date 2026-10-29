@@ -25,9 +25,9 @@ void heatmap(Axes& ax, const std::vector<std::vector<double>>& matrix,
     }
 
     std::size_t num_rows = matrix.size();
-    std::size_t num_cols = matrix.size();
+    std::size_t num_cols = matrix.empty() ? 0 : matrix[0].size();
 
-    if (num_cols == 0) {
+    if (num_rows == 0 || num_cols == 0) {
         throw DataError("Heatmap matrix rows cannot be empty");
     }
 
