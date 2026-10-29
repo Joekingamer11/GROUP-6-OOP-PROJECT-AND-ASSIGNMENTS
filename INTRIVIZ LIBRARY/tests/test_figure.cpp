@@ -46,12 +46,20 @@ int main() {
 
     // 3. Test invalid margins exception (area < 10x10)
     {
-        Figure fig(100, 100);
-        // Margins consuming too much width (left 50 + right 50 leaves 0 width)
-        CHECK_THROWS(fig.set_margins(Margins{50, 50, 10, 10}), InvalidArgument);
-        
         // Canvas too small for default margins (10x10 width/height)
-        CHECK_THROWS(Figure(50, 50), InvalidArgument);
+        {
+            bool threw = false;
+            try { Figure bad(50, 50); (void)bad; } catch (const InvalidArgument&) { threw = true; } catch (...) {}
+            CHECK(threw);
+        }
+
+        // Margins consuming too much width (left 50 + right 50 leaves 0 width)
+        {
+            Figure fig(200, 200);
+            bool threw = false;
+            try { fig.set_margins(Margins{100, 100, 100, 100}); } catch (const InvalidArgument&) { threw = true; } catch (...) {}
+            CHECK(threw);
+        }
     }
 
     // 4. Test move semantics & validity after function return
@@ -67,7 +75,7 @@ int main() {
 
         // Test draw call on moved figure
         fig.axes().canvas().set_pixel(10, 10, Color{255, 0, 0});
-        CHECK(fig.canvas().get_pixel(10, 10) == Color{255, 0, 0});
+        CHECK((fig.canvas().get_pixel(10, 10) == Color{255, 0, 0}));
     }
 
     // 5. Test saving figure to image file

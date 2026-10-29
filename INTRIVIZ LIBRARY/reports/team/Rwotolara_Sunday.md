@@ -33,4 +33,27 @@ This test file verifies the correctness of the statistics module. It tests norma
 
 ### How these files work together
 The header exposes the statistical API, the implementation file performs the calculations and checks, and the tests confirm the behavior. Together, these files provide a complete and reusable stats module that integrates with the wider INTRIVIZ library.
-```
+
+# Week 3 Progress Report
+
+## My Week 3 Files and Modifications
+
+### `include/cppviz/stats.hpp`
+This header continues to expose the statistics API from the earlier weeks and now documents the Week 3 bootstrap confidence-interval API. `bootstrap_ci` accepts a data vector, confidence level, number of bootstrap resamples, and random seed, with defaults of `0.95`, `1000`, and `42`. It returns the lower and upper bounds in the shared `Interval` struct.
+
+### `src/stats.cpp`
+The Week 3 update to `bootstrap_ci` validates that the input is non-empty, the confidence level is strictly between `0` and `1`, and the number of resamples is positive. It returns the observed value for a one-element input, uses a seeded `std::mt19937` generator to make resampling repeatable, and computes percentile bounds from the bootstrap sample means. The implementation reserves space for all bootstrap means in advance and reuses the reciprocal of the sample size when calculating each mean to reduce repeated allocation and division.
+
+**Note:** In the current working version, the Week 1 and Week 2 function definitions in this source file are represented by a placeholder comment rather than implementation code. Those definitions need to be present for the earlier statistics API to link correctly.
+
+### `include/cppviz/pointplot.hpp`
+This new public header defines `PointplotOptions`, including the plot colour, whether confidence intervals and connecting lines are shown, confidence level, marker radius, line thickness, and error-bar cap size. It declares `pointplot`, which takes axes, a dataset, categorical and numeric column names, and optional display settings.
+
+### `src/pointplot.cpp`
+This new implementation validates the dataset and column types, groups numeric observations by category, and calculates each category's mean. When confidence intervals are enabled, it calls `bootstrap_ci` for each group. It configures categorical and padded linear scales, draws the plot frame, and renders connecting lines, confidence-interval bars with caps, and circular mean markers. Invalid confidence levels and datasets without usable groups are reported with the library's exceptions.
+
+### `tests/tests_pointplot.cpp`
+This new test file exercises point-plot rendering with and without confidence intervals and connecting lines. It checks that rendering changes the canvas and verifies that missing columns, incorrect column types, empty datasets, and invalid confidence levels raise the expected exceptions.
+
+### How these files work together
+The point-plot header exposes the options and function to library users. The implementation uses dataset grouping and the statistics API to compute category means and bootstrap confidence intervals, then draws the results on the supplied axes. The new tests cover both rendered output and invalid-input behavior. The Week 3 bootstrap changes in the statistics module provide the confidence intervals used by the plot.
