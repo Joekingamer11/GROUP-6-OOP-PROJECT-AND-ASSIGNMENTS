@@ -3,15 +3,15 @@
 #include <memory>
 #include <vector>
 
-#include "cppviz/axes.hpp" 
-#include "cppviz/canvas.hpp" 
-#include "cppviz/categorical_scale.hpp" 
-#include "cppviz/scale.hpp" 
-#include "cppviz/theme.hpp" 
-#include "cppviz/ticks.hpp"
+#include "intriviz/axes.hpp" 
+#include "intriviz/canvas.hpp" 
+#include "intriviz/categorical_scale.hpp" 
+#include "intriviz/scale.hpp" 
+#include "intriviz/theme.hpp" 
+#include "intriviz/ticks.hpp"
 
 int main() {
-     using namespace cppviz; 
+     using namespace intriviz; 
      Canvas canvas(500, 400); 
      Rect area{50, 40, 400, 300}; // left=50, top=40, width=400, height=300 
      Axes ax(canvas, area, theme_whitegrid());

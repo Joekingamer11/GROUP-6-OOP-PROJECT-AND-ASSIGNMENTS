@@ -1,9 +1,9 @@
-#include "cppviz/figure.hpp"
-#include "cppviz/error.hpp"
-#include "cppviz/image_export.hpp"
+#include "intriviz/figure.hpp"
+#include "intriviz/error.hpp"
+#include "intriviz/image_export.hpp"
 #include <utility>
 
-namespace cppviz {
+namespace intriviz {
 
 namespace {
 
@@ -56,4 +56,4 @@ void Figure::save(const std::string& path) const {
     save_image(*canvas_, path);
 }
 
-} // namespace cppviz
+} // namespace intriviz

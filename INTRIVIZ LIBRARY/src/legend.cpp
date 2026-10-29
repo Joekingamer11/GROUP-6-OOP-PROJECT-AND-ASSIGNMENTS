@@ -1,10 +1,10 @@
-#include "cppviz/legend.hpp"
-#include "cppviz/draw.hpp"
-#include "cppviz/error.hpp"
-#include "cppviz/font.hpp"
+#include "intriviz/legend.hpp"
+#include "intriviz/draw.hpp"
+#include "intriviz/error.hpp"
+#include "intriviz/font.hpp"
 #include <algorithm>
 
-namespace cppviz {
+namespace intriviz {
 
 void draw_legend(Axes& ax, 
                  const std::vector<std::string>& names,

@@ -1,14 +1,14 @@
-#include "cppviz/cppviz.hpp"
+#include "intriviz/Intriviz.hpp"
 #include <iostream>
 #include <string>
 #include <vector>
 
-#ifndef CPPVIZ_DATA_DIR
-#define CPPVIZ_DATA_DIR "data"
+#ifndef INTRIVIZ_DATA_DIR
+#define INTRIVIZ_DATA_DIR "data"
 #endif
 
 int main() {
-    using namespace cppviz;
+    using namespace intriviz;
 
     std::cout << "Running example_themes: Rendering plots across all 4 theme presets...\n";
 
@@ -30,7 +30,7 @@ int main() {
         {"theme_dark", theme_dark(), "theme_dark.bmp"}
     };
 
-    std::string out_dir = std::string(CPPVIZ_DATA_DIR) + "/output/";
+    std::string out_dir = std::string(INTRIVIZ_DATA_DIR) + "/output/";
 
     for (const auto& cfg : configs) {
         // Create Figure with specified theme

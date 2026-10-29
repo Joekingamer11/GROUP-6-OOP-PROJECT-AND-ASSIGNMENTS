@@ -2,9 +2,9 @@
 
 #include <cstdint>
 #include <vector>
-#include "cppviz/types.hpp"
+#include "intriviz/types.hpp"
 
-namespace cppviz {
+namespace intriviz {
 
 /**
  * @brief Represents a 2D grid of RGB pixels stored in contiguous row-major memory.
@@ -64,4 +64,4 @@ private:
     std::vector<std::uint8_t> pixels_; // size = w * h * 3
 };
 
-} // namespace cppviz
+} // namespace intriviz

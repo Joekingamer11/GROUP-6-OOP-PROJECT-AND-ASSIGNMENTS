@@ -1,20 +1,20 @@
-#include "cppviz/swarmplot.hpp"
+#include "intriviz/swarmplot.hpp"
 
 #include <algorithm>
 #include <cmath>
 #include <memory>
 #include <vector>
 
-#include "cppviz/categorical_scale.hpp"
-#include "cppviz/colormap.hpp"
-#include "cppviz/draw.hpp"
-#include "cppviz/error.hpp"
-#include "cppviz/groupby.hpp"
-#include "cppviz/scale.hpp"
-#include "cppviz/ticks.hpp"
-#include "cppviz/validation.hpp"
+#include "intriviz/categorical_scale.hpp"
+#include "intriviz/colormap.hpp"
+#include "intriviz/draw.hpp"
+#include "intriviz/error.hpp"
+#include "intriviz/groupby.hpp"
+#include "intriviz/scale.hpp"
+#include "intriviz/ticks.hpp"
+#include "intriviz/validation.hpp"
 
-namespace cppviz {
+namespace intriviz {
 
 std::vector<PointI> swarm_layout(const std::vector<double>& y_pixels, double center_x,
                                 double band_width, int radius) {
@@ -183,6 +183,6 @@ void swarmplot(Axes& ax, const Dataset& data, const std::string& x_column,
     }
 }
 
-} // namespace cppviz
+} // namespace intriviz
 
     

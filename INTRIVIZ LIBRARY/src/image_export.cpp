@@ -1,5 +1,5 @@
-#include "cppviz/image_export.hpp"
-#include "cppviz/error.hpp"
+#include "intriviz/image_export.hpp"
+#include "intriviz/error.hpp"
 
 #include <algorithm>
 #include <cctype>
@@ -8,7 +8,7 @@
 #include <string>
 #include <vector>
 
-namespace cppviz {
+namespace intriviz {
 
 namespace {
 
@@ -335,4 +335,4 @@ void save_image(const Canvas& canvas, const std::string& path) {
     }
 }
 
-} // namespace cppvizs
+} // namespace intrivizs

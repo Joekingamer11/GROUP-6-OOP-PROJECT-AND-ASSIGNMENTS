@@ -1,12 +1,12 @@
 #include "mini_test.hpp"
-#include "cppviz/dataset.hpp"
-#include "cppviz/error.hpp"
+#include "intriviz/dataset.hpp"
+#include "intriviz/error.hpp"
 
 #include <limits>
 #include <string>
 
 int main() {
-    using namespace cppviz;
+    using namespace intriviz;
 
     // 1. Empty dataset defaults
     Dataset ds;

@@ -25,20 +25,20 @@
 * **Object-Oriented C++:** Polymorphic scale hierarchies (`Scale`, `LinearScale`, `LogScale`, `CategoricalScale`), encapsulated heap canvas management (`Figure`, `Canvas`), and custom exception hierarchies (`VizError`).
 * **Software Drawing Engine:** Pure C++ pixel rendering engine handling 2D raster grids, Bresenham line drawing, circle/rectangle fills, 5x7 bitmap font rendering, and 24-bit BMP image serialization.
 * **Data & Algorithms:** Robust CSV parsing with quoted field state machines, typed column tables (`Dataset`), statistical metrics (mean, variance, quantiles, Pearson correlation, bootstrap 95% confidence intervals), and non-overlapping swarm dot layout algorithms.
-* **Engineering Standards:** Strict separation of public contracts (`include/cppviz/`) and implementations (`src/`), clean exception-based input validation (`require_column`), CMake build system, CTest suite, zero external dependencies, and collaborative Git workflow.
+* **Engineering Standards:** Strict separation of public contracts (`include/intriviz/`) and implementations (`src/`), clean exception-based input validation (`require_column`), CMake build system, CTest suite, zero external dependencies, and collaborative Git workflow.
 
 ---
 
 ### 1. Project Structure
 
 ```text
-cppviz/
+intriviz/
 ├── CMakeLists.txt                 # Build integration & target definitions (M1)
 ├── LICENSE                        # MIT License (M1)
 ├── .gitignore                     # Git exclusion patterns (M1)
 ├── README.md                      # Complete library documentation (Group 6)
-├── include/cppviz/                # PUBLIC Headers (#include <cppviz/...>)
-│   ├── cppviz.hpp                 # Umbrella header including all public modules (M1)
+├── include/intriviz/                # PUBLIC Headers (#include <intriviz/...>)
+│   ├── Intriviz.hpp                 # Umbrella header including all public modules (M1)
 │   ├── types.hpp                  # Color, PointI, PointD, Rect, Margins structs (M2)
 │   ├── error.hpp                  # VizError exception class hierarchy (M2)
 │   ├── validation.hpp             # Shared dataset & argument guards (M2)
@@ -98,8 +98,8 @@ cppviz/
 * **External Libraries:** **None.** The library is completely self-contained and dependency-free.
 * **Image Viewer:** Any viewer supporting 24-bit uncompressed BMP or PPM files (e.g., IrfanView, GIMP, macOS Preview, Windows Photos, Linux eog).
 * **CMake Build Switches:**
-  * `CPPVIZ_BUILD_EXAMPLES`: Builds demonstration programs in `examples/` (Default: `ON`).
-  * `CPPVIZ_BUILD_TESTS`: Builds unit test executables in `tests/` (Default: `ON`).
+  * `INTRIVIZ_BUILD_EXAMPLES`: Builds demonstration programs in `examples/` (Default: `ON`).
+  * `INTRIVIZ_BUILD_TESTS`: Builds unit test executables in `tests/` (Default: `ON`).
 
 ---
 
@@ -124,10 +124,10 @@ cppviz/
 ```bash
 # 1. Clone the repository
 git clone <repository_url>
-cd cppviz
+cd intriviz
 
 # 2. Configure the build directory using C++17 and CMake
-cmake -S . -B build -DCPPVIZ_BUILD_EXAMPLES=ON -DCPPVIZ_BUILD_TESTS=ON
+cmake -S . -B build -DINTRIVIZ_BUILD_EXAMPLES=ON -DINTRIVIZ_BUILD_TESTS=ON
 
 # 3. Compile the library, test suite, and examples
 cmake --build build -j4
@@ -137,10 +137,10 @@ cmake --build build -j4
 ```cmd
 :: 1. Clone the repository
 git clone <repository_url>
-cd cppviz
+cd intriviz
 
 :: 2. Configure the build directory
-cmake -S . -B build -DCPPVIZ_BUILD_EXAMPLES=ON -DCPPVIZ_BUILD_TESTS=ON
+cmake -S . -B build -DINTRIVIZ_BUILD_EXAMPLES=ON -DINTRIVIZ_BUILD_TESTS=ON
 
 :: 3. Compile in Release mode
 cmake --build build --config Release
@@ -166,17 +166,17 @@ cmake --install build --config Release
 
 #### Example Application Code (`main.cpp`)
 ```cpp
-#include <cppviz/cppviz.hpp>
+#include <intriviz/Intriviz.hpp>
 #include <iostream>
 
 int main() {
     try {
         // 1. Load sample dataset and drop missing entries
-        cppviz::Dataset tips = cppviz::load_csv("data/input/tips_sample.csv");
-        cppviz::Dataset clean = cppviz::drop_missing(tips);
+        intriviz::Dataset tips = intriviz::load_csv("data/input/tips_sample.csv");
+        intriviz::Dataset clean = intriviz::drop_missing(tips);
 
         // 2. Generate a swarm plot using the three-line quick API
-        cppviz::Figure fig = cppviz::quick_swarmplot(
+        intriviz::Figure fig = intriviz::quick_swarmplot(
             clean, "day", "total_bill", "Total Bill Distribution by Day"
         );
 
@@ -184,8 +184,8 @@ int main() {
         fig.save("bill_swarmplot.bmp");
         std::cout << "Successfully generated bill_swarmplot.bmp\n";
 
-    } catch (const cppviz::VizError& e) {
-        std::cerr << "cppviz Error: " << e.what() << "\n";
+    } catch (const intriviz::VizError& e) {
+        std::cerr << "intriviz Error: " << e.what() << "\n";
         return 1;
     }
     return 0;
@@ -194,8 +194,8 @@ int main() {
 
 #### Compilation & Execution Commands
 ```bash
-# Compile linking against installed cppviz library
-g++ -std=c++17 main.cpp -lcppviz -o my_plot_app
+# Compile linking against installed intriviz library
+g++ -std=c++17 main.cpp -lintriviz -o my_plot_app
 
 # Run executable
 ./my_plot_app
@@ -239,7 +239,7 @@ ctest --test-dir build --output-on-failure
 
 #### Sample Passing Test Output
 ```text
-Test project /path/to/cppviz/build
+Test project /path/to/intriviz/build
       Start  1: test_types
  1/30 Test  #1: test_types ........................   Passed    0.01 sec
       Start  2: test_error
@@ -274,7 +274,7 @@ Total Test time (real) = 0.92 sec
 ### 10. Contributions by Group Members
 
 #### Member 1 (Lead & Integrator) — KIMULI JOSEPH
-* **Modules Written:** `CMakeLists.txt`, `src/version.cpp`, `include/cppviz/cppviz.hpp`, `categorical_scale.hpp`/`.cpp`, `figure.hpp`/`.cpp`, `quick.hpp`/`.cpp`.
+* **Modules Written:** `CMakeLists.txt`, `src/version.cpp`, `include/intriviz/Intriviz.hpp`, `categorical_scale.hpp`/`.cpp`, `figure.hpp`/`.cpp`, `quick.hpp`/`.cpp`.
 * **Tests & Examples:** `test_categorical_scale.cpp`, `test_figure.cpp`, `test_quick.cpp`, `example_load_and_describe.cpp`.
 * **Code Reviews:** Reviewed every member's pull requests; managed repository releases and week-by-week build integrations.
 
@@ -319,7 +319,7 @@ Total Test time (real) = 0.92 sec
 ### 11. How We Collaborated as a Team
 
 * **Fixed Weekly Rhythm:** Operated on a strict 3-day implementation schedule:
-  * **Mondays:** Author public header contracts (`include/cppviz/*.hpp`) with full function documentation comments.
+  * **Mondays:** Author public header contracts (`include/intriviz/*.hpp`) with full function documentation comments.
   * **Wednesdays:** Implement core source logic (`src/*.cpp`) and pass local compilation checks.
   * **Saturdays:** Submit unit tests (`tests/test_*.cpp`), perform peer code reviews, run `ctest`, and merge feature branches into `main`.
 * **Git & GitHub Workflow:**

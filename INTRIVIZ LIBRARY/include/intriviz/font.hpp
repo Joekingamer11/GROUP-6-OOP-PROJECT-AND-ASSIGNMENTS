@@ -1,9 +1,9 @@
 #pragma once
 
 #include <string>
-#include "cppviz/canvas.hpp"
+#include "intriviz/canvas.hpp"
 
-namespace cppviz {
+namespace intriviz {
 
 // Width in pixels of the text, including the 1 pixel gap between characters.
 // Empty strings give 0.
@@ -21,4 +21,4 @@ void draw_text(Canvas& canvas, int x, int y, const std::string& text, Color colo
 // Used for the y-axis label, so the text reads bottom to top.
 void draw_text_vertical(Canvas& canvas, int x, int y, const std::string& text, Color color, int scale = 1);
 
-} // namespace cppviz
+} // namespace intriviz

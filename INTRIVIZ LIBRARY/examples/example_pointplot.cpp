@@ -1,12 +1,12 @@
-#include <cppviz/cppviz.hpp>
+#include <intriviz/Intriviz.hpp>
 #include <iostream>
 #include <string>
 
 int main() {
-    using namespace cppviz;
+    using namespace intriviz;
 
     // Use CMake path macro to portably locate sample dataset
-    std::string data_path = std::string(CPPVIZ_DATA_DIR) + "/input/scores_sample.csv";
+    std::string data_path = std::string(INTRIVIZ_DATA_DIR) + "/input/scores_sample.csv";
 
     try {
         // 1. Load sample CSV into Dataset

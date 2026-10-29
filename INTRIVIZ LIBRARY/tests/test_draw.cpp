@@ -1,11 +1,11 @@
 #include "mini_test.hpp"
-#include "cppviz/draw.hpp"
-#include "cppviz/canvas.hpp"
-#include "cppviz/error.hpp"
-#include "cppviz/types.hpp"
+#include "intriviz/draw.hpp"
+#include "intriviz/canvas.hpp"
+#include "intriviz/error.hpp"
+#include "intriviz/types.hpp"
 
 int main() {
-    using namespace cppviz;
+    using namespace intriviz;
 
     Color black{0, 0, 0};
     Color white{255, 255, 255};

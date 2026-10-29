@@ -2,9 +2,9 @@
 
 #include <string>
 #include <vector>
-#include "cppviz/axes.hpp"
+#include "intriviz/axes.hpp"
 
-namespace cppviz {
+namespace intriviz {
 
 /**
  * @brief Configuration options for heatmap visualization.
@@ -37,4 +37,4 @@ void heatmap(Axes& ax, const std::vector<std::vector<double>>& matrix,
              const std::vector<std::string>& col_labels,
              const HeatmapOptions& options = {});
 
-} // namespace cppviz
+} // namespace intriviz

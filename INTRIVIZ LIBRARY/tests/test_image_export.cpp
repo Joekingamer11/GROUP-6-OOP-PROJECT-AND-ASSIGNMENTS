@@ -1,8 +1,8 @@
 #include "mini_test.hpp"
-#include "cppviz/image_export.hpp"
-#include "cppviz/canvas.hpp"
-#include "cppviz/error.hpp"
-#include "cppviz/types.hpp"
+#include "intriviz/image_export.hpp"
+#include "intriviz/canvas.hpp"
+#include "intriviz/error.hpp"
+#include "intriviz/types.hpp"
 
 #include <cstdint>
 #include <cstdio>
@@ -40,7 +40,7 @@ std::uint32_t read_u32_be(const std::vector<std::uint8_t>& b, std::size_t offset
 } // anonymous namespace
 
 int main() {
-    using namespace cppviz;
+    using namespace intriviz;
 
     const std::string ppm_file = "temp_test_image.ppm";
     const std::string bmp_file = "temp_test_image.bmp";

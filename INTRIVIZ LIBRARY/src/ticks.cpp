@@ -1,12 +1,12 @@
-#include "cppviz/ticks.hpp"
-#include "cppviz/error.hpp"
+#include "intriviz/ticks.hpp"
+#include "intriviz/error.hpp"
 
 #include <cmath>
 #include <iomanip>
 #include <limits>
 #include <sstream>
 
-namespace cppviz {
+namespace intriviz {
 
 std::vector<double> nice_ticks(double min, double max, int target_count) {
     if (std::isnan(min) || std::isnan(max)) {
@@ -145,4 +145,4 @@ std::pair<double, double> padded_range(const std::vector<double>& values,
     return {min_value - span * padding, max_value + span * padding};
 }
 
-} // namespace cppviz
+} // namespace intriviz

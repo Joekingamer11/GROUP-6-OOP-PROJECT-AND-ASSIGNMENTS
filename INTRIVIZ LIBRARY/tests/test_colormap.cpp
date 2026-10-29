@@ -1,9 +1,9 @@
 #include "mini_test.hpp"
-#include "cppviz/colormap.hpp"
-#include "cppviz/error.hpp"
+#include "intriviz/colormap.hpp"
+#include "intriviz/error.hpp"
 
 int main() {
-    using namespace cppviz;
+    using namespace intriviz;
 
     // --- Week 1 Tests ---
     Color red = color_from_hex("#FF0000");

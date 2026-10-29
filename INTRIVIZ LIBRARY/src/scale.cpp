@@ -1,12 +1,12 @@
-#include "cppviz/scale.hpp"
-#include "cppviz/error.hpp"
-#include "cppviz/ticks.hpp"
+#include "intriviz/scale.hpp"
+#include "intriviz/error.hpp"
+#include "intriviz/ticks.hpp"
 
 #include <algorithm>
 #include <cmath>
 #include <sstream>
 
-namespace cppviz {
+namespace intriviz {
 
 Scale::Scale(double domain_min, double domain_max, double range_min,
              double range_max)
@@ -91,4 +91,4 @@ std::string LogScale::tick_label(double value) const {
     return output.str();
 }
 
-} // namespace cppviz
+} // namespace intriviz

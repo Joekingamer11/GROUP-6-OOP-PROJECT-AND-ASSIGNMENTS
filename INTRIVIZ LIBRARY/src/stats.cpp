@@ -1,12 +1,12 @@
-#include "cppviz/stats.hpp"
-#include "cppviz/error.hpp"
+#include "intriviz/stats.hpp"
+#include "intriviz/error.hpp"
 
 #include <algorithm>
 #include <cmath>
 #include <numeric>
 #include <random>
 
-namespace cppviz {
+namespace intriviz {
 
 // --- Week 1 Implementations ---
 

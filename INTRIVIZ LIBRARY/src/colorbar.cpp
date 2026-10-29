@@ -1,11 +1,11 @@
-#include "cppviz/colorbar.hpp"
-#include "cppviz/draw.hpp"
-#include "cppviz/error.hpp"
-#include "cppviz/font.hpp"
-#include "cppviz/ticks.hpp"
+#include "intriviz/colorbar.hpp"
+#include "intriviz/draw.hpp"
+#include "intriviz/error.hpp"
+#include "intriviz/font.hpp"
+#include "intriviz/ticks.hpp"
 #include <string>
 
-namespace cppviz {
+namespace intriviz {
 
 void draw_colorbar(Axes& ax, const Colormap& colormap, double vmin, double vmax) {
     if (vmin >= vmax) {
@@ -47,4 +47,4 @@ void draw_colorbar(Axes& ax, const Colormap& colormap, double vmin, double vmax)
     draw_text(canvas, text_x, bot_y, format_tick(vmin), text_col, 1);
 }
 
-} // namespace cppviz
+} // namespace intriviz

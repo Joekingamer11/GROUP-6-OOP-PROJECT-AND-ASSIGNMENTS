@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 
-namespace cppviz
+namespace intriviz
 
 //Base class for mapping continous or discrete data values to pixel cordinates
     /*It defines the core contrct for cordinate transformation, range inversion,, tick selection

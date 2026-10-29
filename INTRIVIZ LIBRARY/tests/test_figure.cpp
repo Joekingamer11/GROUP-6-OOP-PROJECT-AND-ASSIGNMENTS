@@ -1,21 +1,21 @@
 #include "mini_test.hpp"
-#include "cppviz/figure.hpp"
-#include "cppviz/error.hpp"
+#include "intriviz/figure.hpp"
+#include "intriviz/error.hpp"
 #include <fstream>
 
 namespace {
 
 // Helper function to test moving a Figure out of a function scope
-cppviz::Figure create_custom_figure() {
-    cppviz::Figure fig(500, 400);
-    fig.set_margins(cppviz::Margins{50, 50, 30, 30});
+intriviz::Figure create_custom_figure() {
+    intriviz::Figure fig(500, 400);
+    fig.set_margins(intriviz::Margins{50, 50, 30, 30});
     return fig;
 }
 
 } // anonymous namespace
 
 int main() {
-    using namespace cppviz;
+    using namespace intriviz;
 
     // 1. Test default constructor dimensions & default margins
     {

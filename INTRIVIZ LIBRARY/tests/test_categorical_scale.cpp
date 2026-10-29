@@ -1,9 +1,9 @@
 #include "mini_test.hpp"
-#include "cppviz/categorical_scale.hpp"
-#include "cppviz/error.hpp"
+#include "intriviz/categorical_scale.hpp"
+#include "intriviz/error.hpp"
 
 int main() {
-    using namespace cppviz;
+    using namespace intriviz;
 
     // 1. Three categories over 0..300 pixels
     std::vector<std::string> days = {"Thu", "Fri", "Sat"};

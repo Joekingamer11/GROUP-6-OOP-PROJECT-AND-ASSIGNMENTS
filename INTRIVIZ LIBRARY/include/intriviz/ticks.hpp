@@ -4,7 +4,7 @@
 #include <utility>
 #include <vector>
 
-namespace cppviz {
+namespace intriviz {
 
     //to generate round, evenly spaced "nice" ticks for a given range
     

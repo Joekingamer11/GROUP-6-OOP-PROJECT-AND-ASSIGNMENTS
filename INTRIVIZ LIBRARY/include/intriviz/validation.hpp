@@ -1,9 +1,9 @@
 #pragma once
 #include <cstddef>
 #include <string>
-#include "cppviz/dataset.hpp"
+#include "intriviz/dataset.hpp"
 
-namespace cppviz {
+namespace intriviz {
 
 // Throws DataError if the named column is not present in data.
 void require_column(const Dataset& data, const std::string& name);
@@ -20,4 +20,4 @@ void require_not_empty(const Dataset& data);
 // Throws InvalidArgument if a != b, incorporating 'what' into the error message.
 void require_same_size(std::size_t a, std::size_t b, const std::string& what);
 
-} // namespace cppviz
+} // namespace intriviz

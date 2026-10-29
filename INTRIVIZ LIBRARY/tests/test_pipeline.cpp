@@ -1,14 +1,14 @@
 #include "mini_test.hpp"
-#include "cppviz/csv_loader.hpp"
-#include "cppviz/dataset.hpp"
-#include "cppviz/groupby.hpp"
-#include "cppviz/preprocess.hpp"
-#include "cppviz/stats.hpp"
+#include "intriviz/csv_loader.hpp"
+#include "intriviz/dataset.hpp"
+#include "intriviz/groupby.hpp"
+#include "intriviz/preprocess.hpp"
+#include "intriviz/stats.hpp"
 #include <string>
 #include <vector>
 
 int main() {
-    using namespace cppviz;
+    using namespace intriviz;
 
     // 1. Parse raw CSV text containing missing/null values
     std::string csv_data = 

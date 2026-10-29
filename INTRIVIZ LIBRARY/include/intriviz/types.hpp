@@ -3,7 +3,7 @@
 #include <cstdint>
 #include <ostream>
 
-namespace cppviz {
+namespace intriviz {
 
 struct Color {
     std::uint8_t r = 0; // 0..255
@@ -70,4 +70,4 @@ inline std::ostream& operator<<(std::ostream& os, const Margins& margins) {
     return os;
 }
 
-} // namespace cppviz
+} // namespace intriviz

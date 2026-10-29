@@ -3,9 +3,9 @@
 #include <functional>
 #include <string>
 #include <vector>
-#include "cppviz/dataset.hpp"
+#include "intriviz/dataset.hpp"
 
-namespace cppviz {
+namespace intriviz {
 
 // Removes every row from the dataset that contains any NaN (in numeric columns) or empty string (in text columns)
 Dataset drop_missing(const Dataset& data);

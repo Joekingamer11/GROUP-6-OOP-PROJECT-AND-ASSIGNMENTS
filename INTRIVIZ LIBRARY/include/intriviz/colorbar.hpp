@@ -1,9 +1,9 @@
 #pragma once
 
-#include "cppviz/axes.hpp"
-#include "cppviz/colormap.hpp"
+#include "intriviz/axes.hpp"
+#include "intriviz/colormap.hpp"
 
-namespace cppviz {
+namespace intriviz {
 
 /**
  * @brief Draws a vertical colorbar gradient strip with tick labels beside a plot area.
@@ -15,4 +15,4 @@ namespace cppviz {
  */
 void draw_colorbar(Axes& ax, const Colormap& colormap, double vmin, double vmax);
 
-} // namespace cppviz
+} // namespace intriviz

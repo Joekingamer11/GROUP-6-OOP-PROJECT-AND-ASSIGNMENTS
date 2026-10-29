@@ -2,12 +2,12 @@
 
 #include <memory>
 #include <utility>
-#include "cppviz/canvas.hpp"
-#include "cppviz/scale.hpp"
-#include "cppviz/theme.hpp"
-#include "cppviz/types.hpp"
+#include "intriviz/canvas.hpp"
+#include "intriviz/scale.hpp"
+#include "intriviz/theme.hpp"
+#include "intriviz/types.hpp"
 
-namespace cppviz {
+namespace intriviz {
 
 class Axes {
 public:
@@ -44,4 +44,4 @@ private:
     std::shared_ptr<Scale> y_scale_;
 };
 
-} // namespace cppviz
+} // namespace intriviz

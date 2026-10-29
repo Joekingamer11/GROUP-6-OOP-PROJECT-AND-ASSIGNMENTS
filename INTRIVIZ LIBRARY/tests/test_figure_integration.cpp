@@ -1,10 +1,10 @@
 #include "mini_test.hpp"
-#include "cppviz/figure.hpp"
-#include "cppviz/axes.hpp"
-#include "cppviz/draw.hpp"
-#include "cppviz/font.hpp"
-#include "cppviz/theme.hpp"
-#include "cppviz/types.hpp"
+#include "intriviz/figure.hpp"
+#include "intriviz/axes.hpp"
+#include "intriviz/draw.hpp"
+#include "intriviz/font.hpp"
+#include "intriviz/theme.hpp"
+#include "intriviz/types.hpp"
 
 #include <cstdint>
 #include <cstdio>
@@ -49,7 +49,7 @@ std::uint16_t read_u16_le(const std::vector<std::uint8_t>& b, std::size_t offset
 } // anonymous namespace
 
 int main() {
-    using namespace cppviz;
+    using namespace intriviz;
 
     const std::string test_output_path = "temp_figure_integration_test.bmp";
 

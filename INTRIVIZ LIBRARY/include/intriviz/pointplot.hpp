@@ -2,11 +2,11 @@
 
 #include <string>
 
-#include "cppviz/axes.hpp"
-#include "cppviz/dataset.hpp"
-#include "cppviz/types.hpp"
+#include "intriviz/axes.hpp"
+#include "intriviz/dataset.hpp"
+#include "intriviz/types.hpp"
 
-namespace cppviz {
+namespace intriviz {
 
 /// \brief Formatting and calculation options for point plots.
 struct PointplotOptions {
@@ -30,4 +30,4 @@ struct PointplotOptions {
 void pointplot(Axes& ax, const Dataset& data, const std::string& x_column,
                const std::string& y_column, const PointplotOptions& options = {});
 
-} // namespace cppviz
+} // namespace intriviz

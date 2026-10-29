@@ -1,10 +1,10 @@
 #pragma once
 
 #include <string>
-#include "cppviz/axes.hpp"
-#include "cppviz/types.hpp"
+#include "intriviz/axes.hpp"
+#include "intriviz/types.hpp"
 
-namespace cppviz {
+namespace intriviz {
 /// Renders a text label at specified data coordinates (x, y).
 /// @param ax Reference to target Axes.
 /// @param x X coordinate in data units.

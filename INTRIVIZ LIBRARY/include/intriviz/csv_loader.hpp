@@ -1,9 +1,9 @@
 #pragma once
 #include <string>
 #include <vector>
-#include "cppviz/dataset.hpp"
+#include "intriviz/dataset.hpp"
 
-namespace cppviz {
+namespace intriviz {
 /// Options for configuring CSV file parsing.
 struct CsvOptions {
     char delimiter = ',';         ///< Character separating cells

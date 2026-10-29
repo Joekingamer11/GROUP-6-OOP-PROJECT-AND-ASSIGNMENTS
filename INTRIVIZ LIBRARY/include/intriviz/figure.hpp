@@ -2,12 +2,12 @@
 
 #include <memory>
 #include <string>
-#include "cppviz/axes.hpp"
-#include "cppviz/canvas.hpp"
-#include "cppviz/theme.hpp"
-#include "cppviz/types.hpp"
+#include "intriviz/axes.hpp"
+#include "intriviz/canvas.hpp"
+#include "intriviz/theme.hpp"
+#include "intriviz/types.hpp"
 
-namespace cppviz {
+namespace intriviz {
 
 /**
  * @brief High-level plot container owning a Canvas and managing its Axes area.
@@ -71,4 +71,4 @@ private:
     Margins margins_;
 };
 
-} // namespace cppviz
+} // namespace intriviz

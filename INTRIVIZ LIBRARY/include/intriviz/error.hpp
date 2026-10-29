@@ -3,9 +3,9 @@
 #include <stdexcept>
 #include <string>
 
-namespace cppviz {
+namespace intriviz {
 
-// Base exception class for the cppviz library
+// Base exception class for the intriviz library
 class VizError : public std::runtime_error {
 public:
     using std::runtime_error::runtime_error;
@@ -32,4 +32,4 @@ public:
 // Throws InvalidArgument(message) when condition is false.
 void require(bool condition, const std::string& message);
 
-} // namespace cppviz
+} // namespace intriviz

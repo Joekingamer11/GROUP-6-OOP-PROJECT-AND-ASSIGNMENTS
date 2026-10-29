@@ -1,9 +1,9 @@
 #pragma once
 
 #include <string>
-#include "cppviz/canvas.hpp"
+#include "intriviz/canvas.hpp"
 
-namespace cppviz {
+namespace intriviz {
 
 /**
  * @brief Exports a Canvas to a Netpbm PPM (P6 binary) image file.
@@ -58,4 +58,4 @@ void write_png(const Canvas& canvas, const std::string& path);
  */
 void save_image(const Canvas& canvas, const std::string& path);
 
-} // namespace cppviz
+} // namespace intriviz

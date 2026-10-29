@@ -1,12 +1,12 @@
-#include "cppviz/annotation.hpp"
-#include "cppviz/draw.hpp"
-#include "cppviz/font.hpp"
-#include "cppviz/error.hpp"
+#include "intriviz/annotation.hpp"
+#include "intriviz/draw.hpp"
+#include "intriviz/font.hpp"
+#include "intriviz/error.hpp"
 
 #include <cmath>
 #include <algorithm>
 
-namespace cppviz {
+namespace intriviz {
 
 namespace {
 

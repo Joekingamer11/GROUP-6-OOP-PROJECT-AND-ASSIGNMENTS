@@ -1,12 +1,12 @@
 #include "mini_test.hpp"
-#include "cppviz/axes.hpp"
-#include "cppviz/colorbar.hpp"
-#include "cppviz/colormap.hpp"
-#include "cppviz/error.hpp"
-#include "cppviz/theme.hpp"
+#include "intriviz/axes.hpp"
+#include "intriviz/colorbar.hpp"
+#include "intriviz/colormap.hpp"
+#include "intriviz/error.hpp"
+#include "intriviz/theme.hpp"
 
 int main() {
-    using namespace cppviz;
+    using namespace intriviz;
 
     // 1. Invalid arguments (vmin >= vmax throws InvalidArgument)
     Canvas canvas(400, 300);

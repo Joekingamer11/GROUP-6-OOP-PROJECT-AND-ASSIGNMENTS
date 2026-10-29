@@ -1,15 +1,15 @@
 #include "mini_test.hpp"
-#include "cppviz/annotation.hpp"
-#include "cppviz/axes.hpp"
-#include "cppviz/canvas.hpp"
-#include "cppviz/scale.hpp"
-#include "cppviz/theme.hpp"
-#include "cppviz/error.hpp"
+#include "intriviz/annotation.hpp"
+#include "intriviz/axes.hpp"
+#include "intriviz/canvas.hpp"
+#include "intriviz/scale.hpp"
+#include "intriviz/theme.hpp"
+#include "intriviz/error.hpp"
 
 #include <memory>
 
 int main() {
-    using namespace cppviz;
+    using namespace intriviz;
 
     // 1. Calling annotations before scales are set throws InvalidArgument
     {

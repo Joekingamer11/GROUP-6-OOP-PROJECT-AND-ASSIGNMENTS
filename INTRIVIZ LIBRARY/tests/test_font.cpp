@@ -1,12 +1,12 @@
 #include "mini_test.hpp"
-#include "cppviz/font.hpp"
-#include "cppviz/canvas.hpp"
-#include "cppviz/types.hpp"
+#include "intriviz/font.hpp"
+#include "intriviz/canvas.hpp"
+#include "intriviz/types.hpp"
 
 #include <string>
 
 int main() {
-    using namespace cppviz;
+    using namespace intriviz;
 
     // 1. Widths and heights
     CHECK_EQ(text_width(""), 0);

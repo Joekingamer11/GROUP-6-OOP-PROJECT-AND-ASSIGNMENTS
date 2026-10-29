@@ -5,7 +5,7 @@
 #include <string>
 #include <vector>
 
-namespace cppviz {
+namespace intriviz {
 
 // Returns true if the double value is NaN (missing value)
 bool is_missing(double value);
@@ -42,4 +42,4 @@ private:
     std::size_t num_rows_ = 0;
 };
 
-} // namespace cppviz
+} // namespace intriviz

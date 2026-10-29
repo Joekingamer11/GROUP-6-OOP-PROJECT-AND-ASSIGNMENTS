@@ -1,9 +1,9 @@
 #pragma once
 #include <string>
 #include <vector>
-#include "cppviz/axes.hpp"
+#include "intriviz/axes.hpp"
 
-namespace cppviz {
+namespace intriviz {
 
 /**
  * @brief Draws a boxed categorical color key inside the plot area.

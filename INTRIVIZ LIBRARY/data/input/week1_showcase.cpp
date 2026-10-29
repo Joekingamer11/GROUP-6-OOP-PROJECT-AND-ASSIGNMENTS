@@ -1,9 +1,9 @@
-#include <cppviz/canvas.hpp>
-#include <cppviz/colormap.hpp>
-#include <cppviz/csv_loader.hpp>
-#include <cppviz/image_export.hpp>
-#include <cppviz/scale.hpp>
-#include <cppviz/stats.hpp>
+#include <intriviz/canvas.hpp>
+#include <intriviz/colormap.hpp>
+#include <intriviz/csv_loader.hpp>
+#include <intriviz/image_export.hpp>
+#include <intriviz/scale.hpp>
+#include <intriviz/stats.hpp>
 
 #include <cstdint>
 #include <filesystem>
@@ -25,30 +25,30 @@ int main() {
             "50.0\n"
             "75.0\n"
             "90.0\n";
-        const cppviz::Dataset dataset = cppviz::parse_csv(csv_data);
+        const intriviz::Dataset dataset = intriviz::parse_csv(csv_data);
         const auto& values = dataset.numeric("val");
 
-        const double min_value = cppviz::min_value(values);
-        const double max_value = cppviz::max_value(values);
-        std::cout << "Data mean: " << cppviz::mean(values)
-                  << " | StdDev: " << cppviz::stddev(values) << '\n';
+        const double min_value = intriviz::min_value(values);
+        const double max_value = intriviz::max_value(values);
+        std::cout << "Data mean: " << intriviz::mean(values)
+                  << " | StdDev: " << intriviz::stddev(values) << '\n';
 
         constexpr int width = 500;
         constexpr int height = 200;
         constexpr int center_y = height / 2;
         constexpr int marker_radius = 5;
 
-        cppviz::Canvas canvas(width, height, cppviz::Color{245, 245, 245});
-        const cppviz::LinearScale scale(min_value, max_value, 50.0, 450.0);
-        const cppviz::Colormap colors({
-            cppviz::Color{30, 100, 220},
-            cppviz::Color{220, 30, 30}
+        intriviz::Canvas canvas(width, height, intriviz::Color{245, 245, 245});
+        const intriviz::LinearScale scale(min_value, max_value, 50.0, 450.0);
+        const intriviz::Colormap colors({
+            intriviz::Color{30, 100, 220},
+            intriviz::Color{220, 30, 30}
         });
 
         for (double value : values) {
             const int x_center = static_cast<int>(scale.map(value));
             const double normalized = (value - min_value) / (max_value - min_value);
-            const cppviz::Color marker_color = colors.at(normalized);
+            const intriviz::Color marker_color = colors.at(normalized);
 
             for (int dy = -marker_radius; dy <= marker_radius; ++dy) {
                 for (int dx = -marker_radius; dx <= marker_radius; ++dx) {
@@ -65,7 +65,7 @@ int main() {
             std::filesystem::path(INTRIVIZ_DATA_DIR) /
             "output" / "week1_showcase.bmp";
         std::filesystem::create_directories(output_path.parent_path());
-        cppviz::save_image(canvas, output_path.string());
+        intriviz::save_image(canvas, output_path.string());
 
         std::ifstream image(output_path, std::ios::binary);
         char signature[2]{};

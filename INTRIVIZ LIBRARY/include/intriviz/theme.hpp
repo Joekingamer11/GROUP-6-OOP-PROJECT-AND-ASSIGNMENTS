@@ -1,14 +1,14 @@
 #pragma once
 
-#include "cppviz/types.hpp"
+#include "intriviz/types.hpp"
 
-namespace cppviz {
+namespace intriviz {
 
 /**
  * @brief Configuration structure defining the visual style and dimensions of plots.
  * 
  * Bundles background colors, axis stroke colors, grid colors, typography scale multipliers,
- * marker dimensions, and line stroke weights across all cppviz visual elements.
+ * marker dimensions, and line stroke weights across all intriviz visual elements.
  */
 struct Theme {
     Color background{255, 255, 255};       ///< Canvas margin/background color (default: white)
@@ -46,4 +46,4 @@ Theme theme_darkgrid();
  */
 Theme theme_dark();
 
-} // namespace cppviz
+} // namespace intriviz

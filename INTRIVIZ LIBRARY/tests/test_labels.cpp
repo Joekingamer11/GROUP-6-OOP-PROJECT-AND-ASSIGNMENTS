@@ -1,14 +1,14 @@
 #include "mini_test.hpp"
-#include "cppviz/axes.hpp"
-#include "cppviz/canvas.hpp"
-#include "cppviz/labels.hpp"
-#include "cppviz/theme.hpp"
-#include "cppviz/types.hpp"
+#include "intriviz/axes.hpp"
+#include "intriviz/canvas.hpp"
+#include "intriviz/labels.hpp"
+#include "intriviz/theme.hpp"
+#include "intriviz/types.hpp"
 
 #include <string>
 
 int main() {
-    using namespace cppviz;
+    using namespace intriviz;
 
     // 1. Setup Canvas, Theme, and Axes
     Canvas canvas(400, 300, Color{255, 255, 255});

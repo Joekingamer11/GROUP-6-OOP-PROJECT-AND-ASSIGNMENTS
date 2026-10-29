@@ -1,11 +1,11 @@
 #include "mini_test.hpp"
-#include "cppviz/heatmap.hpp"
-#include "cppviz/axes.hpp"
-#include "cppviz/canvas.hpp"
-#include "cppviz/colormap.hpp"
-#include "cppviz/error.hpp"
-#include "cppviz/theme.hpp"
-#include "cppviz/types.hpp"
+#include "intriviz/heatmap.hpp"
+#include "intriviz/axes.hpp"
+#include "intriviz/canvas.hpp"
+#include "intriviz/colormap.hpp"
+#include "intriviz/error.hpp"
+#include "intriviz/theme.hpp"
+#include "intriviz/types.hpp"
 
 #include <cmath>
 #include <limits>
@@ -13,7 +13,7 @@
 #include <vector>
 
 int main() {
-    using namespace cppviz;
+    using namespace intriviz;
 
     // 1. Normal 2x2 Heatmap Rendering and Color Sampling
     {

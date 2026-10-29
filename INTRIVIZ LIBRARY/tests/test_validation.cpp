@@ -1,10 +1,10 @@
 #include "mini_test.hpp"
-#include "cppviz/dataset.hpp"
-#include "cppviz/error.hpp"
-#include "cppviz/validation.hpp"
+#include "intriviz/dataset.hpp"
+#include "intriviz/error.hpp"
+#include "intriviz/validation.hpp"
 
 int main() {
-    using namespace cppviz;
+    using namespace intriviz;
 
     // Create test dataset
     Dataset data;

@@ -1,15 +1,15 @@
 #include "mini_test.hpp"
-#include "cppviz/dataset.hpp"
-#include "cppviz/groupby.hpp"
-#include "cppviz/preprocess.hpp"
-#include "cppviz/stats.hpp"
+#include "intriviz/dataset.hpp"
+#include "intriviz/groupby.hpp"
+#include "intriviz/preprocess.hpp"
+#include "intriviz/stats.hpp"
 #include <chrono>
 #include <limits>
 #include <string>
 #include <vector>
 
 int main() {
-    using namespace cppviz;
+    using namespace intriviz;
 
     const std::size_t N = 10000;
     std::vector<std::string> categories;

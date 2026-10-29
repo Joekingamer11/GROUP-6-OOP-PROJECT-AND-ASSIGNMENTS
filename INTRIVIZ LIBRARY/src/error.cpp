@@ -1,7 +1,7 @@
-#include "cppviz/error.hpp"
-#include "cppviz/types.hpp"
+#include "intriviz/error.hpp"
+#include "intriviz/types.hpp"
 
-namespace cppviz {
+namespace intriviz {
 
 void require(bool condition, const std::string& message) {
     if (!condition) {
@@ -17,4 +17,4 @@ bool operator!=(const Color& a, const Color& b) {
     return !(a == b);
 }
 
-} // namespace cppviz
+} // namespace intriviz

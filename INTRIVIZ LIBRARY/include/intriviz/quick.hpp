@@ -2,10 +2,10 @@
 
 #include <string>
 #include <vector>
-#include "cppviz/dataset.hpp"
-#include "cppviz/figure.hpp"
+#include "intriviz/dataset.hpp"
+#include "intriviz/figure.hpp"
 
-namespace cppviz {
+namespace intriviz {
 
 /// Generates a complete swarm plot figure in a single call.
 /// \param data The Dataset containing categorical and numerical data.
@@ -38,4 +38,4 @@ Figure quick_heatmap(const Dataset& data,
                       const std::vector<std::string>& numeric_columns,
                       const std::string& title = "");
 
-} // namespace cppviz
+} // namespace intriviz

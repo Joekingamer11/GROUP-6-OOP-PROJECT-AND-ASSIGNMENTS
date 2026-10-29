@@ -2,9 +2,9 @@
 
 #include <string>
 #include <vector>
-#include "cppviz/dataset.hpp"
+#include "intriviz/dataset.hpp"
 
-namespace cppviz {
+namespace intriviz {
 
 struct Group {
     std::string key;
@@ -19,4 +19,4 @@ std::vector<Group> group_by(const Dataset& data,
                             const std::string& category_column,
                             const std::string& value_column);
 
-} // namespace cppviz
+} // namespace intriviz

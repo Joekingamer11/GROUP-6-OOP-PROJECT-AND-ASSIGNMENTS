@@ -3,9 +3,9 @@
 #include <cstddef>
 #include <string>
 #include <vector>
-#include "cppviz/types.hpp"
+#include "intriviz/types.hpp"
 
-namespace cppviz {
+namespace intriviz {
 
 /**
  * @brief Parses a 6-digit hex string into a Color struct.
@@ -94,4 +94,4 @@ double luminance(Color c);
  */
 Color contrast_text_color(Color background);
 
-} // namespace cppviz
+} // namespace intriviz

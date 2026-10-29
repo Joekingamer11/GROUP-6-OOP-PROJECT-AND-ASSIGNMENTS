@@ -1,13 +1,13 @@
 #include "mini_test.hpp"
-#include "cppviz/axes.hpp"
-#include "cppviz/canvas.hpp"
-#include "cppviz/dataset.hpp"
-#include "cppviz/error.hpp"
-#include "cppviz/pointplot.hpp"
-#include "cppviz/theme.hpp"
+#include "intriviz/axes.hpp"
+#include "intriviz/canvas.hpp"
+#include "intriviz/dataset.hpp"
+#include "intriviz/error.hpp"
+#include "intriviz/pointplot.hpp"
+#include "intriviz/theme.hpp"
 
 int main() {
-    using namespace cppviz;
+    using namespace intriviz;
 
     // --- Prepare Sample Dataset ---
     Dataset ds;

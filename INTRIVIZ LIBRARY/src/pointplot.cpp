@@ -1,19 +1,19 @@
-#include "cppviz/pointplot.hpp"
+#include "intriviz/pointplot.hpp"
 
 #include <algorithm>
 #include <memory>
 #include <vector>
 
-#include "cppviz/categorical_scale.hpp"
-#include "cppviz/draw.hpp"
-#include "cppviz/error.hpp"
-#include "cppviz/groupby.hpp"
-#include "cppviz/scale.hpp"
-#include "cppviz/stats.hpp"
-#include "cppviz/ticks.hpp"
-#include "cppviz/validation.hpp"
+#include "intriviz/categorical_scale.hpp"
+#include "intriviz/draw.hpp"
+#include "intriviz/error.hpp"
+#include "intriviz/groupby.hpp"
+#include "intriviz/scale.hpp"
+#include "intriviz/stats.hpp"
+#include "intriviz/ticks.hpp"
+#include "intriviz/validation.hpp"
 
-namespace cppviz {
+namespace intriviz {
 
 void pointplot(Axes& ax, const Dataset& data, const std::string& x_column,
                const std::string& y_column, const PointplotOptions& options) {
@@ -119,4 +119,4 @@ void pointplot(Axes& ax, const Dataset& data, const std::string& x_column,
     }
 }
 
-} // namespace cppviz
+} // namespace intriviz

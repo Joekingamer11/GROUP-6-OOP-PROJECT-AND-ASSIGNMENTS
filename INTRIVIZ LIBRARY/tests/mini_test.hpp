@@ -3,15 +3,15 @@
 #include <cmath>
 #include <string>
 
-namespace cppviz {
+namespace intriviz {
 // Inline global failure count across included test files (C++17)
 inline int g_failures = 0;
-} // namespace cppviz
+} // namespace intriviz
 
 #define CHECK(cond) do { \
     if (!(cond)) { \
         std::cerr << __FILE__ << ":" << __LINE__ << " failed: " #cond "\n"; \
-        ++::cppviz::g_failures; \
+        ++::intriviz::g_failures; \
     } \
 } while(0)
 
@@ -20,7 +20,7 @@ inline int g_failures = 0;
     auto _b = (b); \
     if (!(_a == _b)) { \
         std::cerr << __FILE__ << ":" << __LINE__ << " failed: " #a " == " #b "\n"; \
-        ++::cppviz::g_failures; \
+        ++::intriviz::g_failures; \
     } \
 } while(0)
 
@@ -30,7 +30,7 @@ inline int g_failures = 0;
     if (std::abs(_a - _b) > (tol)) { \
         std::cerr << __FILE__ << ":" << __LINE__ << " failed: " #a " near " #b \
                   << " (" << _a << " vs " << _b << ", tol " << (tol) << ")\n"; \
-        ++::cppviz::g_failures; \
+        ++::intriviz::g_failures; \
     } \
 } while(0)
 
@@ -43,13 +43,13 @@ inline int g_failures = 0;
     } catch (...) {} \
     if (!_threw) { \
         std::cerr << __FILE__ << ":" << __LINE__ << " failed: " #expr " did not throw " #ExceptionType "\n"; \
-        ++::cppviz::g_failures; \
+        ++::intriviz::g_failures; \
     } \
 } while(0)
 
 inline int finish() {
-    if (::cppviz::g_failures > 0) {
-        std::cerr << ::cppviz::g_failures << " test failure(s) total.\n";
+    if (::intriviz::g_failures > 0) {
+        std::cerr << ::intriviz::g_failures << " test failure(s) total.\n";
         return 1;
     }
     std::cout << "All tests passed.\n";

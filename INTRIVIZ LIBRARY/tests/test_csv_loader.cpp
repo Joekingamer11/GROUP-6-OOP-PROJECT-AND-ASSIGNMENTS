@@ -1,9 +1,9 @@
 #include "mini_test.hpp"
-#include "cppviz/csv_loader.hpp"
-#include "cppviz/error.hpp"
+#include "intriviz/csv_loader.hpp"
+#include "intriviz/error.hpp"
 
 int main() {
-    using namespace cppviz;
+    using namespace intriviz;
 
     // 1. Normal 3-column CSV string
     std::string csv_data = "name,age,score\nAlice,20,88.5\nBob,22,91.0";

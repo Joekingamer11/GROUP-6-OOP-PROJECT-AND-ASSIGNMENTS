@@ -1,9 +1,9 @@
-#include "cppviz/categorical_scale.hpp"
-#include "cppviz/error.hpp"
+#include "intriviz/categorical_scale.hpp"
+#include "intriviz/error.hpp"
 #include <cmath>
 #include <utility>
 
-namespace cppviz {
+namespace intriviz {
 
 CategoricalScale::CategoricalScale(std::vector<std::string> names, double range_min, double range_max)
     : Scale(-0.5, names.empty() ? 0.5 : static_cast<double>(names.size()) - 0.5, range_min, range_max),
@@ -50,4 +50,4 @@ std::size_t CategoricalScale::category_count() const {
     return names_.size();
 }
 
-} // namespace cppviz   
+} // namespace intriviz   

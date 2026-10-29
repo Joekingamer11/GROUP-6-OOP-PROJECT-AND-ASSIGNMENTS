@@ -1,16 +1,16 @@
 //ANNA KAGEMULO MTABAZI 25/T/08565/PS
 
 #include "mini_test.hpp"
-#include "cppviz/summary.hpp"
-#include "cppviz/dataset.hpp"
-#include "cppviz/error.hpp"
+#include "intriviz/summary.hpp"
+#include "intriviz/dataset.hpp"
+#include "intriviz/error.hpp"
 
 #include <limits>
 #include <string>
 #include <vector>
 
 int main() {
-    using namespace cppviz;
+    using namespace intriviz;
 
     const double nan_val = std::numeric_limits<double>::quiet_NaN();
 

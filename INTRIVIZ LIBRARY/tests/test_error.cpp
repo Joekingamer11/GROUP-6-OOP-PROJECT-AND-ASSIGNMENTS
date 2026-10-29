@@ -1,8 +1,8 @@
 #include "mini_test.hpp"
-#include "cppviz/error.hpp"
+#include "intriviz/error.hpp"
 
 int main() {
-    using namespace cppviz;
+    using namespace intriviz;
 
     // Test require() helper behavior
     CHECK_THROWS(require(false, "invalid input"), InvalidArgument);

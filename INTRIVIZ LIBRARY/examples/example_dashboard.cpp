@@ -1,15 +1,15 @@
-#include <cppviz/cppviz.hpp>
+#include <intriviz/Intriviz.hpp>
 #include <iostream>
 #include <string>
 
 int main() {
-    using namespace cppviz;
+    using namespace intriviz;
 
     std::cout << "========================================" << std::endl;
     std::cout << "  Cppviz Member 9 - Dashboard Example   " << std::endl;
     std::cout << "========================================" << std::endl;
 
-    std::string data_dir = CPPVIZ_DATA_DIR;
+    std::string data_dir = INTRIVIZ_DATA_DIR;
     std::string input_path = data_dir + "/input/tips_sample.csv";
 
     Dataset tips;

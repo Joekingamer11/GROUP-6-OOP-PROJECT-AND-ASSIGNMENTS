@@ -1,14 +1,14 @@
 #include "mini_test.hpp"
 
-#include "cppviz/axes.hpp"
-#include "cppviz/canvas.hpp"
-#include "cppviz/dataset.hpp"
-#include "cppviz/error.hpp"
-#include "cppviz/swarmplot.hpp"
-#include "cppviz/theme.hpp"
+#include "intriviz/axes.hpp"
+#include "intriviz/canvas.hpp"
+#include "intriviz/dataset.hpp"
+#include "intriviz/error.hpp"
+#include "intriviz/swarmplot.hpp"
+#include "intriviz/theme.hpp"
 
 int main() {
-    using namespace cppviz;
+    using namespace intriviz;
 
     std::vector<double> y_pts = {100.0, 100.0, 100.0};
     auto layout = swarm_layout(y_pts, 150.0, 100.0, 4);

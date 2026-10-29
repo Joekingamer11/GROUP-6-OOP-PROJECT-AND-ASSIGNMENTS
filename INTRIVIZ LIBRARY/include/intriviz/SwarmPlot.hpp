@@ -3,11 +3,11 @@
 #include <string>
 #include <vector>
 
-#include "cppviz/axes.hpp"
-#include "cppviz/dataset.hpp"
-#include "cppviz/types.hpp"
+#include "intriviz/axes.hpp"
+#include "intriviz/dataset.hpp"
+#include "intriviz/types.hpp"
 
-namespace cppviz {
+namespace intriviz {
 
 struct SwarmplotOptions {
     int marker_radius = 4;
@@ -25,4 +25,4 @@ std::vector<PointI> swarm_layout(const std::vector<double>& y_pixels, double ban
 void swarmplot(Axes& ax, const Dataset& data, const std::string& x_column,
                const std::string& y_column, const SwarmplotOptions& options = {});
 
-} // namespace cppviz
+} // namespace intriviz

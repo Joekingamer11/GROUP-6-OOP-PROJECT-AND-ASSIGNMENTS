@@ -1,9 +1,9 @@
 #include "mini_test.hpp"
-#include "cppviz/ticks.hpp"
-#include "cppviz/error.hpp"
+#include "intriviz/ticks.hpp"
+#include "intriviz/error.hpp"
 
 int main() {
-    using namespace cppviz;
+    using namespace intriviz;
 
     //Nice_ticks on standard range
     auto ticks = nice_ticks(0, 50, 5);

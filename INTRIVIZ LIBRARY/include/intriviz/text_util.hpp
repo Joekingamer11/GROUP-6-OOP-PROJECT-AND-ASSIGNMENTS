@@ -2,7 +2,7 @@
 #include <string>
 #include <vector>
 
-namespace cppviz {
+namespace intriviz {
 
 // Removes leading and trailing spaces, tabs, \r, and \n
 std::string trim(const std::string& s);
@@ -16,4 +16,4 @@ std::string to_lower(const std::string& s);
 // Attempts to parse a double; returns true only if the entire trimmed string is a valid number
 bool try_parse_double(const std::string& s, double& out);
 
-} // namespace cppviz
+} // namespace intriviz

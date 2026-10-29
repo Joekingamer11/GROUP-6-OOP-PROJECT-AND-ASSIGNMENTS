@@ -1,9 +1,9 @@
-#include "cppviz/text_util.hpp"
+#include "intriviz/text_util.hpp"
 #include <algorithm>
 #include <cctype>
 #include <cstdlib>
 
-namespace cppviz {
+namespace intriviz {
 
 std::string trim(const std::string& s) {
     auto start = s.find_first_not_of(" \t\r\n");
@@ -48,4 +48,4 @@ bool try_parse_double(const std::string& s, double& out) {
     return true;
 }
 
-} // namespace cppviz
+} // namespace intriviz

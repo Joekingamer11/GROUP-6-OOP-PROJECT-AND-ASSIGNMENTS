@@ -1,9 +1,9 @@
-#include "cppviz/labels.hpp"
-#include "cppviz/font.hpp"
-#include "cppviz/theme.hpp"
-#include "cppviz/types.hpp"
+#include "intriviz/labels.hpp"
+#include "intriviz/font.hpp"
+#include "intriviz/theme.hpp"
+#include "intriviz/types.hpp"
 
-namespace cppviz {
+namespace intriviz {
 
 void draw_title(Axes& ax, const std::string& title) {
     if (title.empty()) {
@@ -84,4 +84,4 @@ void draw_ylabel(Axes& ax, const std::string& label) {
     draw_text_vertical(ax.canvas(), x, y, label, ax.theme().text_color, scale);
 }
 
-} // namespace cppviz
+} // namespace intriviz

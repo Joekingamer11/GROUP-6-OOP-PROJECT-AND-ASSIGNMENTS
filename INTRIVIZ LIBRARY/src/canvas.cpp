@@ -1,10 +1,10 @@
-#include "cppviz/canvas.hpp"
-#include "cppviz/error.hpp"
+#include "intriviz/canvas.hpp"
+#include "intriviz/error.hpp"
 
 #include <cstddef>
 #include <string>
 
-namespace cppviz {
+namespace intriviz {
 
 Canvas::Canvas(int width, int height, Color background)
     : w_(width), h_(height) {
@@ -65,4 +65,4 @@ const std::vector<std::uint8_t>& Canvas::data() const {
     return pixels_;
 }
 
-} // namespace cppviz
+} // namespace intriviz

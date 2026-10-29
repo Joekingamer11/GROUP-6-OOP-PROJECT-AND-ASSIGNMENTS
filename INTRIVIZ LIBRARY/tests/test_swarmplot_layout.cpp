@@ -2,12 +2,12 @@
 #include <vector>
 
 #include "mini_test.hpp"
-#include "cppviz/dataset.hpp"
-#include "cppviz/swarmplot.hpp"
-#include "cppviz/error.hpp"
+#include "intriviz/dataset.hpp"
+#include "intriviz/swarmplot.hpp"
+#include "intriviz/error.hpp"
 
 int main() {
-    using namespace cppviz;
+    using namespace intriviz;
 
     // --- Test 1: Minimum distance verification ---
     // Swarm dots in the same category must not overlap (distance >= 2 * radius)

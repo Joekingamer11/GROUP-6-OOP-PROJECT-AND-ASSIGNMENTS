@@ -1,11 +1,11 @@
 #include "mini_test.hpp"
-#include "cppviz/quick.hpp"
-#include "cppviz/dataset.hpp"
-#include "cppviz/error.hpp"
+#include "intriviz/quick.hpp"
+#include "intriviz/dataset.hpp"
+#include "intriviz/error.hpp"
 #include <cstdio>
 
 int main() {
-    using namespace cppviz;
+    using namespace intriviz;
 
     // 1. Prepare sample dataset
     Dataset data;

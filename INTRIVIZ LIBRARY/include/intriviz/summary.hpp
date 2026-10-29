@@ -3,9 +3,9 @@
 #include <cstddef>
 #include <string>
 #include <vector>
-#include "cppviz/dataset.hpp"
+#include "intriviz/dataset.hpp"
 
-namespace cppviz {
+namespace intriviz {
 
 /// Contains summary statistics for a single numeric column (excluding missing values).
 struct ColumnSummary {

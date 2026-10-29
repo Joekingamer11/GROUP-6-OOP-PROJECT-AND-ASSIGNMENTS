@@ -1,11 +1,11 @@
-#include "cppviz/draw.hpp"
-#include "cppviz/error.hpp"
+#include "intriviz/draw.hpp"
+#include "intriviz/error.hpp"
 
 #include <cmath>
 #include <cstdlib>
 #include <string>
 
-namespace cppviz {
+namespace intriviz {
 
 void draw_line(Canvas& canvas, int x0, int y0, int x1, int y1, Color color, int thickness) {
     if (thickness <= 0) {
@@ -158,4 +158,4 @@ void fill_circle(Canvas& canvas, int cx, int cy, int radius, Color color) {
     }
 }
 
-} // namespace cppviz
+} // namespace intriviz

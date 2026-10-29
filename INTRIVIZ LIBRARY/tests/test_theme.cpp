@@ -1,9 +1,9 @@
 #include "mini_test.hpp"
-#include "cppviz/theme.hpp"
-#include "cppviz/types.hpp"
+#include "intriviz/theme.hpp"
+#include "intriviz/types.hpp"
 
 int main() {
-    using namespace cppviz;
+    using namespace intriviz;
 
     // --- 1. theme_white() properties ---
     Theme white = theme_white();

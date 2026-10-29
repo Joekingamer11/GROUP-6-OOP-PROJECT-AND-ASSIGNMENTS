@@ -1,6 +1,6 @@
-#include "cppviz/theme.hpp"
+#include "intriviz/theme.hpp"
 
-namespace cppviz {
+namespace intriviz {
 
 Theme theme_white() {
     Theme t;
@@ -51,4 +51,4 @@ Theme theme_dark() {
     return t;
 }
 
-} // namespace cppviz
+} // namespace intriviz

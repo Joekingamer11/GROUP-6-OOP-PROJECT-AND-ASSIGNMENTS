@@ -1,12 +1,12 @@
 #include "mini_test.hpp"
-#include "cppviz/legend.hpp"
-#include "cppviz/axes.hpp"
-#include "cppviz/canvas.hpp"
-#include "cppviz/error.hpp"
-#include "cppviz/theme.hpp"
+#include "intriviz/legend.hpp"
+#include "intriviz/axes.hpp"
+#include "intriviz/canvas.hpp"
+#include "intriviz/error.hpp"
+#include "intriviz/theme.hpp"
 
 int main() {
-    using namespace cppviz;
+    using namespace intriviz;
 
     Canvas canvas(400, 300, Color{255, 255, 255});
     Rect area{50, 40, 300, 200};

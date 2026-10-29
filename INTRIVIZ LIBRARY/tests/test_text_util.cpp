@@ -1,8 +1,8 @@
 #include "mini_test.hpp"
-#include "cppviz/text_util.hpp"
+#include "intriviz/text_util.hpp"
 
 int main() {
-    using namespace cppviz;
+    using namespace intriviz;
 
     // Test trim
     CHECK_EQ(trim("  a b \t\r\n"), "a b");

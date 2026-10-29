@@ -1,10 +1,10 @@
-#include "cppviz/axes.hpp"
-#include "cppviz/draw.hpp"
-#include "cppviz/error.hpp"
-#include "cppviz/font.hpp"
+#include "intriviz/axes.hpp"
+#include "intriviz/draw.hpp"
+#include "intriviz/error.hpp"
+#include "intriviz/font.hpp"
 #include <cmath>
 
-namespace cppviz {
+namespace intriviz {
 
 Axes::Axes(Canvas& canvas, Rect area, const Theme& theme)
     : canvas_(&canvas), area_(area), theme_(theme) {}
@@ -134,4 +134,4 @@ void Axes::draw_frame() {
     }
 }
 
-} // namespace cppviz
+} // namespace intriviz

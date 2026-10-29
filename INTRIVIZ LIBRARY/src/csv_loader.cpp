@@ -1,13 +1,13 @@
-#include "cppviz/csv_loader.hpp"
-#include "cppviz/error.hpp"
-#include "cppviz/text_util.hpp"
+#include "intriviz/csv_loader.hpp"
+#include "intriviz/error.hpp"
+#include "intriviz/text_util.hpp"
 
 #include <fstream>
 #include <sstream>
 #include <limits>
 #include <algorithm>
 
-namespace cppviz {
+namespace intriviz {
 
 namespace {
 
@@ -179,4 +179,4 @@ Dataset load_csv(const std::string& path, const CsvOptions& options) {
     return parse_csv(ss.str(), options);
 }
 
-} // namespace cppviz
+} // namespace intriviz

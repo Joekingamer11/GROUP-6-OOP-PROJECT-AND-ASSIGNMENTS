@@ -1,15 +1,15 @@
 #include "mini_test.hpp"
-#include "cppviz/axes.hpp"
-#include "cppviz/canvas.hpp"
-#include "cppviz/dataset.hpp"
-#include "cppviz/error.hpp"
-#include "cppviz/scale.hpp"
-#include "cppviz/validation.hpp"
+#include "intriviz/axes.hpp"
+#include "intriviz/canvas.hpp"
+#include "intriviz/dataset.hpp"
+#include "intriviz/error.hpp"
+#include "intriviz/scale.hpp"
+#include "intriviz/validation.hpp"
 #include <limits>
 #include <memory>
 
 int main() {
-    using namespace cppviz;
+    using namespace intriviz;
 
     // =========================================================================
     // 1. Validation Helper & Error Macro Invalid Inputs

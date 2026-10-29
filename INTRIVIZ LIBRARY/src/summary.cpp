@@ -1,10 +1,10 @@
 //ANNA KAGEMULO MTABAZI 25/T/08565/PS   
-//THIS code contains the implementation of the summary statistics functions for the C++ Visualization Library (cppviz).
+//THIS code contains the implementation of the summary statistics functions for the C++ Visualization Library (intriviz).
 //The functions provided in this file compute descriptive statistics for numeric columns in a dataset and format the results
 
-#include "cppviz/summary.hpp"
-#include "cppviz/dataset.hpp"
-#include "cppviz/stats.hpp"
+#include "intriviz/summary.hpp"
+#include "intriviz/dataset.hpp"
+#include "intriviz/stats.hpp"
 
 #include <iomanip>
 #include <sstream>
@@ -12,7 +12,7 @@
 #include <string>
 #include <algorithm>
 
-namespace cppviz {
+namespace intriviz {
 
 std::vector<ColumnSummary> describe(const Dataset& data) {
     std::vector<ColumnSummary> summaries;

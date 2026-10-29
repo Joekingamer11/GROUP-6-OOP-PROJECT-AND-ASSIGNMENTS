@@ -1,12 +1,12 @@
 #include "mini_test.hpp"
-#include "cppviz/preprocess.hpp"
-#include "cppviz/dataset.hpp"
-#include "cppviz/error.hpp"
+#include "intriviz/preprocess.hpp"
+#include "intriviz/dataset.hpp"
+#include "intriviz/error.hpp"
 #include <cmath>
 #include <limits>
 
 int main() {
-    using namespace cppviz;
+    using namespace intriviz;
 
     // Set up test dataset
     Dataset ds;

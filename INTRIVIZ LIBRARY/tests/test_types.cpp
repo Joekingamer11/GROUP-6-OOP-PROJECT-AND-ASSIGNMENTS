@@ -1,8 +1,8 @@
 #include "mini_test.hpp"
-#include "cppviz/types.hpp"
+#include "intriviz/types.hpp"
 
 int main() {
-    using namespace cppviz;
+    using namespace intriviz;
 
     // Test Color defaults and equality operators
     Color default_color;

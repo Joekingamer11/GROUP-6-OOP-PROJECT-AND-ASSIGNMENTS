@@ -1,8 +1,8 @@
 #pragma once
 
-#include "cppviz/canvas.hpp"
+#include "intriviz/canvas.hpp"
 
-namespace cppviz {
+namespace intriviz {
 
 /**
  * @brief Draws a straight line between two points using Bresenham's algorithm.
@@ -77,4 +77,4 @@ void draw_circle(Canvas& canvas, int cx, int cy, int radius, Color color);
  */
 void fill_circle(Canvas& canvas, int cx, int cy, int radius, Color color);
 
-} // namespace cppviz
+} // namespace intriviz

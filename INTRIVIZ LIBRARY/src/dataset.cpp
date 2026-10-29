@@ -1,10 +1,10 @@
-#include "cppviz/dataset.hpp"
-#include "cppviz/error.hpp"
+#include "intriviz/dataset.hpp"
+#include "intriviz/error.hpp"
 
 #include <cmath>
 #include <utility>
 
-namespace cppviz {
+namespace intriviz {
 
 bool is_missing(double value) {
     return std::isnan(value);
@@ -115,4 +115,4 @@ Dataset Dataset::select_rows(const std::vector<std::size_t>& indices) const {
     return result;
 }
 
-} // namespace cppviz
+} // namespace intriviz

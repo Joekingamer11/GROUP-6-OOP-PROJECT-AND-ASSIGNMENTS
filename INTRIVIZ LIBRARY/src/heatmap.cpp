@@ -1,11 +1,11 @@
-#include "cppviz/heatmap.hpp"
-#include "cppviz/categorical_scale.hpp"
-#include "cppviz/colorbar.hpp"
-#include "cppviz/colormap.hpp"
-#include "cppviz/draw.hpp"
-#include "cppviz/error.hpp"
-#include "cppviz/font.hpp"
-#include "cppviz/validation.hpp"
+#include "intriviz/heatmap.hpp"
+#include "intriviz/categorical_scale.hpp"
+#include "intriviz/colorbar.hpp"
+#include "intriviz/colormap.hpp"
+#include "intriviz/draw.hpp"
+#include "intriviz/error.hpp"
+#include "intriviz/font.hpp"
+#include "intriviz/validation.hpp"
 
 #include <algorithm>
 #include <cmath>
@@ -13,7 +13,7 @@
 #include <memory>
 #include <sstream>
 
-namespace cppviz {
+namespace intriviz {
 
 void heatmap(Axes& ax, const std::vector<std::vector<double>>& matrix,
              const std::vector<std::string>& row_labels,
@@ -155,4 +155,4 @@ void heatmap(Axes& ax, const std::vector<std::vector<double>>& matrix,
     }
 }
 
-} // namespace cppviz
+} // namespace intriviz

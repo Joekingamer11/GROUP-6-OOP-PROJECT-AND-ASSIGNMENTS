@@ -1,10 +1,10 @@
-#include "cppviz/groupby.hpp"
-#include "cppviz/error.hpp"
+#include "intriviz/groupby.hpp"
+#include "intriviz/error.hpp"
 
 #include <map>
 #include <unordered_set>
 
-namespace cppviz {
+namespace intriviz {
 
 std::vector<std::string> unique_values(const std::vector<std::string>& items) {
     std::vector<std::string> result;
@@ -59,4 +59,4 @@ std::vector<Group> group_by(const Dataset& data,
     return groups;
 }
 
-} // namespace cppviz
+} // namespace intriviz

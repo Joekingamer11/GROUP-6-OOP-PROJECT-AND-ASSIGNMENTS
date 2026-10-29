@@ -1,10 +1,10 @@
 #include "mini_test.hpp"
-#include "cppviz/stats.hpp"
-#include "cppviz/dataset.hpp"
-#include "cppviz/error.hpp"
+#include "intriviz/stats.hpp"
+#include "intriviz/dataset.hpp"
+#include "intriviz/error.hpp"
 
 int main() {
-    using namespace cppviz;
+    using namespace intriviz;
 
     // --- Week 1 Tests ---
     CHECK_NEAR(mean({1.0, 2.0, 3.0, 4.0}), 2.5, 1e-9);

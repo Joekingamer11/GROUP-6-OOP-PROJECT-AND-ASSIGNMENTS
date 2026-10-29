@@ -1,9 +1,9 @@
-#include "cppviz/font.hpp"
+#include "intriviz/font.hpp"
 #include <algorithm>
 #include <cstdint>
 #include <string>
 
-namespace cppviz {
+namespace intriviz {
 
 namespace {
 
@@ -168,4 +168,4 @@ void draw_text_vertical(Canvas& canvas, int x, int y, const std::string& text, C
     }
 }
 
-} // namespace cppviz
+} // namespace intriviz

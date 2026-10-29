@@ -1,14 +1,14 @@
 #include "mini_test.hpp"
-#include "cppviz/dataset.hpp"
-#include "cppviz/groupby.hpp"
-#include "cppviz/error.hpp"
+#include "intriviz/dataset.hpp"
+#include "intriviz/groupby.hpp"
+#include "intriviz/error.hpp"
 
 #include <limits>
 #include <string>
 #include <vector>
 
 int main() {
-    using namespace cppviz;
+    using namespace intriviz;
 
     // 1. Test unique_values (preserving first-appearance order)
     std::vector<std::string> items = {"Fri", "Thu", "Fri", "Sat", "Thu", "Sun"};

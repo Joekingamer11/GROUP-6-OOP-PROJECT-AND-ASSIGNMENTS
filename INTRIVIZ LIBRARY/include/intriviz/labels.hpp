@@ -1,9 +1,9 @@
 #pragma once
 
 #include <string>
-#include "cppviz/axes.hpp"
+#include "intriviz/axes.hpp"
 
-namespace cppviz {
+namespace intriviz {
 
 // Draws a title centred horizontally above the plot area
 void draw_title(Axes& ax, const std::string& title);
@@ -14,4 +14,4 @@ void draw_xlabel(Axes& ax, const std::string& label);
 // Draws a y-axis label (rotated vertically) centred to the left of the tick labels
 void draw_ylabel(Axes& ax, const std::string& label);
 
-} // namespace cppviz
+} // namespace intriviz

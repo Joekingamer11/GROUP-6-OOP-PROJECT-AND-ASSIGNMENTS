@@ -1,11 +1,11 @@
-#include "cppviz/preprocess.hpp"
-#include "cppviz/error.hpp"
-#include "cppviz/stats.hpp"
+#include "intriviz/preprocess.hpp"
+#include "intriviz/error.hpp"
+#include "intriviz/stats.hpp"
 #include <algorithm>
 #include <cmath>
 #include <limits>
 
-namespace cppviz {
+namespace intriviz {
 
 Dataset drop_missing(const Dataset& data) {
     std::size_t num_rows = data.row_count();
@@ -159,4 +159,4 @@ std::vector<double> standardize(const std::vector<double>& values) {
     return result;
 }
 
-} // namespace cppviz
+} // namespace intriviz

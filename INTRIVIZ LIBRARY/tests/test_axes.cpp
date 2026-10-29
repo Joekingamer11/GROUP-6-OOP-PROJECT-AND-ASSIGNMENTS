@@ -1,11 +1,11 @@
 #include "mini_test.hpp"
-#include "cppviz/axes.hpp"
-#include "cppviz/error.hpp"
-#include "cppviz/scale.hpp"
+#include "intriviz/axes.hpp"
+#include "intriviz/error.hpp"
+#include "intriviz/scale.hpp"
 #include <memory>
 
 int main() {
-    using namespace cppviz;
+    using namespace intriviz;
 
     Canvas canvas(800, 600, Color{255, 255, 255});
     Rect area{100, 50, 600, 400}; // Plot area: x=100..700, y=50..450

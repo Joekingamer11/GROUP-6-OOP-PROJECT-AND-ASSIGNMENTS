@@ -1,7 +1,7 @@
-#include "cppviz/validation.hpp"
-#include "cppviz/error.hpp"
+#include "intriviz/validation.hpp"
+#include "intriviz/error.hpp"
 
-namespace cppviz {
+namespace intriviz {
 
 void require_column(const Dataset& data, const std::string& name) {
     if (!data.has_column(name)) {
@@ -35,4 +35,4 @@ void require_same_size(std::size_t a, std::size_t b, const std::string& what) {
     }
 }
 
-} // namespace cppviz
+} // namespace intriviz

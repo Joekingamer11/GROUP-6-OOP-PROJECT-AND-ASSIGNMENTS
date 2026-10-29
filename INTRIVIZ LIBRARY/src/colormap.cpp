@@ -1,12 +1,12 @@
-#include "cppviz/colormap.hpp"
-#include "cppviz/error.hpp"
+#include "intriviz/colormap.hpp"
+#include "intriviz/error.hpp"
 #include <algorithm>
 #include <cctype>
 #include <cmath>
 #include <iomanip>
 #include <sstream>
 
-namespace cppviz {
+namespace intriviz {
 
 // =========================================================================
 // Week 1 Implementations
@@ -138,4 +138,4 @@ Color contrast_text_color(Color background) {
     return Color{0, 0, 0}; // Black text for light background
 }
 
-} // namespace cppviz
+} // namespace intriviz

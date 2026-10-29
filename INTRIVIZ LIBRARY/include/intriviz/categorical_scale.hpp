@@ -3,9 +3,9 @@
 #include <cstddef>
 #include <string>
 #include <vector>
-#include "cppviz/scale.hpp"
+#include "intriviz/scale.hpp"
 
-namespace cppviz {
+namespace intriviz {
 
 class CategoricalScale : public Scale {
 public:
@@ -24,4 +24,4 @@ private:
     std::vector<std::string> names_;
 };
 
-} // namespace cppviz
+} // namespace intriviz

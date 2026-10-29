@@ -1,9 +1,9 @@
 #include "mini_test.hpp"
-#include "cppviz/scale.hpp"
-#include "cppviz/error.hpp"
+#include "intriviz/scale.hpp"
+#include "intriviz/error.hpp"
 
 int main(){
-    using namespace cppviz;
+    using namespace intriviz;
 
     {
         //basic linear scale mapping

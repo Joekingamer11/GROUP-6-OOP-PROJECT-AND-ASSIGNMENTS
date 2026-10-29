@@ -1,16 +1,16 @@
-#include "cppviz/quick.hpp"
-#include "cppviz/swarmplot.hpp"
-#include "cppviz/pointplot.hpp"
-#include "cppviz/heatmap.hpp"
-#include "cppviz/stats.hpp"
-#include "cppviz/labels.hpp"
-#include "cppviz/legend.hpp"
-#include "cppviz/validation.hpp"
-#include "cppviz/groupby.hpp"
-#include "cppviz/colormap.hpp"
-#include "cppviz/error.hpp"
+#include "intriviz/quick.hpp"
+#include "intriviz/swarmplot.hpp"
+#include "intriviz/pointplot.hpp"
+#include "intriviz/heatmap.hpp"
+#include "intriviz/stats.hpp"
+#include "intriviz/labels.hpp"
+#include "intriviz/legend.hpp"
+#include "intriviz/validation.hpp"
+#include "intriviz/groupby.hpp"
+#include "intriviz/colormap.hpp"
+#include "intriviz/error.hpp"
 
-namespace cppviz {
+namespace intriviz {
 
 Figure quick_swarmplot(const Dataset& data,
                         const std::string& x_column,
@@ -120,4 +120,4 @@ Figure quick_heatmap(const Dataset& data,
     return fig;
 }
 
-} // namespace cppviz
+} // namespace intriviz

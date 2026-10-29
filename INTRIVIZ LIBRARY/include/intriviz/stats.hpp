@@ -3,10 +3,10 @@
 #include <string>
 #include <vector>
 
-#include "cppviz/dataset.hpp"
-#include "cppviz/error.hpp"
+#include "intriviz/dataset.hpp"
+#include "intriviz/error.hpp"
 
-namespace cppviz {
+namespace intriviz {
 
 /// \brief Represents a two-sided confidence interval or range.
 struct Interval {
@@ -98,4 +98,4 @@ std::vector<std::vector<double>> correlation_matrix(const Dataset& data,
 Interval bootstrap_ci(const std::vector<double>& v, double level = 0.95,
                      int n_boot = 1000, unsigned seed = 42);
 
-} // namespace cppviz
+} // namespace intriviz
