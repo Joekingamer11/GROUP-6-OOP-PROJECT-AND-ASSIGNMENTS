@@ -135,14 +135,15 @@ int main() {
         Figure fig2 = std::move(fig1);
         CHECK_EQ(fig2.canvas().width(), 300);
         CHECK_EQ(fig2.canvas().height(), 200);
-        CHECK(fig2.canvas().get_pixel(5, 5) == Color{123, 45, 67});
+        const Color expected_pixel{123, 45, 67};
+        CHECK(fig2.canvas().get_pixel(5, 5) == expected_pixel);
 
         // Move assign fig3 from fig2
         Figure fig3(100, 100);
         fig3 = std::move(fig2);
         CHECK_EQ(fig3.canvas().width(), 300);
         CHECK_EQ(fig3.canvas().height(), 200);
-        CHECK(fig3.canvas().get_pixel(5, 5) == Color{123, 45, 67});
+        CHECK(fig3.canvas().get_pixel(5, 5) == expected_pixel);
     }
 
     return finish();

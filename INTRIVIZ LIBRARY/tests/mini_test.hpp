@@ -47,6 +47,15 @@ inline int g_failures = 0;
     } \
 } while(0)
 
+#define CHECK_NOTHROW(expr) do { \
+    try { \
+        expr; \
+    } catch (...) { \
+        std::cerr << __FILE__ << ":" << __LINE__ << " failed: " #expr " threw an exception\n"; \
+        ++::intriviz::g_failures; \
+    } \
+} while(0)
+
 inline int finish() {
     if (::intriviz::g_failures > 0) {
         std::cerr << ::intriviz::g_failures << " test failure(s) total.\n";
