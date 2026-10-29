@@ -8,10 +8,14 @@
 
 namespace cppviz {
 
+// =========================================================================
+// Week 1 Implementations
+// =========================================================================
+
 Color color_from_hex(const std::string& hex) {
     std::string s = hex;
-    if (!s.empty() && s.front() == '#') {
-        s.erase(0, 1);
+    if (!s.empty() && s[0] == '#') {
+        s = s.substr(1);
     }
     if (s.length() != 6) {
         throw InvalidArgument("Hex color string must be exactly 6 hex digits, got: " + hex);
@@ -51,7 +55,6 @@ std::vector<Color> categorical_palette(const std::string& name) {
     if (name != "deep") {
         throw InvalidArgument("Unknown categorical palette name: " + name);
     }
-    // Seaborn "deep" palette hex codes
     static const std::vector<std::string> deep_hexes = {
         "#4C72B0", "#DD8452", "#55A868", "#C44E52", "#8172B3",
         "#937860", "#DA8BC3", "#8C8C8C", "#CCB974", "#64B5CD"
@@ -79,6 +82,60 @@ Color Colormap::at(double t) const {
     }
     double frac = pos - index;
     return blend(stops_[index], stops_[index + 1], frac);
+}
+
+// =========================================================================
+// Week 2 Implementations
+// =========================================================================
+
+Colormap make_colormap(const std::string& name) {
+    if (name == "viridis") {
+        return Colormap({
+            color_from_hex("#440154"),
+            color_from_hex("#3B528B"),
+            color_from_hex("#21918C"),
+            color_from_hex("#5EC962"),
+            color_from_hex("#FDE725")
+        });
+    } else if (name == "magma") {
+        return Colormap({
+            color_from_hex("#000004"),
+            color_from_hex("#51127C"),
+            color_from_hex("#B73779"),
+            color_from_hex("#FC8761"),
+            color_from_hex("#FCFDBF")
+        });
+    } else if (name == "coolwarm") {
+        return Colormap({
+            color_from_hex("#3B4CC0"),
+            color_from_hex("#DDDDDD"),
+            color_from_hex("#B40426")
+        });
+    } else if (name == "gray" || name == "grey") {
+        return Colormap({
+            Color{0, 0, 0},
+            Color{255, 255, 255}
+        });
+    }
+    throw InvalidArgument("Unknown colormap name: " + name);
+}
+
+Color palette_color(const std::vector<Color>& palette, std::size_t index) {
+    if (palette.empty()) {
+        throw InvalidArgument("palette_color requires a non-empty palette");
+    }
+    return palette[index % palette.size()];
+}
+
+double luminance(Color c) {
+    return 0.299 * c.r + 0.587 * c.g + 0.114 * c.b;
+}
+
+Color contrast_text_color(Color background) {
+    if (luminance(background) < 140.0) {
+        return Color{255, 255, 255}; // White text for dark background
+    }
+    return Color{0, 0, 0}; // Black text for light background
 }
 
 } // namespace cppviz

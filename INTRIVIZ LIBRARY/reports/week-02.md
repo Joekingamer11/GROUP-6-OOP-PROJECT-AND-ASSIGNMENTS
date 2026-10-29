@@ -28,7 +28,7 @@ Team results :
 - Minor merge conflicts that were later rectified.
 
 ## Next Week
-- Week 2 coding (12 to 18 October), one segment per member:
+- Week  coding (12 to 18 October), one segment per member:
   - Member 1: `CategoricalScale`, first example program
   - Member 2: `validation` helpers
   - Member 3: `group_by`
