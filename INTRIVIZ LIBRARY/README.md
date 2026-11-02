@@ -148,10 +148,7 @@ ctest --test-dir build --output-on-failure
    cmake --build build --config Release
    ctest --test-dir build -C Release --output-on-failure
    ```
-```
-
----
-
+   
 ### 5. Install the Library (Optional)
 
 #### Linux and macOS
