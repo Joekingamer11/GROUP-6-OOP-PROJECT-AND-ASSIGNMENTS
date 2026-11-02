@@ -148,7 +148,9 @@ ctest --test-dir build --output-on-failure
    cmake --build build --config Release
    ctest --test-dir build -C Release --output-on-failure
    ```
-   
+
+---
+
 ### 5. Install the Library (Optional)
 
 #### Linux and macOS
@@ -234,7 +236,7 @@ The library includes six standalone runnable examples located in `examples/`:
 The test suite is executed using CTest from the build directory. Each module possesses its own standalone test executable in `tests/`:
 
 ```bash
-# Run all 36 test executables with failure details enabled
+# Run all 38 test executables with failure details enabled
 ctest --test-dir build --output-on-failure
 ```
 

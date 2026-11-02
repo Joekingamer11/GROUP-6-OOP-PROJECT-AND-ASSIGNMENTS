@@ -8,7 +8,7 @@
 
 The **intriviz** project is a reusable, high-performance, C++17 data visualization library inspired by Python's Seaborn library. The software enables developers to load tabular Comma-Separated Value (CSV) datasets, perform data cleaning and statistical transformations, render complex statistical charts—specifically categorical swarm plots, point plots with 95% bootstrap confidence interval error bars, and correlation heatmaps—and serialize visual outputs into uncompressed 24-bit bitmap (BMP) or Portable Pixmap (PPM) image files in just a few lines of code.
 
-Developed over a disciplined five-week schedule by a ten-student engineering team, the library operates with zero external graphics or data processing dependencies. Every layer of the software stack—including CSV quoted-string tokenization, typed tabular memory storage, statistical resampling algorithms, polymorphic axis scaling, software rasterization (Bresenham line drawing, circle fills, and 5x7 bitmap font rendering), visual themes, and binary image export—was implemented natively in C++17. The complete codebase consists of 30 public module headers, matching implementation files, 36 standalone unit test executables managed via CTest, and runnable demonstration examples, achieving 100% test passage across Linux, macOS, and Windows build environments.
+Developed over a disciplined five-week schedule by a ten-student engineering team, the library operates with zero external graphics or data processing dependencies. Every layer of the software stack—including CSV quoted-string tokenization, typed tabular memory storage, statistical resampling algorithms, polymorphic axis scaling, software rasterization (Bresenham line drawing, circle fills, and 5x7 bitmap font rendering), visual themes, and binary image export—was implemented natively in C++17. The complete codebase consists of 30 public module headers, matching implementation files, 38 standalone unit test executables managed via CTest, and runnable demonstration examples, achieving 100% test passage across Linux, macOS, and Windows build environments.
 
 ---
 
@@ -205,7 +205,7 @@ The complete library and test suite were verified on three distinct target platf
 
 | No. | Member | Course / Role | Main Modules and Files Authored | Unit Tests, Examples & Sample Data | Reviewed Teammate |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **1** | **Kimuli Joseph** *(Lead)* | BCCE / Lead & Integrator | `CMakeLists.txt`, `src/version.cpp`, `cppviz.hpp`, `categorical_scale.hpp/cpp`, `figure.hpp/cpp`, `quick.hpp/cpp` | `test_categorical_scale.cpp`, `test_figure.cpp`, `test_quick.cpp`, `example_load_and_describe.cpp`, Weekly Reports | Member 1 (Kimuli Joseph)  |
+| **1** | **Kimuli Joseph** *(Lead)* | BCCE / Lead & Integrator | `CMakeLists.txt`, `src/version.cpp`, `intriviz.hpp`, `categorical_scale.hpp/cpp`, `figure.hpp/cpp`, `quick.hpp/cpp` | `test_categorical_scale.cpp`, `test_figure.cpp`, `test_quick.cpp`, `example_load_and_describe.cpp`, Weekly Reports | Member 1 (Kimuli Joseph)  |
 | **2** | **Nangosha Anne Mary** | BBIO / Foundations & Axes | `types.hpp`, `error.hpp/cpp`, `validation.hpp/cpp`, `axes.hpp/cpp` | `test_types.cpp`, `test_error.cpp`, `test_validation.cpp`, `test_axes.cpp`, `test_invalid_inputs.cpp` | Member 1 (Kimuli Joseph) |
 | **3** | **Nakibuule Maria Liz** | BBIO / Data Structures & Labels | `dataset.hpp/cpp`, `groupby.hpp/cpp`, `labels.hpp/cpp` | `test_dataset.cpp`, `test_groupby.cpp`, `test_labels.cpp`, `example_swarmplot.cpp`, `data/input/tips_sample.csv` | Member 1 (Kimuli Joseph)  |
 | **4** | **Anna Kagemulo Mtabazi** | BELE / Data In, Summaries & Notes | `csv_loader.hpp/cpp`, `summary.hpp/cpp`, `annotation.hpp/cpp` | `test_csv_loader.cpp`, `test_summary.cpp`, `test_annotation.cpp`, `example_pointplot.cpp`, `example_annotations.cpp`, `scores_sample.csv` | Member 1 (Kimuli Joseph)  |
@@ -236,8 +236,8 @@ Git governance was maintained through GitHub repository settings:
 
 ### Collaboration Metrics
 
-*   **Total Commits**: 342 commits across all feature branches.
-*   **Merged Pull Requests**: 48 merged pull requests.
+*   **Total Commits**: 234 commits across all feature branches.
+*   **Merged Pull Requests**: 46 merged pull requests.
 *   **Progress Reports**: 5 weekly progress reports (`reports/week-01.md` through `reports/week-05.md`) plus `reports/final-report.md` and `reports/ai-use-declaration.md`.
 
 ---
@@ -273,7 +273,7 @@ Git governance was maintained through GitHub repository settings:
 
 ### Summary of AI Assistance
 
-In accordance with course regulations, Group 6 utilized artificial intelligence tools (Claude by Anthropic and Microsoft Copilot) strictly as architectural planning guides, learning aids, and boilerplate templates. AI tools were **not** used to generate the C++ library implementation code or hand-typed documentation, both of which were authored directly by group members.
+In accordance with course regulations, Group 6 utilized artificial intelligence tools (Claude (Anthropic) and Microsoft Copilot) strictly as architectural planning guides, learning aids, and boilerplate templates. AI tools were **not** used to generate the C++ library implementation code or hand-typed documentation, both of which were authored directly by group members.
 
 *   **Tools Used**: Claude 3.5 Sonnet (Anthropic) and Microsoft Copilot.
 *   **Primary Purposes**: Generating the initial project build guide schedule, formulating C++ module function contracts, outlining CMake build targets, providing C++ syntax references, and creating application example templates.
@@ -287,7 +287,7 @@ A complete chronological audit of weekly AI declarations is preserved in `report
 
 - [x] **Source Code (`src/`)**: All 30 module `.cpp` implementation files present and compiling cleanly.
 - [x] **Public Headers (`include/intriviz/`)**: All 30 module `.hpp` headers present with Doxygen comments.
-- [x] **Unit Tests (`tests/`)**: 36 standalone test executables present and passing 100% via CTest.
+- [x] **Unit Tests (`tests/`)**: 38 standalone test executables present and passing 100% via CTest.
 - [x] **Examples (`examples/`)**: All demonstration application programs present and generating image outputs.
 - [x] **Hand-Typed README (`README.md`)**: Hand-authored documentation covering all twelve required sections.
 - [x] **CMake Build Integration (`CMakeLists.txt`)**: Clean C++17 build file generating library, test, and example targets.
@@ -329,44 +329,137 @@ ctest --test-dir build --output-on-failure
 -- Check for working CXX compiler: /usr/bin/g++ - skipped
 -- Detecting CXX compile features
 -- Detecting CXX compile features - done
--- Configuring done
--- Generating done
--- Build files have been written to: /workspace/build
+-- Configuring done (0.1s)
+-- Generating done (1.0s)
+-- Build files have been written to: C:/Users/TESTMACHINE/GROUP-6-OOP-PROJECT-AND-ASSIGNMENTS/INTRIVIZ LIBRARY/build
+[ 24%] Built target intriviz
+[ 25%] Built target example_annotations
+[ 27%] Built target example_dashboard
+[ 28%] Built target example_heatmap
+[ 30%] Built target example_load_and_describe
+[ 31%] Built target example_pointplot
+[ 33%] Built target example_swarmplot
+[ 35%] Built target example_themes
+[ 36%] Built target example_week3_showcase
+[ 38%] Built target week1_showcase
+[ 39%] Built target test_annotation
+[ 41%] Built target test_axes
+[ 43%] Built target example_week_2
+[ 44%] Built target test_canvas
+[ 46%] Built target test_categorical_scale
+[ 48%] Built target test_colorbar
+[ 49%] Built target test_colorbar_heatmap
+[ 51%] Built target test_colormap
+[ 52%] Built target test_csv_loader
+[ 54%] Built target test_dataset
+[ 55%] Built target test_draw
+[ 57%] Built target test_error
+[ 59%] Built target test_figure
+[ 60%] Built target test_figure_integration
+[ 62%] Built target test_font
+[ 63%] Built target test_groupby
+[ 65%] Built target test_heatmap
+[ 67%] Built target test_image_export
+[ 68%] Built target test_invalid_inputs
+[ 70%] Built target test_labels
+[ 71%] Built target test_large_data
+[ 73%] Built target test_legend
+[ 75%] Built target test_mini_test
+[ 76%] Built target test_pipeline
+[ 78%] Built target test_pointplot
+[ 80%] Built target test_preprocess
+[ 81%] Built target test_pointplot_cross
+[ 82%] Built target test_quick
+[ 84%] Built target test_scale
+[ 86%] Built target test_scales_integration
+[ 87%] Built target test_stats
+[ 89%] Built target test_summary
+[ 90%] Built target test_swarmplot
+[ 92%] Built target test_text_util
+[ 94%] Built target test_swarmplot_layout
+[ 95%] Built target test_theme
+[ 97%] Built target test_ticks
+[ 98%] Built target test_types
+[100%] Built target test_validation
+Test project C:/Users/TESTMACHINE/GROUP-6-OOP-PROJECT-AND-ASSIGNMENTS/INTRIVIZ LIBRARY/build
+      Start  1: test_annotation
+ 1/38 Test  #1: test_annotation ..................   Passed    0.09 sec
+      Start  2: test_axes
+ 2/38 Test  #2: test_axes ........................   Passed    0.08 sec
+      Start  3: test_canvas
+ 3/38 Test  #3: test_canvas ......................   Passed    0.06 sec
+      Start  4: test_categorical_scale
+ 4/38 Test  #4: test_categorical_scale ...........   Passed    0.06 sec
+      Start  5: test_colorbar
+ 5/38 Test  #5: test_colorbar ....................   Passed    0.07 sec
+      Start  6: test_colorbar_heatmap
+ 6/38 Test  #6: test_colorbar_heatmap ............   Passed    0.14 sec
+      Start  7: test_colormap
+ 7/38 Test  #7: test_colormap ....................   Passed    0.06 sec
+      Start  8: test_csv_loader
+ 8/38 Test  #8: test_csv_loader ..................   Passed    0.08 sec
+      Start  9: test_dataset
+ 9/38 Test  #9: test_dataset .....................   Passed    0.07 sec
+      Start 10: test_draw
+10/38 Test #10: test_draw ........................   Passed    0.05 sec
+      Start 11: test_error
+11/38 Test #11: test_error .......................   Passed    0.05 sec
+      Start 12: test_figure
+12/38 Test #12: test_figure ......................   Passed    0.10 sec
+      Start 13: test_figure_integration
+13/38 Test #13: test_figure_integration ..........   Passed    0.10 sec
+      Start 14: test_font
+14/38 Test #14: test_font ........................   Passed    0.06 sec
+      Start 15: test_groupby
+15/38 Test #15: test_groupby .....................   Passed    0.09 sec
+      Start 16: test_heatmap
+16/38 Test #16: test_heatmap .....................   Passed    0.09 sec
+      Start 17: test_image_export
+17/38 Test #17: test_image_export ................   Passed    0.07 sec
+      Start 18: test_invalid_inputs
+18/38 Test #18: test_invalid_inputs ..............   Passed    0.11 sec
+      Start 19: test_labels
+19/38 Test #19: test_labels ......................   Passed    0.07 sec
+      Start 20: test_large_data
+20/38 Test #20: test_large_data ..................   Passed    0.12 sec
+      Start 21: test_legend
+21/38 Test #21: test_legend ......................   Passed    0.07 sec
+      Start 22: test_mini_test
+22/38 Test #22: test_mini_test ...................   Passed    0.04 sec
+      Start 23: test_pipeline
+23/38 Test #23: test_pipeline ....................   Passed    0.11 sec
+      Start 24: test_pointplot
+24/38 Test #24: test_pointplot ...................   Passed    0.12 sec
+      Start 25: test_pointplot_cross
+25/38 Test #25: test_pointplot_cross .............   Passed    0.13 sec
+      Start 26: test_preprocess
+26/38 Test #26: test_preprocess ..................   Passed    0.09 sec
+      Start 27: test_quick
+27/38 Test #27: test_quick .......................   Passed    0.23 sec
+      Start 28: test_scale
+28/38 Test #28: test_scale .......................   Passed    0.05 sec
+      Start 29: test_scales_integration
+29/38 Test #29: test_scales_integration ..........   Passed    0.08 sec
+      Start 30: test_stats
+30/38 Test #30: test_stats .......................   Passed    0.07 sec
+      Start 31: test_summary
+31/38 Test #31: test_summary .....................   Passed    0.08 sec
+      Start 32: test_swarmplot
+32/38 Test #32: test_swarmplot ...................   Passed    0.12 sec
+      Start 33: test_swarmplot_layout
+33/38 Test #33: test_swarmplot_layout ............   Passed    0.12 sec
+      Start 34: test_text_util
+34/38 Test #34: test_text_util ...................   Passed    0.05 sec
+      Start 35: test_theme
+35/38 Test #35: test_theme .......................   Passed    0.05 sec
+      Start 36: test_ticks
+36/38 Test #36: test_ticks .......................   Passed    0.05 sec
+      Start 37: test_types
+37/38 Test #37: test_types .......................   Passed    0.05 sec
+      Start 38: test_validation
+38/38 Test #38: test_validation ..................   Passed    0.07 sec
 
-[  3%] Building CXX object CMakeFiles/cppviz.dir/src/version.cpp.o
-[  6%] Building CXX object CMakeFiles/cppviz.dir/src/types.cpp.o
-[  9%] Building CXX object CMakeFiles/cppviz.dir/src/error.cpp.o
-[ 12%] Building CXX object CMakeFiles/cppviz.dir/src/dataset.cpp.o
-[ 15%] Building CXX object CMakeFiles/cppviz.dir/src/csv_loader.cpp.o
-[ 18%] Building CXX object CMakeFiles/cppviz.dir/src/preprocess.cpp.o
-[ 21%] Building CXX object CMakeFiles/cppviz.dir/src/groupby.cpp.o
-[ 25%] Building CXX object CMakeFiles/cppviz.dir/src/stats.cpp.o
-[ 28%] Building CXX object CMakeFiles/cppviz.dir/src/summary.cpp.o
-[ 31%] Building CXX object CMakeFiles/cppviz.dir/src/scale.cpp.o
-[ 34%] Building CXX object CMakeFiles/cppviz.dir/src/ticks.cpp.o
-[ 37%] Building CXX object CMakeFiles/cppviz.dir/src/categorical_scale.cpp.o
-[ 40%] Building CXX object CMakeFiles/cppviz.dir/src/canvas.cpp.o
-[ 43%] Building CXX object CMakeFiles/cppviz.dir/src/draw.cpp.o
-[ 46%] Building CXX object CMakeFiles/cppviz.dir/src/font.cpp.o
-[ 50%] Building CXX object CMakeFiles/cppviz.dir/src/colormap.cpp.o
-[ 53%] Building CXX object CMakeFiles/cppviz.dir/src/image_export.cpp.o
-[ 56%] Building CXX object CMakeFiles/cppviz.dir/src/theme.cpp.o
-[ 59%] Building CXX object CMakeFiles/cppviz.dir/src/axes.cpp.o
-[ 62%] Building CXX object CMakeFiles/cppviz.dir/src/labels.cpp.o
-[ 65%] Building CXX object CMakeFiles/cppviz.dir/src/annotation.cpp.o
-[ 68%] Building CXX object CMakeFiles/cppviz.dir/src/colorbar.cpp.o
-[ 71%] Building CXX object CMakeFiles/cppviz.dir/src/legend.cpp.o
-[ 75%] Building CXX object CMakeFiles/cppviz.dir/src/figure.cpp.o
-[ 78%] Building CXX object CMakeFiles/cppviz.dir/src/pointplot.cpp.o
-[ 81%] Building CXX object CMakeFiles/cppviz.dir/src/swarmplot.cpp.o
-[ 84%] Building CXX object CMakeFiles/cppviz.dir/src/heatmap.cpp.o
-[ 87%] Building CXX object CMakeFiles/cppviz.dir/src/quick.cpp.o
-[ 90%] Building CXX object CMakeFiles/cppviz.dir/src/validation.cpp.o
-[ 93%] Building CXX object CMakeFiles/cppviz.dir/src/text_util.cpp.o
-[100%] Linking CXX static library libcppviz.a
-[100%] Built target cppviz
+100% tests passed out of 38
 
-Test project /workspace/build
-100% tests passed, 0 tests failed out of 36
-Total Test time (real) = 0.76 sec
+Total Test time (real) =   3.26 sec
 ```
