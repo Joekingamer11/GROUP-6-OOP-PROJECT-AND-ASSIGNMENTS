@@ -7,7 +7,7 @@
 int main() {
     try {
         std::cout << "==================================================\n";
-        std::cout << "       CPPCIZ WEEK 2 INTEGRATED SHOWCASE         \n";
+        std::cout << "       INTRIVIZ WEEK 2 INTEGRATED SHOWCASE         \n";
         std::cout << "==================================================\n\n";
 
         // ---------------------------------------------------------------------

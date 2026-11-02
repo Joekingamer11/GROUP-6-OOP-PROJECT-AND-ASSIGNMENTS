@@ -6,7 +6,7 @@ int main() {
     using namespace intriviz;
 
     std::cout << "========================================" << std::endl;
-    std::cout << "  Cppviz Member 9 - Dashboard Example   " << std::endl;
+    std::cout << "  INTRIVIZ Member 9 - Dashboard Example   " << std::endl;
     std::cout << "========================================" << std::endl;
 
     std::string data_dir = INTRIVIZ_DATA_DIR;
