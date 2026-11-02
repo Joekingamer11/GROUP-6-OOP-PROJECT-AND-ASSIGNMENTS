@@ -32,7 +32,7 @@ To solve this problem, Group 6 designed and implemented **intriviz**, a lightwei
 
 ## 3. Library Design
 
-The architecture of **intriviz** enforces a strict separation between public interface contracts (`include/intriviz/*.hpp`) and private implementation details (`src/*.cpp`). All library components are encapsulated within the `cppviz` C++ namespace (with `intriviz.hpp` acting as the main umbrella header), preventing naming collisions with user application code or standard C++ utilities. Error handling is entirely exception-based: invalid arguments, missing dataset columns, or file I/O failures throw explicit runtime exceptions derived from a central `VizError` base class, preventing silent crashes or unhandled state corruptions.
+The architecture of **intriviz** enforces a strict separation between public interface contracts (`include/intriviz/*.hpp`) and private implementation details (`src/*.cpp`). All library components are encapsulated within the `intriviz` C++ namespace (with `intriviz.hpp` acting as the main umbrella header), preventing naming collisions with user application code or standard C++ utilities. Error handling is entirely exception-based: invalid arguments, missing dataset columns, or file I/O failures throw explicit runtime exceptions derived from a central `VizError` base class, preventing silent crashes or unhandled state corruptions.
 
 ### Module Groupings and Responsibilities
 

@@ -131,27 +131,23 @@ cmake -S . -B build -DINTRIVIZ_BUILD_EXAMPLES=ON -DINTRIVIZ_BUILD_TESTS=ON
 
 # 3. Compile the library, test suite, and examples
 cmake --build build -j4
+ctest --test-dir build --output-on-failure
 ```
 
-#### Windows (Command Prompt / PowerShell with MSVC or MinGW)
-```cmd
-:: 1. Clone the repository
-   git clone https://github.com/Joekingamer11/GROUP-6-OOP-PROJECT-AND-ASSIGNMENTS.git
-   cd "GROUP-6-OOP-PROJECT-AND-ASSIGNMENTS/INTRIVIZ LIBRARY"
+#### Windows (MinGW-w64 or Visual Studio)
+   **Option A: MinGW (g++)**
+   ```cmd
+   cmake -S . -B build -G "MinGW Makefiles" -DINTRIVIZ_BUILD_EXAMPLES=ON -DINTRIVIZ_BUILD_TESTS=ON
+   cmake --build build -j4
+   ctest --test-dir build --output-on-failure
+   ```
 
-:: 2. Configure the build directory
-MINGW : cmake -S . -B build -G "MinGW Makefiles" -DINTRIVIZ_BUILD_EXAMPLES=ON -DINTRIVIZ_BUILD_TESTS=ON
-VISUAL STUDIO 2022 : cmake -S . -B build -G "Visual Studio 17 2022" -DINTRIVIZ_BUILD_EXAMPLES=ON -DINTRIVIZ_BUILD_TESTS=ON
-
-
-:: 3. Compile and run tests
-MINGW:
-cmake --build build -j4
-ctest --test-dir build --output-on-failure
-
-VISUAL STUDIO 2022:
-cmake --build build --config Release
-ctest --test-dir build -C Release --output-on-failure
+   **Option B: Visual Studio 2022**
+   ```cmd
+   cmake -S . -B build -G "Visual Studio 17 2022" -DINTRIVIZ_BUILD_EXAMPLES=ON -DINTRIVIZ_BUILD_TESTS=ON
+   cmake --build build --config Release
+   ctest --test-dir build -C Release --output-on-failure
+   ```
 ```
 
 ---
@@ -249,22 +245,22 @@ ctest --test-dir build --output-on-failure
 ```text
 Test project /path/to/intriviz/build
       Start  1: test_types
- 1/30 Test  #1: test_types ........................   Passed    0.01 sec
+ 1/38 Test  #1: test_types ........................   Passed    0.01 sec
       Start  2: test_error
- 2/30 Test  #2: test_error ........................   Passed    0.01 sec
+ 2/38 Test  #2: test_error ........................   Passed    0.01 sec
       Start  3: test_dataset
- 3/30 Test  #3: test_dataset ......................   Passed    0.02 sec
+ 3/38 Test  #3: test_dataset ......................   Passed    0.02 sec
       Start  4: test_csv_loader
- 4/30 Test  #4: test_csv_loader ...................   Passed    0.02 sec
+ 4/38 Test  #4: test_csv_loader ...................   Passed    0.02 sec
       ...
-      Start 34: test_pipeline
-34/36 Test #34: test_pipeline .....................   Passed    0.04 sec
-      Start 35: test_invalid_inputs
-35/36 Test #35: test_invalid_inputs ...............   Passed    0.03 sec
-      Start 36: test_large_data
-36/36 Test #36: test_large_data ...................   Passed    0.18 sec
+      Start 36: test_pipeline
+36/38 Test #36: test_pipeline .....................   Passed    0.04 sec
+      Start 37: test_invalid_inputs
+37/38 Test #37: test_invalid_inputs ...............   Passed    0.03 sec
+      Start 38: test_large_data
+38/38 Test #38: test_large_data ...................   Passed    0.18 sec
 
-100% tests passed, 0 tests failed out of 36
+100% tests passed, 0 tests failed out of 38
 Total Test time (real) = 0.92 sec
 ```
 
