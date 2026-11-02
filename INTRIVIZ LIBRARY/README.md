@@ -136,8 +136,8 @@ cmake --build build -j4
 #### Windows (Command Prompt / PowerShell with MSVC or MinGW)
 ```cmd
 :: 1. Clone the repository
-git clone <repository_url>
-cd intriviz
+   git clone https://github.com/Joekingamer11/GROUP-6-OOP-PROJECT-AND-ASSIGNMENTS.git
+   cd "GROUP-6-OOP-PROJECT-AND-ASSIGNMENTS/INTRIVIZ LIBRARY"
 
 :: 2. Configure the build directory
 cmake -S . -B build -DINTRIVIZ_BUILD_EXAMPLES=ON -DINTRIVIZ_BUILD_TESTS=ON
