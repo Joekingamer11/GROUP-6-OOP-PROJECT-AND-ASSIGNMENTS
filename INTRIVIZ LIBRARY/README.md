@@ -123,7 +123,7 @@ intriviz/
 #### Linux and macOS
 ```bash
 # 1. Clone the repository
-git clone <repository_url>
+git clone https://github.com/Joekingamer11/GROUP-6-OOP-PROJECT-AND-ASSIGNMENTS.git
 cd intriviz
 
 # 2. Configure the build directory using C++17 and CMake
