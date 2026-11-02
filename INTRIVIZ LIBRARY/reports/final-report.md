@@ -1,5 +1,5 @@
 # INTRIVIZ: Final Technical Report
-**Group 6 | C++ Data Visualization Library | Submission Date: 5 November 2026**  
+**Group 6 | C++ Data Visualization Library | Submission Date: 2 November 2026**  
 **Repository:** https://github.com/Joekingamer11/GROUP-6-OOP-PROJECT-AND-ASSIGNMENTS.git | **Release Tag:** `v1.0.0`
 
 ---
