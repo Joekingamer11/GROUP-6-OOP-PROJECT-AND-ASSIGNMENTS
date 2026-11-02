@@ -123,8 +123,8 @@ intriviz/
 #### Linux and macOS
 ```bash
 # 1. Clone the repository
-git clone https://github.com/Joekingamer11/GROUP-6-OOP-PROJECT-AND-ASSIGNMENTS.git
-cd intriviz
+   git clone https://github.com/Joekingamer11/GROUP-6-OOP-PROJECT-AND-ASSIGNMENTS.git
+   cd "GROUP-6-OOP-PROJECT-AND-ASSIGNMENTS/INTRIVIZ LIBRARY"
 
 # 2. Configure the build directory using C++17 and CMake
 cmake -S . -B build -DINTRIVIZ_BUILD_EXAMPLES=ON -DINTRIVIZ_BUILD_TESTS=ON
