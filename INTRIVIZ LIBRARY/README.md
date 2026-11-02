@@ -140,11 +140,18 @@ cmake --build build -j4
    cd "GROUP-6-OOP-PROJECT-AND-ASSIGNMENTS/INTRIVIZ LIBRARY"
 
 :: 2. Configure the build directory
-cmake -S . -B build -G "MinGW Makefiles" -DINTRIVIZ_BUILD_EXAMPLES=ON -DINTRIVIZ_BUILD_TESTS=ON
+MINGW : cmake -S . -B build -G "MinGW Makefiles" -DINTRIVIZ_BUILD_EXAMPLES=ON -DINTRIVIZ_BUILD_TESTS=ON
+VISUAL STUDIO 2022 : cmake -S . -B build -G "Visual Studio 17 2022" -DINTRIVIZ_BUILD_EXAMPLES=ON -DINTRIVIZ_BUILD_TESTS=ON
 
-:: 3. Compile in Release mode
+
+:: 3. Compile and run tests
+MINGW:
 cmake --build build -j4
 ctest --test-dir build --output-on-failure
+
+VISUAL STUDIO 2022:
+cmake --build build --config Release
+ctest --test-dir build -C Release --output-on-failure
 ```
 
 ---
