@@ -140,10 +140,11 @@ cmake --build build -j4
    cd "GROUP-6-OOP-PROJECT-AND-ASSIGNMENTS/INTRIVIZ LIBRARY"
 
 :: 2. Configure the build directory
-cmake -S . -B build -DINTRIVIZ_BUILD_EXAMPLES=ON -DINTRIVIZ_BUILD_TESTS=ON
+cmake -S . -B build -G "MinGW Makefiles" -DINTRIVIZ_BUILD_EXAMPLES=ON -DINTRIVIZ_BUILD_TESTS=ON
 
 :: 3. Compile in Release mode
-cmake --build build --config Release
+cmake --build build -j4
+ctest --test-dir build --output-on-failure
 ```
 
 ---
