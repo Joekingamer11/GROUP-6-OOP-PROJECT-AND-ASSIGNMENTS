@@ -233,7 +233,7 @@ The library includes six standalone runnable examples located in `examples/`:
 The test suite is executed using CTest from the build directory. Each module possesses its own standalone test executable in `tests/`:
 
 ```bash
-# Run all 30 test executables with failure details enabled
+# Run all 36 test executables with failure details enabled
 ctest --test-dir build --output-on-failure
 ```
 
@@ -249,14 +249,14 @@ Test project /path/to/intriviz/build
       Start  4: test_csv_loader
  4/30 Test  #4: test_csv_loader ...................   Passed    0.02 sec
       ...
-      Start 28: test_pipeline
-28/30 Test #28: test_pipeline .....................   Passed    0.04 sec
-      Start 29: test_invalid_inputs
-29/30 Test #29: test_invalid_inputs ...............   Passed    0.03 sec
-      Start 30: test_large_data
-30/30 Test #30: test_large_data ...................   Passed    0.18 sec
+      Start 34: test_pipeline
+34/36 Test #34: test_pipeline .....................   Passed    0.04 sec
+      Start 35: test_invalid_inputs
+35/36 Test #35: test_invalid_inputs ...............   Passed    0.03 sec
+      Start 36: test_large_data
+36/36 Test #36: test_large_data ...................   Passed    0.18 sec
 
-100% tests passed, 0 tests failed out of 30
+100% tests passed, 0 tests failed out of 36
 Total Test time (real) = 0.92 sec
 ```
 
