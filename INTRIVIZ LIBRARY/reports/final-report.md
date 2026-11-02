@@ -103,69 +103,86 @@ In Week 4, the team executed **independent cross-module testing**, where members
 ```text
 Running tests...
 Test project /workspace/build
-      Start  1: test_types
- 1/36 Test  #1: test_types ........................   Passed    0.01 sec
-      Start  2: test_error
- 2/36 Test  #2: test_error ........................   Passed    0.01 sec
-      Start  3: test_dataset
- 3/36 Test  #3: test_dataset ......................   Passed    0.02 sec
-      Start  4: test_csv_loader
- 4/36 Test  #4: test_csv_loader ...................   Passed    0.02 sec
-      Start  5: test_stats
- 5/36 Test  #5: test_stats ........................   Passed    0.03 sec
-      Start  6: test_scale
- 6/36 Test  #6: test_scale ........................   Passed    0.01 sec
-      Start  7: test_canvas
- 7/36 Test  #7: test_canvas .......................   Passed    0.01 sec
-      Start  8: test_image_export
- 8/36 Test  #8: test_image_export .................   Passed    0.02 sec
-      Start  9: test_colormap
- 9/36 Test  #9: test_colormap .....................   Passed    0.02 sec
-      Start 10: test_mini_test
-10/36 Test #10: test_mini_test ....................   Passed    0.01 sec
-      Start 11: test_text_util
-11/36 Test #11: test_text_util ....................   Passed    0.01 sec
-      Start 12: test_categorical_scale
-12/36 Test #12: test_categorical_scale ............   Passed    0.01 sec
-      Start 13: test_validation
-13/36 Test #13: test_validation ...................   Passed    0.01 sec
-      Start 14: test_groupby
-14/36 Test #14: test_groupby ......................   Passed    0.02 sec
-      Start 15: test_summary
-15/36 Test #15: test_summary ......................   Passed    0.02 sec
-      Start 16: test_ticks
-16/36 Test #16: test_ticks ........................   Passed    0.01 sec
-      Start 17: test_draw
-17/36 Test #17: test_draw .........................   Passed    0.02 sec
-      Start 18: test_font
-18/36 Test #18: test_font .........................   Passed    0.02 sec
-      Start 19: test_preprocess
-19/36 Test #19: test_preprocess ...................   Passed    0.02 sec
-      Start 20: test_axes
-20/36 Test #20: test_axes .........................   Passed    0.02 sec
-      Start 21: test_labels
-21/36 Test #21: test_labels .......................   Passed    0.01 sec
-      Start 22: test_annotation
-22/36 Test #22: test_annotation ...................   Passed    0.02 sec
-      Start 23: test_colorbar
-23/36 Test #23: test_colorbar .....................   Passed    0.01 sec
-      Start 24: test_legend
-24/36 Test #24: test_legend .......................   Passed    0.02 sec
-      Start 25: test_figure
-25/36 Test #25: test_figure .......................   Passed    0.02 sec
-      Start 26: test_pointplot
-26/36 Test #26: test_pointplot ....................   Passed    0.04 sec
-      Start 27: test_swarmplot
-27/36 Test #27: test_swarmplot ....................   Passed    0.05 sec
-      Start 28: test_heatmap
-28/36 Test #28: test_heatmap ......................   Passed    0.03 sec
-      Start 29: test_quick
-29/36 Test #29: test_quick ........................   Passed    0.04 sec
-      Start 30: test_large_data
-30/36 Test #30: test_large_data ...................   Passed    0.18 sec
+      Start  1: test_annotation
+ 1/38 Test  #1: test_annotation ..................   Passed    0.09 sec
+      Start  2: test_axes
+ 2/38 Test  #2: test_axes ........................   Passed    0.08 sec
+      Start  3: test_canvas
+ 3/38 Test  #3: test_canvas ......................   Passed    0.06 sec
+      Start  4: test_categorical_scale
+ 4/38 Test  #4: test_categorical_scale ...........   Passed    0.06 sec
+      Start  5: test_colorbar
+ 5/38 Test  #5: test_colorbar ....................   Passed    0.07 sec
+      Start  6: test_colorbar_heatmap
+ 6/38 Test  #6: test_colorbar_heatmap ............   Passed    0.14 sec
+      Start  7: test_colormap
+ 7/38 Test  #7: test_colormap ....................   Passed    0.06 sec
+      Start  8: test_csv_loader
+ 8/38 Test  #8: test_csv_loader ..................   Passed    0.08 sec
+      Start  9: test_dataset
+ 9/38 Test  #9: test_dataset .....................   Passed    0.07 sec
+      Start 10: test_draw
+10/38 Test #10: test_draw ........................   Passed    0.05 sec
+      Start 11: test_error
+11/38 Test #11: test_error .......................   Passed    0.05 sec
+      Start 12: test_figure
+12/38 Test #12: test_figure ......................   Passed    0.10 sec
+      Start 13: test_figure_integration
+13/38 Test #13: test_figure_integration ..........   Passed    0.10 sec
+      Start 14: test_font
+14/38 Test #14: test_font ........................   Passed    0.06 sec
+      Start 15: test_groupby
+15/38 Test #15: test_groupby .....................   Passed    0.09 sec
+      Start 16: test_heatmap
+16/38 Test #16: test_heatmap .....................   Passed    0.09 sec
+      Start 17: test_image_export
+17/38 Test #17: test_image_export ................   Passed    0.07 sec
+      Start 18: test_invalid_inputs
+18/38 Test #18: test_invalid_inputs ..............   Passed    0.11 sec
+      Start 19: test_labels
+19/38 Test #19: test_labels ......................   Passed    0.07 sec
+      Start 20: test_large_data
+20/38 Test #20: test_large_data ..................   Passed    0.12 sec
+      Start 21: test_legend
+21/38 Test #21: test_legend ......................   Passed    0.07 sec
+      Start 22: test_mini_test
+22/38 Test #22: test_mini_test ...................   Passed    0.04 sec
+      Start 23: test_pipeline
+23/38 Test #23: test_pipeline ....................   Passed    0.11 sec
+      Start 24: test_pointplot
+24/38 Test #24: test_pointplot ...................   Passed    0.12 sec
+      Start 25: test_pointplot_cross
+25/38 Test #25: test_pointplot_cross .............   Passed    0.13 sec
+      Start 26: test_preprocess
+26/38 Test #26: test_preprocess ..................   Passed    0.09 sec
+      Start 27: test_quick
+27/38 Test #27: test_quick .......................   Passed    0.23 sec
+      Start 28: test_scale
+28/38 Test #28: test_scale .......................   Passed    0.05 sec
+      Start 29: test_scales_integration
+29/38 Test #29: test_scales_integration ..........   Passed    0.08 sec
+      Start 30: test_stats
+30/38 Test #30: test_stats .......................   Passed    0.07 sec
+      Start 31: test_summary
+31/38 Test #31: test_summary .....................   Passed    0.08 sec
+      Start 32: test_swarmplot
+32/38 Test #32: test_swarmplot ...................   Passed    0.12 sec
+      Start 33: test_swarmplot_layout
+33/38 Test #33: test_swarmplot_layout ............   Passed    0.12 sec
+      Start 34: test_text_util
+34/38 Test #34: test_text_util ...................   Passed    0.05 sec
+      Start 35: test_theme
+35/38 Test #35: test_theme .......................   Passed    0.05 sec
+      Start 36: test_ticks
+36/38 Test #36: test_ticks .......................   Passed    0.05 sec
+      Start 37: test_types
+37/38 Test #37: test_types .......................   Passed    0.05 sec
+      Start 38: test_validation
+38/38 Test #38: test_validation ..................   Passed    0.07 sec
 
-100% tests passed, 0 tests failed out of 36
-Total Test time (real) = 0.76 sec
+100% tests passed out of 38
+
+Total Test time (real) =   3.26 sec
 ```
 
 ### Real Bugs Discovered and Resolved via Unit Tests
@@ -236,7 +253,7 @@ Git governance was maintained through GitHub repository settings:
 
 ### Collaboration Metrics
 
-*   **Total Commits**: 234 commits across all feature branches.
+*   **Total Commits**: 236 commits across all feature branches.
 *   **Merged Pull Requests**: 46 merged pull requests.
 *   **Progress Reports**: 5 weekly progress reports (`reports/week-01.md` through `reports/week-05.md`) plus `reports/final-report.md` and `reports/ai-use-declaration.md`.
 
