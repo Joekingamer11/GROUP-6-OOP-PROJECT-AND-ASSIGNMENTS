@@ -120,12 +120,12 @@ intriviz/
 
 ### 4. Build the Library
 
-#### Clone the repository
+#### 1. Clone the repository
 ```
    git clone https://github.com/Joekingamer11/GROUP-6-OOP-PROJECT-AND-ASSIGNMENTS.git
    cd "GROUP-6-OOP-PROJECT-AND-ASSIGNMENTS/INTRIVIZ LIBRARY"
 ```
-
+#### 2. Configure, Build and test the library 
 #### Linux and macOS
 ```bash
 # 2. Configure the build directory using C++17 and CMake
