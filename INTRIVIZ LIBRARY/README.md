@@ -326,26 +326,51 @@ The rendered image `bill_swarmplot.bmp` will appear in the directory where you r
 
 ### 7. Examples
 
-The library includes six standalone runnable examples located in `examples/`:
+The library includes **ten (10)** standalone runnable demonstration programs located in `examples/`:
 
 1. **`examples/example_load_and_describe.cpp`**
-   * **Demonstrates:** CSV loading (`tips_sample.csv`), missing row filtering (`drop_missing`), computing column statistics, and formatting an aligned text summary table.
+   * **Demonstrates:** Ingesting CSV datasets (`tips_sample.csv`), missing row filtering (`drop_missing`), computing summary metrics (mean, std dev, quantiles), and formatting an aligned text summary table (`describe()`).
    * **Output:** Terminal text table output.
 2. **`examples/example_week_2.cpp`**
-   * **Demonstrates:** CSV parsing, missing-value cleanup, and statistical summaries.
+   * **Demonstrates:** Low-level software rasterization on a `Canvas`, custom `LinearScale` and `CategoricalScale` coordinate transforms, horizontal/vertical grid lines, tick formatting, 95% bootstrap confidence interval error bars, and direct BMP export.
    * **Output Writes:** `data/output/week2_showcase.bmp`
 3. **`examples/example_week3_showcase.cpp`**
-   * **Demonstrates:** A combined point and swarm plot with summary statistics and confidence intervals.
+   * **Demonstrates:** High-level `Axes` coordinate integration, overlaid point plot with 95% bootstrap CI connectors, categorical swarm points, custom title/labels, and categorical legend rendering.
    * **Output Writes:** `data/output/week3_showcase.bmp`
 4. **`examples/example_swarmplot.cpp`**
-   * **Demonstrates:** Swarm plot score distributions across two groups.
+   * **Demonstrates:** Categorical swarm plot generating non-overlapping data point distributions across days with Seaborn-style collision avoidance using the `quick_swarmplot()` API.
    * **Output Writes:** `data/output/example_swarmplot.bmp`
 5. **`examples/example_pointplot.cpp`**
-   * **Demonstrates:** Mean scores across groups with bootstrap confidence intervals.
-   * **Output Writes:** `data/output/example_pointplot.bmp`
+   * **Demonstrates:** Mean test scores across student groups with 95% bootstrap confidence interval error bars and connect lines using the `quick_pointplot()` API.
+   * **Output Writes:** `data/output/pointplot_scores.bmp`
 6. **`examples/example_heatmap.cpp`**
-   * **Demonstrates:** An annotated heatmap of correlations between three subjects.
+   * **Demonstrates:** Annotated 2D correlation matrix heatmap with Magma colormap interpolation, numerical value cells, dynamic high-contrast text coloring, and right-hand colorbar key.
    * **Output Writes:** `data/output/example_heatmap.bmp`
+7. **`examples/week1_showcase.cpp`**
+   * **Demonstrates:** Foundational Week 1 data ingestion, 1D linear coordinate mapping, color interpolation along a gradient, pixel drawing, and uncompressed 24-bit BMP binary byte header verification.
+   * **Output Writes:** `data/output/week1_showcase.bmp`
+8. **`examples/example_themes.cpp`**
+   * **Demonstrates:** Comprehensive visual theme comparison by rendering identical swarm plots across all 4 built-in theme presets (`theme_white`, `theme_whitegrid`, `theme_darkgrid`, and `theme_dark`).
+   * **Output Writes:** `data/output/theme_white.bmp`, `data/output/theme_whitegrid.bmp`, `data/output/theme_darkgrid.bmp`, `data/output/theme_dark.bmp`
+9. **`examples/example_annotations.cpp`**
+   * **Demonstrates:** Figure-level data annotations on a point plot, including horizontal reference benchmark lines (`annotate_hline`), arbitrary text callouts (`annotate_text`), and vector arrow pointers (`annotate_arrow`).
+   * **Output Writes:** `data/output/annotations_example.bmp`
+10. **`examples/example_dashboard.cpp`**
+    * **Demonstrates:** Multi-chart analytical dashboard workflow generating three synchronized visualizations (swarm plot, point plot with confidence intervals, and correlation heatmap with colorbar) with automatic fallback data generation.
+    * **Output Writes:** `data/output/dashboard_swarm.bmp`, `data/output/dashboard_point.bmp`, `data/output/dashboard_heatmap.bmp`
+
+#### Batch Execution of All Examples
+
+You can run all 10 examples in a single automated pass using the provided runner scripts:
+
+* **Windows PowerShell:**
+  ```powershell
+  powershell -ExecutionPolicy Bypass -File .\run_examples.ps1
+  ```
+* **Linux / macOS / Git Bash:**
+  ```bash
+  ./run_examples.sh
+  ```
 
 ---
 

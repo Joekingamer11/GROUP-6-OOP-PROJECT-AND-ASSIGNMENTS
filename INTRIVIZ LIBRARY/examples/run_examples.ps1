@@ -1,5 +1,3 @@
-cmake --build build
-Get-ChildItem build -Recurse -Filter "example_*.exe" | ForEach-Object {
-    Write-Host "=== $($_.Name) ===" -ForegroundColor Cyan
-    & $_.FullName
-}
+﻿# Forward to root run_examples.ps1
+Set-Location -Path (Join-Path $PSScriptRoot "..")
+& ".\run_examples.ps1"
