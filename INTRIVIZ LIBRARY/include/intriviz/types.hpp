@@ -33,10 +33,10 @@ struct Rect {
 };
 
 struct Margins {
-    int left   = 70; // space around the plot area
-    int right  = 20;
-    int top    = 40;
-    int bottom = 60;
+    int left   = 100; // space for y-axis label + tick labels at font_scale=2
+    int right  = 30;  // breathing room on the right edge
+    int top    = 50;  // room for title text
+    int bottom = 80;  // room for x-axis tick labels + axis label
 };
 
 bool operator==(const Color& a, const Color& b);

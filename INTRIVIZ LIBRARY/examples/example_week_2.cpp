@@ -82,15 +82,17 @@ int main() {
         // ---------------------------------------------------------------------
         std::cout << "[4] Rendering Point Plot with CIs onto Canvas...\n";
 
-        constexpr int width = 600, height = 400;
-        intriviz::Canvas canvas(width, height, intriviz::Color{248, 249, 250}); // Off-white background
+        constexpr int width = 800, height = 600;
+        intriviz::Canvas canvas(width, height, intriviz::Color{248, 249, 250});
+
+        // Margins: left=100 right=30 top=50 bottom=80 for label room // Off-white background
 
         // Week 2 Categorical Scale (M1): Domain [-0.5, N-0.5] mapped to pixel range
-        intriviz::CategoricalScale x_scale(cat_names, 80.0, 520.0);
+        intriviz::CategoricalScale x_scale(cat_names, 110.0, 740.0);
 
         // Week 2 Ticks & Range Padding (M6)
         auto [y_min, y_max] = intriviz::padded_range({10.0, 50.0}, 0.1);
-        intriviz::LinearScale y_scale(y_min, y_max, 320.0, 60.0); // Y reversed for canvas pixels
+        intriviz::LinearScale y_scale(y_min, y_max, 510.0, 60.0); // Y reversed for canvas pixels
 
         // Week 2 Colormap & Luminance Contrast (M9)
         intriviz::Colormap viridis = intriviz::make_colormap("viridis");
@@ -98,29 +100,29 @@ int main() {
         intriviz::Color dark_gray = intriviz::Color{40, 40, 40};
 
         // Week 2 Drawing (M7): Outer plot area border & axis lines
-        intriviz::fill_rect(canvas, 70, 50, 460, 280, intriviz::Color{255, 255, 255}); // Plot area white fill
-        intriviz::draw_rect(canvas, 70, 50, 460, 280, intriviz::Color{200, 200, 200}); // Frame border
-        intriviz::draw_line(canvas, 70, 330, 530, 330, dark_gray, 2);               // X-Axis line
-        intriviz::draw_line(canvas, 70, 50, 70, 330, dark_gray, 2);                // Y-Axis line
+        intriviz::fill_rect(canvas, 100, 50, 650, 460, intriviz::Color{255, 255, 255}); // Plot area white fill
+        intriviz::draw_rect(canvas, 100, 50, 650, 460, intriviz::Color{200, 200, 200}); // Frame border
+        intriviz::draw_line(canvas, 100, 510, 750, 510, dark_gray, 2);               // X-Axis line
+        intriviz::draw_line(canvas, 100, 50, 100, 510, dark_gray, 2);                // Y-Axis line
 
         // Week 2 Bitmap Font (M8): Main Title & Axis Labels
-        intriviz::draw_text(canvas, 180, 18, "AVERAGE BILL BY DAY (WITH 95% CI)", dark_gray, 2);
-        intriviz::draw_text(canvas, 270, 365, "DAY OF WEEK", dark_gray, 1);
-        intriviz::draw_text_vertical(canvas, 25, 220, "TOTAL BILL ($)", dark_gray, 1); // Rotated text
+        intriviz::draw_text(canvas, 220, 18, "AVERAGE BILL BY DAY (WITH 95% CI)", dark_gray, 2);
+        intriviz::draw_text(canvas, 370, 545, "DAY OF WEEK", dark_gray, 1);
+        intriviz::draw_text_vertical(canvas, 25, 330, "TOTAL BILL ($)", dark_gray, 1); // Rotated text
 
         // Draw Y Ticks & Labels (Week 2 Ticks M6 & Font M8)
         std::vector<double> y_ticks = intriviz::nice_ticks(y_min, y_max, 5);
         for (double tick_val : y_ticks) {
             int y_px = static_cast<int>(y_scale.map(tick_val));
-            if (y_px >= 50 && y_px <= 330) {
+            if (y_px >= 50 && y_px <= 510) {
                 // Tick line & grid
-                intriviz::draw_line(canvas, 65, y_px, 70, y_px, dark_gray, 1);
-                intriviz::draw_line(canvas, 70, y_px, 530, y_px, intriviz::Color{230, 230, 230}, 1);
+                intriviz::draw_line(canvas, 95, y_px, 100, y_px, dark_gray, 1);
+                intriviz::draw_line(canvas, 100, y_px, 750, y_px, intriviz::Color{230, 230, 230}, 1);
                 
                 // Tick label text
                 std::string label = intriviz::format_tick(tick_val);
                 int tw = intriviz::text_width(label, 1);
-                intriviz::draw_text(canvas, 60 - tw, y_px - 3, label, dark_gray, 1);
+                intriviz::draw_text(canvas, 90 - tw, y_px - 3, label, dark_gray, 1);
             }
         }
 
@@ -150,7 +152,7 @@ int main() {
             // 4. Draw X-Axis Categorical Tick Label
             std::string day_label = x_scale.tick_label(static_cast<double>(i));
             int tw = intriviz::text_width(day_label, 1);
-            intriviz::draw_text(canvas, x_px - tw / 2, 340, day_label, dark_gray, 1);
+            intriviz::draw_text(canvas, x_px - tw / 2, 520, day_label, dark_gray, 1);
         }
 
         // ---------------------------------------------------------------------

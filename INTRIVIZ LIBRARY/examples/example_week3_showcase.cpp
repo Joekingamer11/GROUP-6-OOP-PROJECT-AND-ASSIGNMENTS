@@ -41,7 +41,7 @@ int main() {
                   << "Tip Std Dev: $" << std_tip << std::endl;
 
         intriviz::Theme theme = intriviz::theme_whitegrid();
-        intriviz::Figure fig(800, 500, theme);
+        intriviz::Figure fig(800, 600, theme);
         intriviz::Axes& ax = fig.axes();
 
         std::vector<std::string> categories = {"Thu", "Fri", "Sat"};

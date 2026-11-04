@@ -48,11 +48,13 @@ void draw_xlabel(Axes& ax, const std::string& label) {
     // Centred horizontally relative to the plot area
     int x = area.x + (area.w - tw) / 2;
 
-    // Placed below the bottom tick labels
+    // Placed below the bottom tick labels (tick label height + gap)
     int th = text_height(scale);
-    int y = ax.canvas().height() - th - 5;
-    if (y <= area.y + area.h) {
-        y = area.y + area.h + 20;
+    int tick_label_bottom = area.y + area.h + 7 + text_height(ax.theme().font_scale);
+    int y = tick_label_bottom + 8; // 8px gap below tick labels
+    // Clamp so it does not run off canvas
+    if (y + th > ax.canvas().height() - 2) {
+        y = ax.canvas().height() - th - 2;
     }
 
     draw_text(ax.canvas(), x, y, label, ax.theme().text_color, scale);
@@ -78,8 +80,9 @@ void draw_ylabel(Axes& ax, const std::string& label) {
     // Centred vertically relative to the plot area
     int y = area.y + (area.h + th_vert) / 2;
 
-    // Placed in the left margin
-    int x = (area.x > tw_vert) ? (area.x - tw_vert) / 4 : 2;
+    // Placed in the left margin, centered between canvas edge and tick labels
+    int x = (area.x > tw_vert) ? (area.x - tw_vert) / 3 : 2;
+    if (x < 2) x = 2;
 
     draw_text_vertical(ax.canvas(), x, y, label, ax.theme().text_color, scale);
 }

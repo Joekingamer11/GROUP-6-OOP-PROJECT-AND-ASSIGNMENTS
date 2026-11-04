@@ -21,8 +21,8 @@ Figure quick_swarmplot(const Dataset& data,
     require_text_column(data, x_column);
     require_numeric_column(data, y_column);
 
-    // Construct figure with standard dimensions (640x480)
-    Figure fig(640, 480);
+    // Construct figure with dimensions giving room for labels at font_scale=2
+    Figure fig(800, 600);
     Axes& ax = fig.axes();
 
     // Configure swarmplot options
@@ -61,8 +61,8 @@ Figure quick_pointplot(const Dataset& data,
     require_text_column(data, x_column);
     require_numeric_column(data, y_column);
 
-    // Construct figure with standard dimensions (640x480)
-    Figure fig(640, 480);
+    // Construct figure with dimensions giving room for labels at font_scale=2
+    Figure fig(800, 600);
     Axes& ax = fig.axes();
 
     // Configure pointplot options (95% CI enabled)
@@ -94,9 +94,9 @@ Figure quick_heatmap(const Dataset& data,
         require_numeric_column(data, col);
     }
 
-    // Heatmaps with colorbars need a larger right margin (90px)
-    Figure fig(640, 480);
-    Margins m = {70, 90, 40, 60}; // left, right, top, bottom
+    // Heatmaps with colorbars need a larger right margin
+    Figure fig(800, 600);
+    Margins m = {100, 110, 50, 80}; // left, right, top, bottom
     fig.set_margins(m);
     Axes& ax = fig.axes();
 

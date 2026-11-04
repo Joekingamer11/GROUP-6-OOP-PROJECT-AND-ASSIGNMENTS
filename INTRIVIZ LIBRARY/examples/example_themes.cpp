@@ -34,7 +34,7 @@ int main() {
 
     for (const auto& cfg : configs) {
         // Create Figure with specified theme
-        Figure fig(640, 480, cfg.theme);
+        Figure fig(800, 600, cfg.theme);
         
         // Render plot and annotations
         swarmplot(fig.axes(), ds, "day", "total_bill");

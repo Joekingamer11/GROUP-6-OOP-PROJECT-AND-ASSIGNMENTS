@@ -120,59 +120,104 @@ intriviz/
 
 ### 4. Build the Library
 
-#### a. Clone the repository
-```
-   git clone https://github.com/Joekingamer11/GROUP-6-OOP-PROJECT-AND-ASSIGNMENTS.git
-   cd "GROUP-6-OOP-PROJECT-AND-ASSIGNMENTS/INTRIVIZ LIBRARY"
-```
-#### b. Configure, Build and test the library 
-#### Linux and macOS
+#### a. Clone the Repository
 ```bash
-# 2. Configure the build directory using C++17 and CMake
+git clone https://github.com/Joekingamer11/GROUP-6-OOP-PROJECT-AND-ASSIGNMENTS.git
+cd "GROUP-6-OOP-PROJECT-AND-ASSIGNMENTS/INTRIVIZ LIBRARY"
+```
+
+> [!IMPORTANT]
+> All build and execution commands below assume your terminal working directory is the repository root (`INTRIVIZ LIBRARY`).
+
+#### b. Configure, Build, and Run Examples Without Installing
+
+The library uses standard CMake (version 3.16+). Building the library generates:
+1. The static library file (`build/libintriviz.a` on MinGW/GCC/Clang or `build/Release/intriviz.lib` on MSVC).
+2. All demonstration executables directly in `build/` (e.g. `example_swarmplot.exe`, `example_dashboard.exe`, etc.).
+3. The unit test suite executables.
+
+##### Linux and macOS
+```bash
+# 1. Configure the build directory
 cmake -S . -B build -DINTRIVIZ_BUILD_EXAMPLES=ON -DINTRIVIZ_BUILD_TESTS=ON
 
-# 3. Compile the library and testing suite
+# 2. Compile the library, examples, and tests
 cmake --build build -j4
+
+# 3. Run demonstration examples immediately (no install needed!)
+./build/example_swarmplot
+./build/example_pointplot
+./build/example_dashboard
+
+# 4. Run the automated test suite
 ctest --test-dir build --output-on-failure
 ```
 
-#### Windows (MinGW-w64 or Visual Studio) [Configuration, Building , Compiling and Testing Suite]
-   **Option A: MinGW (g++)**
-   ```cmd
-   cmake -S . -B build -G "MinGW Makefiles" -DINTRIVIZ_BUILD_EXAMPLES=ON -DINTRIVIZ_BUILD_TESTS=ON
-   cmake --build build -j4
-   ctest --test-dir build --output-on-failure
-   ```
+##### Windows (MinGW / GCC)
+```powershell
+# 1. Configure the build directory using MinGW Makefiles
+cmake -S . -B build -G "MinGW Makefiles" -DINTRIVIZ_BUILD_EXAMPLES=ON -DINTRIVIZ_BUILD_TESTS=ON
 
-   **Option B: Visual Studio 2022**
-   ```cmd
-   cmake -S . -B build -G "Visual Studio 17 2022" -DINTRIVIZ_BUILD_EXAMPLES=ON -DINTRIVIZ_BUILD_TESTS=ON
-   cmake --build build --config Release
-   ctest --test-dir build -C Release --output-on-failure
-   ```
+# 2. Compile the static library and examples
+cmake --build build -j4
+
+# 3. Run demonstration examples directly from the build directory
+.\build\example_swarmplot.exe
+.\build\example_pointplot.exe
+.\build\example_dashboard.exe
+
+# 4. Run the automated test suite (38 tests)
+ctest --test-dir build --output-on-failure
+```
+
+##### Windows (Visual Studio 2022)
+```cmd
+# 1. Configure for MSVC
+cmake -S . -B build -G "Visual Studio 17 2022" -DINTRIVIZ_BUILD_EXAMPLES=ON -DINTRIVIZ_BUILD_TESTS=ON
+
+# 2. Compile in Release mode
+cmake --build build --config Release
+
+# 3. Run demonstration examples
+.\build\Release\example_swarmplot.exe
+.\build\Release\example_pointplot.exe
+
+# 4. Run the automated test suite
+ctest --test-dir build -C Release --output-on-failure
+```
+
+> [!TIP]
+> All generated plot images are saved directly to `data/output/*.bmp`. You can open and view them immediately in any photo or image viewer.
 
 ---
 
 ### 5. Install the Library (Optional)
 
+Installing copies the headers and compiled library to system or custom directories. **This step is completely optional**—you can build, test, and use the library entirely from the local folder without installing.
+
 #### Linux and macOS
 ```bash
 cmake --install build
+# Or install to a custom folder:
+cmake --install build --prefix /path/to/custom_install
 ```
 
 #### Windows (Command Prompt)
 ```cmd
 cmake --install build --config Release
+:: Or install to a custom folder:
+cmake --install build --prefix C:\intriviz_install
 ```
-#### NOTE:
-```
-cmake --install build --prefix <folder> installs to a folder you choose,use that same folder in the -I and -L flags.
-```
+
 ---
 
 ### 6. Use the Library in Your Own Program
 
+You do **not** need to install the library to write and run your own programs. You can link directly against the built library in `build/` or compile directly with the library source files.
+
 #### Example Application Code (`main.cpp`)
+Save this as `main.cpp` in the `INTRIVIZ LIBRARY` root directory:
+
 ```cpp
 #include <intriviz/Intriviz.hpp>
 #include <iostream>
@@ -200,31 +245,83 @@ int main() {
 }
 ```
 
-#### Compilation & Execution Commands
+#### How the Compiler Finds the Library (Without Installation)
 
-#### Windows (PowerShell, MinGW):
+To successfully compile, the C++ compiler needs to know two things:
+1. **Where headers live (`-Iinclude`):** Tells the preprocessor where to find `#include <intriviz/Intriviz.hpp>`.
+2. **Where library code lives (`-Lbuild -lintriviz` or source files):** Tells the linker how to resolve library functions.
+
+Choose either **Method A** (linking pre-built library) or **Method B** (direct source compilation):
+
+---
+
+#### Method A: Link Against Built Library (Fastest & Recommended)
+*Requires that you have run `cmake --build build` once.*
+
+##### Windows (PowerShell with MinGW / g++):
 ```powershell
-# Compile linking against installed intriviz library and run executable
+# Compile and link against build/libintriviz.a
+g++ -std=c++17 -Iinclude main.cpp -Lbuild -lintriviz -o main.exe
+
+# Execute
+.\main.exe
+```
+
+##### Windows (Command Prompt / CMD):
+```cmd
+g++ -std=c++17 -Iinclude main.cpp -Lbuild -lintriviz -o main.exe
+main.exe
+```
+
+##### Linux and macOS (or Git Bash):
+```bash
+g++ -std=c++17 -Iinclude main.cpp -Lbuild -lintriviz -o main
+./main
+```
+
+---
+
+#### Method B: Compile Directly with Source Files (No Pre-build Needed)
+*Use this if you have not run CMake and just want to compile everything in one command.*
+
+##### Windows (PowerShell with MinGW / g++):
+```powershell
 g++ -std=c++17 -Iinclude main.cpp (Get-ChildItem src\*.cpp).FullName -o main.exe
 .\main.exe
 ```
-#### Linux and macOS (or Git Bash):
+
+##### Windows (Command Prompt / CMD):
+```cmd
+g++ -std=c++17 -Iinclude main.cpp src\*.cpp -o main.exe
+main.exe
+```
+
+##### Linux and macOS:
 ```bash
-# Compile linking against installed intriviz library and run executable
 g++ -std=c++17 -Iinclude main.cpp src/*.cpp -o main
 ./main
 ```
-#### Expected Output:
-``` 
-The program prints Successfully generated bill_swarmplot.bmp.
-The image bill_swarmplot.bmp appears in the folder you ran it from. 
+
+---
+
+#### Expected Output
+```text
+Successfully generated bill_swarmplot.bmp
 ```
-#### Possible Errors:
-```
-intriviz/Intriviz.hpp: No such file or directory means -Iinclude is missing or you’re in the wrong folder.
-intriviz Error: ... means the program couldn’t open the CSV, so run it from the INTRIVIZ LIBRARY folder.
-Don’t use an editor’s “Run” button for this program. It compiles without the -Iinclude flag.
-```
+The rendered image `bill_swarmplot.bmp` will appear in the directory where you ran the executable.
+
+---
+
+#### Troubleshooting Common Compiler & Execution Errors
+
+| Error Message | Cause | Solution |
+| :--- | :--- | :--- |
+| `fatal error: intriviz/Intriviz.hpp: No such file or directory` | The compiler cannot locate the header directory. | Add `-Iinclude` to your compile command, and ensure your terminal is opened in the `INTRIVIZ LIBRARY` root directory. |
+| `cannot find -lintriviz` | The compiler cannot locate `libintriviz.a`. | Make sure you built the library first (`cmake --build build`) and added `-Lbuild` before `-lintriviz`. |
+| `undefined reference to intriviz::...` | Headers were found, but the compiled library code was not linked. | Include `-Lbuild -lintriviz` (Method A) or `src/*.cpp` (Method B) in your compile command. |
+| `VizError: Could not open file data/input/tips_sample.csv` | The executable cannot find the relative file path. | Run the executable from the `INTRIVIZ LIBRARY` root directory where the `data/` folder exists, or use an absolute path. |
+| IDE single-file "Run Code" button fails | Default editor run buttons only invoke `g++ main.cpp` without necessary `-I` and `-L` flags. | Run the compilation commands from the integrated terminal, or configure `.vscode/tasks.json` with `-Iinclude` and `-Lbuild -lintriviz`. |
+
 ---
 
 ### 7. Examples
@@ -351,6 +448,5 @@ Total Test time (real) = 0.92 sec
   * Enforced feature branching (`mN/feature-name`) and conventional commit messages (`feat(...)`, `test(...)`, `fix(...)`).
   * Enforced a strict **"one owner per file per week"** rule, eliminating Git merge conflicts.
 * **Code Reviews & Quality Assurance:**
-  * Implemented a circular peer review system where Member *N* reviewed Member *N+1* (and Member 10 reviewed Member 1).
   * Conducted independent cross-module testing in Week 4 (e.g., Member 5 wrote independent tests for Member 6's swarm layout; Member 6 tested Member 5's point plot).
   * Executed fresh-machine build verification on clean systems to ensure dependency-free compilation.

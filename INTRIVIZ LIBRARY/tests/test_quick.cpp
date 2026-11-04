@@ -17,20 +17,20 @@ int main() {
 
     // 2. Test quick_swarmplot
     Figure fig_swarm = quick_swarmplot(data, "day", "bill", "Bill by Day");
-    CHECK_EQ(fig_swarm.canvas().width(), 640);
-    CHECK_EQ(fig_swarm.canvas().height(), 480);
+    CHECK_EQ(fig_swarm.canvas().width(), 800);
+    CHECK_EQ(fig_swarm.canvas().height(), 600);
     fig_swarm.save("data/output/test_quick_swarm.bmp");
 
     // 3. Test quick_pointplot
     Figure fig_point = quick_pointplot(data, "day", "bill", "Average Bill");
-    CHECK_EQ(fig_point.canvas().width(), 640);
-    CHECK_EQ(fig_point.canvas().height(), 480);
+    CHECK_EQ(fig_point.canvas().width(), 800);
+    CHECK_EQ(fig_point.canvas().height(), 600);
     fig_point.save("data/output/test_quick_point.bmp");
 
     // 4. Test quick_heatmap
     Figure fig_heat = quick_heatmap(data, {"bill", "tip"}, "Correlation Heatmap");
-    CHECK_EQ(fig_heat.canvas().width(), 640);
-    CHECK_EQ(fig_heat.canvas().height(), 480);
+    CHECK_EQ(fig_heat.canvas().width(), 800);
+    CHECK_EQ(fig_heat.canvas().height(), 600);
     fig_heat.save("data/output/test_quick_heatmap.bmp");
 
     // 5. Test Exception Handling

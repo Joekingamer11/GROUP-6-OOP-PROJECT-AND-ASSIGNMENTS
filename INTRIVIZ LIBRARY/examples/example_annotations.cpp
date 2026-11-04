@@ -12,7 +12,7 @@ int main() {
 
         // 1. Instantiate Figure and retrieve Axes reference
         Theme theme = theme_whitegrid();
-        Figure fig(640, 480, theme);
+        Figure fig(800, 600, theme);
         Axes& ax = fig.axes();
 
         // 2. Render point plot on Axes

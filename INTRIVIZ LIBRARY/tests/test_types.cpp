@@ -35,10 +35,10 @@ int main() {
 
     // Test Margins defaults
     Margins margins;
-    CHECK_EQ(margins.left, 70);
-    CHECK_EQ(margins.right, 20);
-    CHECK_EQ(margins.top, 40);
-    CHECK_EQ(margins.bottom, 60);
+    CHECK_EQ(margins.left, 100);
+    CHECK_EQ(margins.right, 30);
+    CHECK_EQ(margins.top, 50);
+    CHECK_EQ(margins.bottom, 80);
 
     return finish();
 }

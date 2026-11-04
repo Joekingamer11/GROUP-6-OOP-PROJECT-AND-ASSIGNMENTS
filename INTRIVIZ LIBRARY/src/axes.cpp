@@ -109,7 +109,7 @@ void Axes::draw_frame() {
                 std::string label = x_scale_->tick_label(v);
                 int tw = text_width(label, theme_.font_scale);
                 int tx = px - tw / 2; // Centered under tick
-                int ty = area_.y + area_.h + 7;
+                int ty = area_.y + area_.h + 8;
                 draw_text(*canvas_, tx, ty, label, theme_.text_color, theme_.font_scale);
             }
         }
@@ -126,7 +126,7 @@ void Axes::draw_frame() {
                 std::string label = y_scale_->tick_label(v);
                 int tw = text_width(label, theme_.font_scale);
                 int th = text_height(theme_.font_scale);
-                int tx = area_.x - 7 - tw; // Right-aligned to the left of tick mark
+                int tx = area_.x - 8 - tw; // Right-aligned to the left of tick mark
                 int ty = py - th / 2;      // Vertically centered
                 draw_text(*canvas_, tx, ty, label, theme_.text_color, theme_.font_scale);
             }

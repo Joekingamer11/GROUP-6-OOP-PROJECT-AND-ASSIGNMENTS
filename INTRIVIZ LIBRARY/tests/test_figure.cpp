@@ -26,10 +26,10 @@ int main() {
         // Default margins: left=70, right=20, top=40, bottom=60
         // Expected plot area: x=70, y=40, w=640-70-20=550, h=480-40-60=380
         const Rect& area = fig.axes().area();
-        CHECK_EQ(area.x, 70);
-        CHECK_EQ(area.y, 40);
-        CHECK_EQ(area.w, 550);
-        CHECK_EQ(area.h, 380);
+        CHECK_EQ(area.x, 100);
+        CHECK_EQ(area.y, 50);
+        CHECK_EQ(area.w, 510);
+        CHECK_EQ(area.h, 350);
     }
 
     // 2. Test set_margins and custom areas
