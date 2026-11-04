@@ -1,5 +1,5 @@
 # INTRIVIZ: Final Technical Report
-**Group 6 | C++ Data Visualization Library | Submission Date: 2 November 2026**  
+**Group 6 | C++ Data Visualization Library | Submission Date: 4 November 2026**  
 **Repository:** https://github.com/Joekingamer11/GROUP-6-OOP-PROJECT-AND-ASSIGNMENTS.git | **Release Tag:** `v1.0.0`
 
 ---
@@ -253,7 +253,7 @@ Git governance was maintained through GitHub repository settings:
 
 ### Collaboration Metrics
 
-*   **Total Commits**: 246 commits across all feature branches.
+*   **Total Commits**: 247 commits across all feature branches.
 *   **Merged Pull Requests**: 46 merged pull requests.
 *   **Progress Reports**: 5 weekly progress reports (`reports/week-01.md` through `reports/week-05.md`) plus `reports/final-report.md` and `reports/ai-use-declaration.md`.
 
