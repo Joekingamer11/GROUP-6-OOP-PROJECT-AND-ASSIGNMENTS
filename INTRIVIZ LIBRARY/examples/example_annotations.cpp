@@ -12,7 +12,7 @@ int main() {
 
         // 1. Instantiate Figure and retrieve Axes reference
         Theme theme = theme_whitegrid();
-        Figure fig(800, 600, theme);
+        Figure fig(800, 700, theme);
         Axes& ax = fig.axes();
 
         // 2. Render point plot on Axes
@@ -31,7 +31,7 @@ int main() {
         annotate_text(ax, 0.1, 85.5, "Target Benchmark (85.0)");
 
         // 5. Add arrow pointing to Group C peak
-        annotate_arrow(ax, 1.5, 96.0, 2.0, 92.5, "Highest Group Mean");
+        annotate_arrow(ax, 1.5, 94.0, 2.0, 92.5, "Highest Group Mean");
 
         // 6. Export rendered canvas
         std::string out_path = "data/output/annotations_example.bmp";
