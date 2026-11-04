@@ -168,7 +168,10 @@ cmake --install build
 ```cmd
 cmake --install build --config Release
 ```
-
+#### NOTE:
+```
+cmake --install build --prefix <folder> installs to a folder you choose,use that same folder in the -I and -L flags.
+```
 ---
 
 ### 6. Use the Library in Your Own Program
@@ -202,14 +205,30 @@ int main() {
 ```
 
 #### Compilation & Execution Commands
-```bash
-# Compile linking against installed intriviz library
-g++ -std=c++17 main.cpp -lintriviz -o my_plot_app
 
-# Run executable
-./my_plot_app
+#### Windows (PowerShell, MinGW):
+```powershell
+# Compile linking against installed intriviz library and run executable
+g++ -std=c++17 -Iinclude main.cpp (Get-ChildItem src\*.cpp).FullName -o main.exe
+.\main.exe
 ```
-
+#### Linux and macOS (or Git Bash):
+```bash
+# Compile linking against installed intriviz library and run executable
+g++ -std=c++17 -Iinclude main.cpp src/*.cpp -o main
+./main
+```
+#### Expected Output:
+``` 
+The program prints Successfully generated bill_swarmplot.bmp.
+The image bill_swarmplot.bmp appears in the folder you ran it from. 
+```
+#### Possible Errors:
+```
+intriviz/Intriviz.hpp: No such file or directory means -Iinclude is missing or you’re in the wrong folder.
+intriviz Error: ... means the program couldn’t open the CSV, so run it from the INTRIVIZ LIBRARY folder.
+Don’t use an editor’s “Run” button for this program. It compiles without the -Iinclude flag.
+```
 ---
 
 ### 7. Examples
