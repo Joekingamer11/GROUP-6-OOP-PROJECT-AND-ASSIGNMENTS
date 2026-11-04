@@ -120,26 +120,25 @@ intriviz/
 
 ### 4. Build the Library
 
-#### Linux and macOS
-```bash
-# 1. Clone the repository
+#### Clone the repository
+```
    git clone https://github.com/Joekingamer11/GROUP-6-OOP-PROJECT-AND-ASSIGNMENTS.git
    cd "GROUP-6-OOP-PROJECT-AND-ASSIGNMENTS/INTRIVIZ LIBRARY"
+```
 
+#### Linux and macOS
+```bash
 # 2. Configure the build directory using C++17 and CMake
 cmake -S . -B build -DINTRIVIZ_BUILD_EXAMPLES=ON -DINTRIVIZ_BUILD_TESTS=ON
 
-# 3. Compile the library, test suite, and examples
+# 3. Compile the library and testing suite
 cmake --build build -j4
 ctest --test-dir build --output-on-failure
 ```
 
-#### Windows (MinGW-w64 or Visual Studio)
+#### Windows (MinGW-w64 or Visual Studio) [Configuration, Building , Compiling and Testing Suite]
    **Option A: MinGW (g++)**
    ```cmd
-   git clone https://github.com/Joekingamer11/GROUP-6-OOP-PROJECT-AND-ASSIGNMENTS.git
-   cd "GROUP-6-OOP-PROJECT-AND-ASSIGNMENTS/INTRIVIZ LIBRARY"
-
    cmake -S . -B build -G "MinGW Makefiles" -DINTRIVIZ_BUILD_EXAMPLES=ON -DINTRIVIZ_BUILD_TESTS=ON
    cmake --build build -j4
    ctest --test-dir build --output-on-failure
@@ -147,9 +146,6 @@ ctest --test-dir build --output-on-failure
 
    **Option B: Visual Studio 2022**
    ```cmd
-   git clone https://github.com/Joekingamer11/GROUP-6-OOP-PROJECT-AND-ASSIGNMENTS.git
-   cd "GROUP-6-OOP-PROJECT-AND-ASSIGNMENTS/INTRIVIZ LIBRARY"
-   
    cmake -S . -B build -G "Visual Studio 17 2022" -DINTRIVIZ_BUILD_EXAMPLES=ON -DINTRIVIZ_BUILD_TESTS=ON
    cmake --build build --config Release
    ctest --test-dir build -C Release --output-on-failure
