@@ -1,3 +1,11 @@
+/**
+ * @file ticks.cpp
+ * @brief Implementation of tick mark calculation, numerical formatting, and range padding algorithms.
+ *
+ * Provides algorithms to generate human-readable "nice" axis tick intervals,
+ * logarithmic tick placements, scientific/decimal tick formatting, and padded domain bounds.
+ */
+
 #include "intriviz/ticks.hpp"
 #include "intriviz/error.hpp"
 
@@ -8,6 +16,18 @@
 
 namespace intriviz {
 
+/**
+ * @brief Generates visually appealing, rounded tick mark values covering a numeric range.
+ * 
+ * Uses standard nice-number rounding (multiples of 1, 2, 2.5, 5, or 10 scaled by powers of 10)
+ * to generate roughly `target_count` tick positions spanning from at least `min` to `max`.
+ * 
+ * @param min Lower bound of the data interval.
+ * @param max Upper bound of the data interval.
+ * @param target_count Desired approximate number of tick intervals (must be >= 2).
+ * @return A vector of sorted, rounded tick coordinates.
+ * @throws InvalidArgument If min or max is NaN, min > max, or target_count < 2.
+ */
 std::vector<double> nice_ticks(double min, double max, int target_count) {
     if (std::isnan(min) || std::isnan(max)) {
         throw InvalidArgument("nice_ticks arguments cannot be NaN");
@@ -61,6 +81,16 @@ std::vector<double> nice_ticks(double min, double max, int target_count) {
     return ticks;
 }
 
+/**
+ * @brief Computes power-of-ten tick values for logarithmic scales.
+ * 
+ * Finds all integer powers of 10 within the interval [min, max].
+ * 
+ * @param min Lower domain bound (must be strictly positive).
+ * @param max Upper domain bound (must be strictly positive).
+ * @return A vector of powers of 10 (e.g., 0.1, 1, 10, 100, ...).
+ * @throws InvalidArgument If either bound is non-positive, NaN, or min > max.
+ */
 std::vector<double> log_ticks(double min, double max) {
     if (std::isnan(min) || std::isnan(max) || min <= 0.0 || max <= 0.0) {
         throw InvalidArgument("log_ticks domain bounds must be positive");
@@ -79,6 +109,15 @@ std::vector<double> log_ticks(double min, double max) {
     return ticks;
 }
 
+/**
+ * @brief Formats a tick value into a compact, human-readable string.
+ * 
+ * Strips unnecessary trailing zeros and switches between fixed-point and scientific
+ * notation depending on the magnitude of the number.
+ * 
+ * @param value The floating-point number to format.
+ * @return Formatted string representation.
+ */
 std::string format_tick(double value) {
     if (std::isnan(value)) {
         return "NaN";
@@ -116,6 +155,17 @@ std::string format_tick(double value) {
     return result;
 }
 
+/**
+ * @brief Computes padded min/max domain limits from a collection of values.
+ * 
+ * Extends the data span by a fractional padding on both ends to prevent data marks
+ * from sitting directly on the axis boundaries.
+ * 
+ * @param values Vector of input numeric values.
+ * @param padding Fraction of total span to extend on both sides (e.g. 0.05 for 5%).
+ * @return A pair representing {padded_min, padded_max}.
+ * @throws DataError If values is empty or contains only NaN elements.
+ */
 std::pair<double, double> padded_range(const std::vector<double>& values,
                                       double padding) {
     if (values.empty()) {

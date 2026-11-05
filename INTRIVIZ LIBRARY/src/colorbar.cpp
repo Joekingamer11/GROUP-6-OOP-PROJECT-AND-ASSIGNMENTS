@@ -1,3 +1,11 @@
+/**
+ * @file colorbar.cpp
+ * @brief Implementation of vertical gradient colorbar rendering for continuous colormaps.
+ *
+ * Renders a color scale strip with borders and numeric tick annotations
+ * adjacent to heatmap and continuous visualization axes.
+ */
+
 #include "intriviz/colorbar.hpp"
 #include "intriviz/draw.hpp"
 #include "intriviz/error.hpp"
@@ -7,6 +15,19 @@
 
 namespace intriviz {
 
+/**
+ * @brief Renders a vertical gradient colorbar with min, mid, and max tick labels.
+ * 
+ * Positions the colorbar strip 15 pixels to the right of the Axes plot rectangle.
+ * Samples the provided Colormap from top (vmax) to bottom (vmin), outlines the strip,
+ * and renders formatted numeric labels alongside.
+ * 
+ * @param ax The target Axes providing geometry, Canvas, and theme settings.
+ * @param colormap Continuous Colormap mapping normalized values [0, 1] to Colors.
+ * @param vmin Lower numerical value represented at the base of the colorbar.
+ * @param vmax Upper numerical value represented at the top of the colorbar.
+ * @throws InvalidArgument If vmin >= vmax.
+ */
 void draw_colorbar(Axes& ax, const Colormap& colormap, double vmin, double vmax) {
     if (vmin >= vmax) {
         throw InvalidArgument("draw_colorbar requires vmin < vmax");

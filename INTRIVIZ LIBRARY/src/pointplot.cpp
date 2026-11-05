@@ -1,3 +1,11 @@
+/**
+ * @file pointplot.cpp
+ * @brief Implementation of categorical point plots with confidence interval error bars.
+ *
+ * Visualizes category means, bootstrap confidence intervals, and connecting slope lines
+ * across discrete categories.
+ */
+
 #include "intriviz/pointplot.hpp"
 
 #include <algorithm>
@@ -15,6 +23,26 @@
 
 namespace intriviz {
 
+/**
+ * @brief Renders a categorical point plot onto the provided Axes.
+ * 
+ * Execution workflow:
+ * 1. Validates presence and types of dataset columns and CI level boundaries.
+ * 2. Groups observations by categorical column x_column and computes mean and bootstrap CIs for y_column.
+ * 3. Establishes CategoricalScale on X and padded LinearScale on Y.
+ * 4. Renders axes spines, grid, and ticks.
+ * 5. Optionally connects consecutive category means with line segments.
+ * 6. Optionally renders vertical error bars with cross-bar end-caps.
+ * 7. Renders circular point markers at each category mean.
+ * 
+ * @param ax Target Axes for plotting.
+ * @param data Source Dataset containing observations.
+ * @param x_column Categorical text column defining discrete groups.
+ * @param y_column Continuous numeric column to summarize.
+ * @param options Styling and error bar options (color, marker radius, CI level, connecting lines).
+ * @throws DataError If the dataset is empty or no valid observation groups exist.
+ * @throws InvalidArgument If ci_level is outside (0.0, 1.0).
+ */
 void pointplot(Axes& ax, const Dataset& data, const std::string& x_column,
                const std::string& y_column, const PointplotOptions& options) {
     // Step 1: Input Validation

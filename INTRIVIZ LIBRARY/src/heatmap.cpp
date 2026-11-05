@@ -1,3 +1,11 @@
+/**
+ * @file heatmap.cpp
+ * @brief Implementation of 2D matrix heatmap visualization.
+ *
+ * Renders numeric matrices as colored 2D grids with row and column categorical labels,
+ * continuous colormapping, optional in-cell numerical text annotations, and adjacent colorbars.
+ */
+
 #include "intriviz/heatmap.hpp"
 #include "intriviz/categorical_scale.hpp"
 #include "intriviz/colorbar.hpp"
@@ -15,6 +23,27 @@
 
 namespace intriviz {
 
+/**
+ * @brief Renders a 2D matrix as a heatmap onto the given Axes.
+ * 
+ * Execution workflow:
+ * 1. Validates matrix dimensions and ensures rows are not ragged.
+ * 2. Checks matching row and column label counts.
+ * 3. Derives data bounds [vmin, vmax] or uses user overrides from options.
+ * 4. Configures categorical scales mapping columns (X) and rows (Y, top-to-bottom).
+ * 5. Draws axis frame and tick labels.
+ * 6. Interpolates cell colors via continuous colormap and renders filled rectangles.
+ * 7. Optionally overlays formatted numeric values with high-contrast font colors.
+ * 8. Optionally renders a vertical gradient colorbar.
+ * 
+ * @param ax Target Axes for plotting.
+ * @param matrix 2D grid of floating-point values (rows x columns).
+ * @param row_labels Category labels for each row (top-to-bottom).
+ * @param col_labels Category labels for each column (left-to-right).
+ * @param options Styling and display options (colormap, annotations, decimals, colorbar).
+ * @throws DataError If matrix is empty or has ragged rows.
+ * @throws InvalidArgument If label vector sizes do not match matrix dimensions.
+ */
 void heatmap(Axes& ax, const std::vector<std::vector<double>>& matrix,
              const std::vector<std::string>& row_labels,
              const std::vector<std::string>& col_labels,

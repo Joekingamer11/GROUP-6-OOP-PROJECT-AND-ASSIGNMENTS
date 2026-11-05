@@ -1,3 +1,12 @@
+/**
+ * @file preprocess.cpp
+ * @brief Implementation of data cleaning, imputation, filtering, and normalization operations.
+ *
+ * Provides data transformation pipelines for Dataset instances and numeric vectors,
+ * including row-wise missing value removal, constant imputation, row filtering,
+ * column projection, Min-Max scaling, and Z-score standardization.
+ */
+
 #include "intriviz/preprocess.hpp"
 #include "intriviz/error.hpp"
 #include "intriviz/stats.hpp"
@@ -7,6 +16,14 @@
 
 namespace intriviz {
 
+/**
+ * @brief Filters out any row that contains missing values (NaN or empty text strings).
+ * 
+ * Inspects all columns across each row. Rows with any missing observation are omitted.
+ * 
+ * @param data Input Dataset.
+ * @return A new Dataset containing only complete rows.
+ */
 Dataset drop_missing(const Dataset& data) {
     std::size_t num_rows = data.row_count();
     auto col_names = data.column_names();
@@ -36,6 +53,15 @@ Dataset drop_missing(const Dataset& data) {
     return data.select_rows(keep_indices);
 }
 
+/**
+ * @brief Replaces missing (NaN) values in a specific numeric column with a constant replacement value.
+ * 
+ * @param data Input Dataset.
+ * @param column Name of the numeric column to impute.
+ * @param value Constant value to substitute in place of NaN.
+ * @return A new Dataset with missing values in the specified column replaced.
+ * @throws DataError If column does not exist or is not numeric.
+ */
 Dataset fill_missing(const Dataset& data, const std::string& column, double value) {
     if (!data.has_column(column)) {
         throw DataError("fill_missing: column '" + column + "' not found");
@@ -63,6 +89,17 @@ Dataset fill_missing(const Dataset& data, const std::string& column, double valu
     return result;
 }
 
+/**
+ * @brief Filters rows based on a custom predicate evaluated on a numeric column.
+ * 
+ * Rows with NaN values in the specified column are automatically excluded.
+ * 
+ * @param data Input Dataset.
+ * @param numeric_column Column name whose values will be passed to the predicate.
+ * @param keep Unary predicate returning true for rows to retain.
+ * @return Filtered Dataset containing matching rows.
+ * @throws DataError If numeric_column is missing or not numeric.
+ */
 Dataset filter_rows(const Dataset& data, const std::string& numeric_column,
                     const std::function<bool(double)>& keep) {
     if (!data.has_column(numeric_column)) {
@@ -83,6 +120,14 @@ Dataset filter_rows(const Dataset& data, const std::string& numeric_column,
     return data.select_rows(keep_indices);
 }
 
+/**
+ * @brief Projects a subset of columns into a new Dataset in the specified order.
+ * 
+ * @param data Input Dataset.
+ * @param names Ordered list of column identifiers to include.
+ * @return Projected Dataset.
+ * @throws DataError If any requested column name does not exist in data.
+ */
 Dataset select_columns(const Dataset& data, const std::vector<std::string>& names) {
     Dataset result;
     for (const auto& name : names) {
@@ -98,6 +143,15 @@ Dataset select_columns(const Dataset& data, const std::vector<std::string>& name
     return result;
 }
 
+/**
+ * @brief Normalizes a vector of numeric values to the range [0.0, 1.0] using Min-Max scaling.
+ * 
+ * Formula: (x - min) / (max - min). NaN values in the input are preserved as NaN.
+ * 
+ * @param values Input vector of values.
+ * @return Vector of normalized values in [0.0, 1.0].
+ * @throws DataError If values is empty, contains only NaNs, or all values are identical (max == min).
+ */
 std::vector<double> normalize_minmax(const std::vector<double>& values) {
     if (values.empty()) {
         throw DataError("normalize_minmax: input vector is empty");
@@ -133,6 +187,15 @@ std::vector<double> normalize_minmax(const std::vector<double>& values) {
     return result;
 }
 
+/**
+ * @brief Computes Z-score standardization for a vector of values: (x - mean) / stddev.
+ * 
+ * Centers data to have a mean of 0.0 and a standard deviation of 1.0. NaN values are preserved.
+ * 
+ * @param values Input vector of values.
+ * @return Vector of standardized values.
+ * @throws DataError If values is empty or standard deviation is 0.0 (constant values).
+ */
 std::vector<double> standardize(const std::vector<double>& values) {
     if (values.empty()) {
         throw DataError("standardize: input vector is empty");

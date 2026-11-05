@@ -1,3 +1,13 @@
+/**
+ * @file image_export.cpp
+ * @brief Implementation of image file writers (PPM, BMP, PNG) and format dispatcher.
+ *
+ * Implements pure C++ image encoders without external library dependencies:
+ * - Netpbm PPM (P6 binary RGB)
+ * - Microsoft Windows Bitmap (24-bit uncompressed BMP with 4-byte row padding)
+ * - Portable Network Graphics (PNG with Deflate uncompressed blocks, Adler-32, and CRC-32)
+ */
+
 #include "intriviz/image_export.hpp"
 #include "intriviz/error.hpp"
 
@@ -16,13 +26,23 @@ namespace {
 // Endian & Bit Manipulation Helpers
 // ============================================================================
 
-// Writes a 16-bit unsigned integer in little-endian byte order (used in BMP).
+/**
+ * @brief Writes a 16-bit unsigned integer in little-endian byte order (used in BMP headers).
+ * 
+ * @param out Output file stream.
+ * @param value The 16-bit value to write.
+ */
 void write_u16_le(std::ofstream& out, std::uint16_t value) {
     out.put(static_cast<char>(value & 0xFF));
     out.put(static_cast<char>((value >> 8) & 0xFF));
 }
 
-// Writes a 32-bit unsigned integer in little-endian byte order (used in BMP).
+/**
+ * @brief Writes a 32-bit unsigned integer in little-endian byte order (used in BMP headers).
+ * 
+ * @param out Output file stream.
+ * @param value The 32-bit value to write.
+ */
 void write_u32_le(std::ofstream& out, std::uint32_t value) {
     out.put(static_cast<char>(value & 0xFF));
     out.put(static_cast<char>((value >> 8) & 0xFF));
@@ -30,7 +50,12 @@ void write_u32_le(std::ofstream& out, std::uint32_t value) {
     out.put(static_cast<char>((value >> 24) & 0xFF));
 }
 
-// Appends a 32-bit unsigned integer in big-endian byte order (used in PNG).
+/**
+ * @brief Appends a 32-bit unsigned integer in big-endian byte order to a byte buffer (used in PNG chunks).
+ * 
+ * @param buf Target byte buffer.
+ * @param value The 32-bit integer to append.
+ */
 void append_u32_be(std::vector<std::uint8_t>& buf, std::uint32_t value) {
     buf.push_back(static_cast<std::uint8_t>((value >> 24) & 0xFF));
     buf.push_back(static_cast<std::uint8_t>((value >> 16) & 0xFF));
@@ -38,7 +63,12 @@ void append_u32_be(std::vector<std::uint8_t>& buf, std::uint32_t value) {
     buf.push_back(static_cast<std::uint8_t>(value & 0xFF));
 }
 
-// Extracts and normalizes file extension to lowercase (e.g. ".png").
+/**
+ * @brief Extracts the file extension from a path string and converts it to lowercase.
+ * 
+ * @param path File system path string.
+ * @return Lowercase extension including the leading dot (e.g., ".png"), or empty string if none.
+ */
 std::string extract_lowercase_extension(const std::string& path) {
     auto dot_pos = path.rfind('.');
     if (dot_pos == std::string::npos || dot_pos == path.size() - 1) {
@@ -55,7 +85,15 @@ std::string extract_lowercase_extension(const std::string& path) {
 // Checksum Algorithms for PNG (CRC-32 & Adler-32)
 // ============================================================================
 
-// Computes standard IEEE 802.3 CRC-32 polynomial checksum over a byte range.
+/**
+ * @brief Computes standard IEEE 802.3 CRC-32 polynomial checksum over a byte range.
+ * 
+ * Uses a precomputed 256-entry lookup table for high-performance chunk verification in PNG files.
+ * 
+ * @param data Pointer to input byte sequence.
+ * @param len Number of bytes.
+ * @return 32-bit CRC checksum.
+ */
 std::uint32_t compute_crc32(const std::uint8_t* data, std::size_t len) {
     static bool table_computed = false;
     // FIXED BUG: Changed to an array of size 256
@@ -83,7 +121,13 @@ std::uint32_t compute_crc32(const std::uint8_t* data, std::size_t len) {
     return c ^ 0xFFFFFFFFL;
 }
 
-// Computes zlib Adler-32 checksum required at the end of zlib streams.
+/**
+ * @brief Computes the zlib Adler-32 checksum required at the tail of zlib streams in PNG IDAT chunks.
+ * 
+ * @param data Pointer to input byte sequence.
+ * @param len Number of bytes.
+ * @return 32-bit Adler-32 checksum.
+ */
 std::uint32_t compute_adler32(const std::uint8_t* data, std::size_t len) {
     constexpr std::uint32_t MOD_ADLER = 65521;
     std::uint32_t a = 1;
@@ -96,7 +140,15 @@ std::uint32_t compute_adler32(const std::uint8_t* data, std::size_t len) {
     return (b << 16) | a;
 }
 
-// Writes a formatted PNG chunk (4-byte length + 4-byte type + payload + 4-byte CRC-32)
+/**
+ * @brief Formats and writes an individual PNG chunk to a file stream.
+ * 
+ * Writes: 4-byte length + 4-byte chunk type + payload data + 4-byte CRC-32 over (type + payload).
+ * 
+ * @param out Target output file stream.
+ * @param type 4-character ASCII chunk type tag (e.g. "IHDR", "IDAT", "IEND").
+ * @param payload Binary byte buffer containing chunk-specific data.
+ */
 void write_png_chunk(std::ofstream& out, const char type[5], const std::vector<std::uint8_t>& payload) {
     std::uint32_t length = static_cast<std::uint32_t>(payload.size());
     std::vector<std::uint8_t> chunk_buf;
@@ -132,6 +184,15 @@ void write_png_chunk(std::ofstream& out, const char type[5], const std::vector<s
 // Netpbm PPM (P6 Binary) Exporter
 // ============================================================================
 
+/**
+ * @brief Exports a Canvas image to disk in binary PPM (P6) format.
+ * 
+ * Writes standard "P6\n<w> <h>\n255\n" ASCII header followed by raw binary RGB bytes.
+ * 
+ * @param canvas The source Canvas.
+ * @param path Destination file path.
+ * @throws IoError If opening or writing to the file fails.
+ */
 void write_ppm(const Canvas& canvas, const std::string& path) {
     std::ofstream out(path, std::ios::binary);
     if (!out.is_open()) {
@@ -163,6 +224,16 @@ void write_ppm(const Canvas& canvas, const std::string& path) {
 // Windows 24-bit Uncompressed BMP Exporter
 // ============================================================================
 
+/**
+ * @brief Exports a Canvas image to disk as a 24-bit uncompressed Windows BMP file.
+ * 
+ * Generates standard 14-byte BITMAPFILEHEADER and 40-byte BITMAPINFOHEADER structures,
+ * and writes bottom-up scanlines in BGR byte order with 4-byte row padding.
+ * 
+ * @param canvas The source Canvas.
+ * @param path Destination file path.
+ * @throws IoError If opening or writing to the file fails.
+ */
 void write_bmp(const Canvas& canvas, const std::string& path) {
     std::ofstream out(path, std::ios::binary);
     if (!out.is_open()) {
@@ -229,6 +300,19 @@ void write_bmp(const Canvas& canvas, const std::string& path) {
 // Portable Network Graphics (PNG) Exporter
 // ============================================================================
 
+/**
+ * @brief Exports a Canvas image to disk as a Portable Network Graphics (PNG) file.
+ * 
+ * Implements a pure C++ PNG writer:
+ * - Emits the 8-byte PNG file magic header
+ * - Writes the IHDR chunk (24-bit RGB, Truecolor)
+ * - Encodes raw scanlines with filter type 0 inside zlib uncompressed DEFLATE blocks (IDAT chunk)
+ * - Emits the terminal IEND chunk
+ * 
+ * @param canvas The source Canvas.
+ * @param path Destination file path.
+ * @throws IoError If file stream operations fail.
+ */
 void write_png(const Canvas& canvas, const std::string& path) {
     std::ofstream out(path, std::ios::binary);
     if (!out.is_open()) {
@@ -318,6 +402,16 @@ void write_png(const Canvas& canvas, const std::string& path) {
 // Automatic Extension Dispatcher
 // ============================================================================
 
+/**
+ * @brief Saves a Canvas image to disk, automatically selecting the format from the file extension.
+ * 
+ * Supports ".ppm", ".bmp", and ".png" extensions (case-insensitive).
+ * 
+ * @param canvas The Canvas to export.
+ * @param path Destination file path.
+ * @throws InvalidArgument If the extension is unsupported or missing.
+ * @throws IoError If file writing fails.
+ */
 void save_image(const Canvas& canvas, const std::string& path) {
     std::string ext = extract_lowercase_extension(path);
 
@@ -335,4 +429,4 @@ void save_image(const Canvas& canvas, const std::string& path) {
     }
 }
 
-} // namespace intrivizs
+} // namespace intriviz

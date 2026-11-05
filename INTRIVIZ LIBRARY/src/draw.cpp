@@ -1,3 +1,11 @@
+/**
+ * @file draw.cpp
+ * @brief Implementation of 2D raster drawing primitives.
+ *
+ * Implements Bresenham line algorithms, rectangle rendering and filling,
+ * and midpoint circle algorithms on Canvas pixel buffers.
+ */
+
 #include "intriviz/draw.hpp"
 #include "intriviz/error.hpp"
 
@@ -7,6 +15,19 @@
 
 namespace intriviz {
 
+/**
+ * @brief Draws a straight line between two pixel coordinates using Bresenham's algorithm.
+ * 
+ * Supports line thickness by stamping filled square brushes centered along the path.
+ * 
+ * @param canvas The destination Canvas buffer.
+ * @param x0 Starting x-coordinate.
+ * @param y0 Starting y-coordinate.
+ * @param x1 Ending x-coordinate.
+ * @param y1 Ending y-coordinate.
+ * @param color Line stroke color.
+ * @param thickness Stroke thickness in pixels (non-positive values are ignored).
+ */
 void draw_line(Canvas& canvas, int x0, int y0, int x1, int y1, Color color, int thickness) {
     if (thickness <= 0) {
         return;
@@ -49,6 +70,18 @@ void draw_line(Canvas& canvas, int x0, int y0, int x1, int y1, Color color, int 
     }
 }
 
+/**
+ * @brief Draws an unfilled 1-pixel rectangle outline.
+ * 
+ * Automatically normalizes negative width and height coordinates.
+ * 
+ * @param canvas Destination Canvas buffer.
+ * @param x Top-left corner x-coordinate.
+ * @param y Top-left corner y-coordinate.
+ * @param w Width of the rectangle.
+ * @param h Height of the rectangle.
+ * @param color Outline color.
+ */
 void draw_rect(Canvas& canvas, int x, int y, int w, int h, Color color) {
     // Normalize negative dimensions
     if (w < 0) {
@@ -80,6 +113,18 @@ void draw_rect(Canvas& canvas, int x, int y, int w, int h, Color color) {
     }
 }
 
+/**
+ * @brief Draws a filled solid rectangle on the canvas.
+ * 
+ * Automatically normalizes negative width and height coordinates.
+ * 
+ * @param canvas Destination Canvas buffer.
+ * @param x Top-left corner x-coordinate.
+ * @param y Top-left corner y-coordinate.
+ * @param w Width of the rectangle.
+ * @param h Height of the rectangle.
+ * @param color Fill color.
+ */
 void fill_rect(Canvas& canvas, int x, int y, int w, int h, Color color) {
     // Normalize negative dimensions
     if (w < 0) {
@@ -101,6 +146,16 @@ void fill_rect(Canvas& canvas, int x, int y, int w, int h, Color color) {
     }
 }
 
+/**
+ * @brief Draws an unfilled circular outline using the midpoint circle algorithm.
+ * 
+ * @param canvas Destination Canvas buffer.
+ * @param cx Center x-coordinate.
+ * @param cy Center y-coordinate.
+ * @param radius Circle radius in pixels (>= 0).
+ * @param color Outline stroke color.
+ * @throws InvalidArgument If radius < 0.
+ */
 void draw_circle(Canvas& canvas, int cx, int cy, int radius, Color color) {
     if (radius < 0) {
         throw InvalidArgument("Circle radius cannot be negative, got " + std::to_string(radius));
@@ -138,6 +193,16 @@ void draw_circle(Canvas& canvas, int cx, int cy, int radius, Color color) {
     }
 }
 
+/**
+ * @brief Draws a filled solid circle on the canvas.
+ * 
+ * @param canvas Destination Canvas buffer.
+ * @param cx Center x-coordinate.
+ * @param cy Center y-coordinate.
+ * @param radius Circle radius in pixels (>= 0).
+ * @param color Fill color.
+ * @throws InvalidArgument If radius < 0.
+ */
 void fill_circle(Canvas& canvas, int cx, int cy, int radius, Color color) {
     if (radius < 0) {
         throw InvalidArgument("Circle radius cannot be negative, got " + std::to_string(radius));

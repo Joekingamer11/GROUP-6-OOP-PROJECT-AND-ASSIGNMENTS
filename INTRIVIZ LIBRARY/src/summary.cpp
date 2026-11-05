@@ -2,6 +2,14 @@
 //THIS code contains the implementation of the summary statistics functions for the C++ Visualization Library (intriviz).
 //The functions provided in this file compute descriptive statistics for numeric columns in a dataset and format the results
 
+/**
+ * @file summary.cpp
+ * @brief Implementation of statistical summary generation and tabular formatting.
+ *
+ * Generates descriptive statistics summaries (count, mean, standard deviation,
+ * min, 25%, median, 75%, max) for numeric columns, and formats them into an ASCII table.
+ */
+
 #include "intriviz/summary.hpp"
 #include "intriviz/dataset.hpp"
 #include "intriviz/stats.hpp"
@@ -14,6 +22,15 @@
 
 namespace intriviz {
 
+/**
+ * @brief Computes a statistical summary for each numeric column in a dataset.
+ * 
+ * Filters out missing (NaN) values per column and calculates five-number summary,
+ * mean, and sample standard deviation. Non-numeric columns are skipped.
+ * 
+ * @param data The Dataset to summarize.
+ * @return A vector of ColumnSummary objects, one for each numeric column.
+ */
 std::vector<ColumnSummary> describe(const Dataset& data) {
     std::vector<ColumnSummary> summaries;
     std::vector<std::string> col_names = data.column_names();
@@ -71,6 +88,15 @@ std::vector<ColumnSummary> describe(const Dataset& data) {
     return summaries;
 }
 
+/**
+ * @brief Formats a list of column summaries into an aligned ASCII text table.
+ * 
+ * Displays column name, count, mean, standard deviation, minimum, quartiles, and maximum,
+ * with floating-point numbers formatted to 2 decimal places.
+ * 
+ * @param summaries Vector of ColumnSummary records.
+ * @return Formatted multi-line string table.
+ */
 std::string to_string(const std::vector<ColumnSummary>& summaries) {
     if (summaries.empty()) {
         return "Dataset Summary: (no numeric columns)\n";
@@ -112,4 +138,4 @@ std::string to_string(const std::vector<ColumnSummary>& summaries) {
     return oss.str();
 }
 
-}
+} // namespace intriviz

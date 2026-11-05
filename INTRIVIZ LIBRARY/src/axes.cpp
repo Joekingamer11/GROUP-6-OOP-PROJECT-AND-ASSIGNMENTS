@@ -1,3 +1,12 @@
+/**
+ * @file axes.cpp
+ * @brief Implementation of plot coordinate system, scaling, and frame rendering (Axes).
+ *
+ * Axes manages the Cartesian rectangular plotting area, maps data-space coordinates
+ * to pixel-space coordinates using attached X and Y scales, and renders background fills,
+ * grid lines, axis spines, tick marks, and tick labels.
+ */
+
 #include "intriviz/axes.hpp"
 #include "intriviz/draw.hpp"
 #include "intriviz/error.hpp"
@@ -6,31 +15,71 @@
 
 namespace intriviz {
 
+/**
+ * @brief Constructs an Axes within a given bounding rectangle and theme on a target Canvas.
+ * 
+ * @param canvas Reference to the Canvas on which this Axes will draw.
+ * @param area Rectangular plot bounds in pixel coordinates.
+ * @param theme Styling and visual theme configuration.
+ */
 Axes::Axes(Canvas& canvas, Rect area, const Theme& theme)
     : canvas_(&canvas), area_(area), theme_(theme) {}
 
+/**
+ * @brief Returns the pixel bounding box of the active plot area.
+ * 
+ * @return Const reference to the Rect defining the plot region.
+ */
 const Rect& Axes::area() const {
     return area_;
 }
 
+/**
+ * @brief Updates the pixel bounding box of the plot area.
+ * 
+ * @param area New bounding rectangle.
+ */
 void Axes::set_area(const Rect& area) {
     area_ = area;
 }
 
+/**
+ * @brief Returns a mutable reference to the Canvas associated with this Axes.
+ * 
+ * @return Mutable reference to Canvas.
+ */
 Canvas& Axes::canvas() {
     return *canvas_;
 }
 
+/**
+ * @brief Returns the visual theme configuration applied to this Axes.
+ * 
+ * @return Const reference to Theme.
+ */
 const Theme& Axes::theme() const {
     return theme_;
 }
 
+/**
+ * @brief Computes the horizontal pixel interval {left, right} for the plot area.
+ * 
+ * @return Pair of pixel coordinates {x_min, x_max}.
+ */
 std::pair<double, double> Axes::x_pixel_range() const {
     double left = area_.x;
     double right = area_.x + area_.w;
     return {left, right};
 }
 
+/**
+ * @brief Computes the vertical pixel interval {bottom, top} for the plot area.
+ * 
+ * In screen coordinates, pixel Y increases downward; therefore, the bottom of the
+ * plot corresponds to area.y + area.h and the top corresponds to area.y.
+ * 
+ * @return Pair of pixel coordinates {y_bottom, y_top}.
+ */
 std::pair<double, double> Axes::y_pixel_range() const {
     // In screen coordinates, pixel y increases downward.
     // Bottom of the plot area corresponds to area_.y + area_.h
@@ -40,14 +89,30 @@ std::pair<double, double> Axes::y_pixel_range() const {
     return {bottom, top};
 }
 
+/**
+ * @brief Assigns a continuous or categorical Scale to the horizontal (X) axis.
+ * 
+ * @param scale Shared pointer to the configured Scale.
+ */
 void Axes::set_x_scale(std::shared_ptr<Scale> scale) {
     x_scale_ = std::move(scale);
 }
 
+/**
+ * @brief Assigns a continuous or categorical Scale to the vertical (Y) axis.
+ * 
+ * @param scale Shared pointer to the configured Scale.
+ */
 void Axes::set_y_scale(std::shared_ptr<Scale> scale) {
     y_scale_ = std::move(scale);
 }
 
+/**
+ * @brief Retrieves the active Scale for the X axis.
+ * 
+ * @return Const reference to the X Scale.
+ * @throws InvalidArgument If the X scale has not been set.
+ */
 const Scale& Axes::x_scale() const {
     if (!x_scale_) {
         throw InvalidArgument("X scale has not been set on Axes");
@@ -55,6 +120,12 @@ const Scale& Axes::x_scale() const {
     return *x_scale_;
 }
 
+/**
+ * @brief Retrieves the active Scale for the Y axis.
+ * 
+ * @return Const reference to the Y Scale.
+ * @throws InvalidArgument If the Y scale has not been set.
+ */
 const Scale& Axes::y_scale() const {
     if (!y_scale_) {
         throw InvalidArgument("Y scale has not been set on Axes");
@@ -62,6 +133,15 @@ const Scale& Axes::y_scale() const {
     return *y_scale_;
 }
 
+/**
+ * @brief Converts a 2D data-space coordinate (x, y) into integer pixel coordinates.
+ * 
+ * Uses the attached X and Y scales to map data values to pixels, rounding to the nearest integer.
+ * 
+ * @param x Coordinate in data space along the X domain.
+ * @param y Coordinate in data space along the Y domain.
+ * @return PointI containing integer pixel coordinates {px, py}.
+ */
 PointI Axes::to_pixel(double x, double y) const {
     const Scale& xs = x_scale();
     const Scale& ys = y_scale();
@@ -70,6 +150,16 @@ PointI Axes::to_pixel(double x, double y) const {
     return PointI{px, py};
 }
 
+/**
+ * @brief Renders the visual axis frame including background, grid, spines, ticks, and labels.
+ * 
+ * Execution stages:
+ * 1. Fills the inner plot area with theme.plot_background.
+ * 2. If theme.show_grid is true, draws vertical and horizontal grid lines at tick locations.
+ * 3. Draws the left vertical spine and bottom horizontal spine.
+ * 4. Renders downward X-axis tick marks and centered tick text labels.
+ * 5. Renders leftward Y-axis tick marks and right-aligned tick text labels.
+ */
 void Axes::draw_frame() {
     // 1. Fill plot background area
     fill_rect(*canvas_, area_.x, area_.y, area_.w, area_.h, theme_.plot_background);

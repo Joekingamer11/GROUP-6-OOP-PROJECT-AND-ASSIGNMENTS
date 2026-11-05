@@ -1,3 +1,13 @@
+/**
+ * @file quick.cpp
+ * @brief Implementation of one-line high-level convenience plotting APIs.
+ *
+ * Provides ready-to-save high-level visualization functions:
+ * - quick_swarmplot(): Creates an 800x600 swarm plot with labels and legend.
+ * - quick_pointplot(): Creates an 800x600 point plot with 95% bootstrap CI and labels.
+ * - quick_heatmap(): Computes a correlation matrix and renders an annotated heatmap with colorbar.
+ */
+
 #include "intriviz/quick.hpp"
 #include "intriviz/swarmplot.hpp"
 #include "intriviz/pointplot.hpp"
@@ -12,6 +22,18 @@
 
 namespace intriviz {
 
+/**
+ * @brief High-level helper to generate a complete publication-ready swarm plot in a single call.
+ * 
+ * Creates an 800x600 Figure, colors observations by category using the "deep" palette,
+ * adds title and axis labels, and embeds a categorical legend.
+ * 
+ * @param data Source Dataset.
+ * @param x_column Categorical text column name.
+ * @param y_column Continuous numeric column name.
+ * @param title Optional chart title.
+ * @return Fully assembled Figure instance ready to display or save.
+ */
 Figure quick_swarmplot(const Dataset& data,
                         const std::string& x_column,
                         const std::string& y_column,
@@ -52,6 +74,18 @@ Figure quick_swarmplot(const Dataset& data,
     return fig;
 }
 
+/**
+ * @brief High-level helper to generate a complete categorical point plot with confidence intervals.
+ * 
+ * Creates an 800x600 Figure, computes 95% bootstrap confidence intervals for category means,
+ * connects means with lines, and attaches title and axis labels.
+ * 
+ * @param data Source Dataset.
+ * @param x_column Categorical text column name.
+ * @param y_column Continuous numeric column name.
+ * @param title Optional chart title.
+ * @return Fully assembled Figure instance ready to display or save.
+ */
 Figure quick_pointplot(const Dataset& data,
                         const std::string& x_column,
                         const std::string& y_column,
@@ -82,6 +116,19 @@ Figure quick_pointplot(const Dataset& data,
     return fig;
 }
 
+/**
+ * @brief High-level helper to compute a correlation matrix and render an annotated heatmap.
+ * 
+ * Creates an 800x600 Figure with extra right-margin space for a colorbar, computes
+ * Pearson correlation coefficients across the specified numeric columns, renders
+ * cells with the "viridis" colormap, and displays numerical value annotations rounded to 2 decimals.
+ * 
+ * @param data Source Dataset.
+ * @param numeric_columns List of numeric column names to compute correlations across.
+ * @param title Optional chart title.
+ * @return Fully assembled Figure instance ready to display or save.
+ * @throws DataError If numeric_columns is empty or dataset is empty.
+ */
 Figure quick_heatmap(const Dataset& data,
                       const std::vector<std::string>& numeric_columns,
                       const std::string& title) {

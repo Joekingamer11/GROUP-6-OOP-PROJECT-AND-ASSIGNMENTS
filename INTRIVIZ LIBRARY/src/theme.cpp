@@ -1,7 +1,20 @@
+/**
+ * @file theme.cpp
+ * @brief Implementation of built-in visualization themes.
+ *
+ * Provides factory functions for standard visual styles inspired by Seaborn,
+ * configuring backgrounds, grid lines, axes colors, font sizing, and mark dimensions.
+ */
+
 #include "intriviz/theme.hpp"
 
 namespace intriviz {
 
+/**
+ * @brief Creates a clean white theme with a white plot area and no background grid.
+ * 
+ * @return A configured Theme instance with white background and dark text/axes.
+ */
 Theme theme_white() {
     Theme t;
     t.background      = Color{255, 255, 255};
@@ -16,6 +29,11 @@ Theme theme_white() {
     return t;
 }
 
+/**
+ * @brief Creates a white theme with light grey grid lines enabled.
+ * 
+ * @return A Theme instance based on theme_white() with show_grid set to true.
+ */
 Theme theme_whitegrid() {
     Theme t = theme_white();
     t.show_grid  = true;
@@ -23,6 +41,13 @@ Theme theme_whitegrid() {
     return t;
 }
 
+/**
+ * @brief Creates a theme with a light grey plot area and crisp white grid lines.
+ * 
+ * Matches Seaborn's default "darkgrid" aesthetic for clear data contrast.
+ * 
+ * @return A configured Theme instance with light grey plot fill and white grid.
+ */
 Theme theme_darkgrid() {
     Theme t;
     t.background      = Color{255, 255, 255};
@@ -37,6 +62,13 @@ Theme theme_darkgrid() {
     return t;
 }
 
+/**
+ * @brief Creates an inverted dark theme suitable for dark mode displays.
+ * 
+ * Features a dark grey canvas, muted dark grid, and light foreground text and axes.
+ * 
+ * @return A configured Theme instance with dark styling.
+ */
 Theme theme_dark() {
     Theme t;
     t.background      = Color{38, 38, 38};   // Dark background

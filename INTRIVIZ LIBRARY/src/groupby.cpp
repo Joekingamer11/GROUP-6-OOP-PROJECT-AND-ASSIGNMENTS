@@ -1,3 +1,11 @@
+/**
+ * @file groupby.cpp
+ * @brief Implementation of category extraction and split-apply grouping operations.
+ *
+ * Implements algorithms for identifying unique categorical values while preserving order
+ * of appearance, and grouping numeric data values by categorical factors.
+ */
+
 #include "intriviz/groupby.hpp"
 #include "intriviz/error.hpp"
 
@@ -6,6 +14,14 @@
 
 namespace intriviz {
 
+/**
+ * @brief Returns the unique strings from a collection, preserving first-appearance order.
+ * 
+ * Uses an unordered set for O(1) duplicate detection while appending unique items to the result vector.
+ * 
+ * @param items Vector of strings.
+ * @return Vector containing each distinct string once, in order of first occurrence.
+ */
 std::vector<std::string> unique_values(const std::vector<std::string>& items) {
     std::vector<std::string> result;
     std::unordered_set<std::string> seen;
@@ -18,6 +34,18 @@ std::vector<std::string> unique_values(const std::vector<std::string>& items) {
     return result;
 }
 
+/**
+ * @brief Groups numeric values by distinct categories defined in a text column.
+ * 
+ * Validates column types, iterates through the dataset rows, skips missing (NaN) values,
+ * and organizes values into Group structures keyed by category name.
+ * 
+ * @param data Input Dataset.
+ * @param category_column Name of the categorical text column defining group keys.
+ * @param value_column Name of the numeric column containing observation values.
+ * @return Vector of Group objects containing category names and associated value vectors.
+ * @throws DataError If either column does not exist or has the incorrect data type.
+ */
 std::vector<Group> group_by(const Dataset& data,
                             const std::string& category_column,
                             const std::string& value_column) {

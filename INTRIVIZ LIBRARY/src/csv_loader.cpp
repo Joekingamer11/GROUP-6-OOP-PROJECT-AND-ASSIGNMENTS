@@ -1,3 +1,12 @@
+/**
+ * @file csv_loader.cpp
+ * @brief Implementation of RFC-4180-compliant CSV and delimited text file parsers.
+ *
+ * Implements line tokenization with quoted fields and escape sequences,
+ * ragged row detection, automatic column type inference (numeric vs text),
+ * configurable missing-value token substitution, and Dataset instantiation.
+ */
+
 #include "intriviz/csv_loader.hpp"
 #include "intriviz/error.hpp"
 #include "intriviz/text_util.hpp"
@@ -11,7 +20,13 @@ namespace intriviz {
 
 namespace {
 
-// Helper: checks if a raw string cell matches any configured missing token
+/**
+ * @brief Tests whether an unparsed cell string matches any recognized missing value token.
+ * 
+ * @param cell The trimmed string contents of a single CSV cell.
+ * @param missing_tokens List of tokens considered missing (e.g. "", "NA", "null", "NaN").
+ * @return True if cell matches any missing token; false otherwise.
+ */
 bool is_missing_cell(const std::string& cell, const std::vector<std::string>& missing_tokens) {
     for (const auto& token : missing_tokens) {
         if (cell == token) {
@@ -21,7 +36,16 @@ bool is_missing_cell(const std::string& cell, const std::vector<std::string>& mi
     return false;
 }
 
-// Helper: tokenizes a single line into cells, preserving commas inside double quotes
+/**
+ * @brief Tokenizes a single CSV row into individual cell strings.
+ * 
+ * Accurately parses RFC 4180 quotation rules, preserving commas inside quoted strings
+ * and unescaping double quotation marks ("").
+ * 
+ * @param line The raw line of text.
+ * @param delimiter The field delimiter character (e.g. comma, tab).
+ * @return Vector of trimmed cell strings.
+ */
 std::vector<std::string> parse_line(const std::string& line, char delimiter) {
     std::vector<std::string> cells;
     std::string current;
@@ -50,6 +74,21 @@ std::vector<std::string> parse_line(const std::string& line, char delimiter) {
 
 } // anonymous namespace
 
+/**
+ * @brief Parses an in-memory string of CSV formatted data into a typed Dataset.
+ * 
+ * The parsing workflow consists of:
+ * 1. Splitting lines and stripping CR/LF line terminators.
+ * 2. Tokenizing fields while respecting quoted strings.
+ * 3. Extracting header names or auto-generating ("col0", "col1", ...).
+ * 4. Verifying uniform column counts across all rows (ragged row check).
+ * 5. Inferring column types (numeric vs text) and mapping missing tokens to NaN or empty strings.
+ * 
+ * @param text In-memory CSV text buffer.
+ * @param options CSV parsing configuration (delimiter, header presence, missing tokens).
+ * @return A populated Dataset instance.
+ * @throws DataError If a ragged row with mismatched column count is encountered.
+ */
 Dataset parse_csv(const std::string& text, const CsvOptions& options) {
     std::vector<std::string> raw_lines;
     std::istringstream stream(text);
@@ -168,6 +207,14 @@ Dataset parse_csv(const std::string& text, const CsvOptions& options) {
     return ds;
 }
 
+/**
+ * @brief Reads a CSV or delimited text file from disk and parses it into a Dataset.
+ * 
+ * @param path File system path to the CSV file.
+ * @param options CSV parsing options (delimiter, header presence, missing tokens).
+ * @return Parsed Dataset instance.
+ * @throws IoError If the file cannot be opened for reading.
+ */
 Dataset load_csv(const std::string& path, const CsvOptions& options) {
     std::ifstream file(path, std::ios::binary);
     if (!file.is_open()) {

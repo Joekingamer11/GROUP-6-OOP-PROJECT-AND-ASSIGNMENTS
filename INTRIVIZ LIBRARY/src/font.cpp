@@ -1,3 +1,11 @@
+/**
+ * @file font.cpp
+ * @brief Implementation of embedded 5x7 bitmap font rendering.
+ *
+ * Provides basic ASCII bitmap typography supporting integer scaling factors
+ * and horizontal and vertical (90-degree rotated) text rendering.
+ */
+
 #include "intriviz/font.hpp"
 #include <algorithm>
 #include <cstdint>
@@ -88,9 +96,15 @@ constexpr Glyph FONT_32_TO_95[64] = {
     {0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1F}  // 95 '_'
 };
 
-// Returns the 7 bytes of row data for a character.
-// Lowercase letters reuse the uppercase glyphs.
-// Anything outside the table gets a hollow box.
+/**
+ * @brief Retrieves the 7-byte bitmap row pattern for a given character.
+ * 
+ * Lowercase ASCII characters automatically map to their uppercase counterparts.
+ * Characters without explicit entries yield a rectangular fallback glyph.
+ * 
+ * @param ch The character to look up.
+ * @return Pointer to an array of 7 bytes describing the character bitmap.
+ */
 const std::uint8_t* lookup_glyph(char ch) {
     auto uc = static_cast<unsigned char>(ch);
     if (uc >= 'a' && uc <= 'z') {
@@ -108,17 +122,44 @@ const std::uint8_t* lookup_glyph(char ch) {
 
 } // anonymous namespace
 
+/**
+ * @brief Calculates the bounding box width in pixels for a rendered horizontal text string.
+ * 
+ * Each character occupies 5 pixels of width plus 1 pixel of inter-character spacing (6 * scale pixels).
+ * 
+ * @param text The string whose rendered width is to be computed.
+ * @param scale The integer font enlargement factor (defaults to at least 1).
+ * @return Width of the text in pixels.
+ */
 int text_width(const std::string& text, int scale) {
     if (text.empty()) return 0;
     int s = std::max(1, scale);
     return static_cast<int>(text.size()) * 6 * s;
 }
 
+/**
+ * @brief Calculates the bounding box height in pixels for rendered text.
+ * 
+ * Each glyph is 7 rows high (7 * scale pixels).
+ * 
+ * @param scale The integer font enlargement factor (defaults to at least 1).
+ * @return Height of text in pixels.
+ */
 int text_height(int scale) {
     int s = std::max(1, scale);
     return 7 * s;
 }
 
+/**
+ * @brief Renders a horizontal text string onto the canvas at a given position.
+ * 
+ * @param canvas Destination Canvas buffer.
+ * @param x Left pixel coordinate.
+ * @param y Top pixel coordinate.
+ * @param text String of text to render.
+ * @param color Color of the text glyph pixels.
+ * @param scale Integer scaling multiplier for font size.
+ */
 void draw_text(Canvas& canvas, int x, int y, const std::string& text, Color color, int scale) {
     if (text.empty()) return;
     int s = std::max(1, scale);
@@ -142,6 +183,18 @@ void draw_text(Canvas& canvas, int x, int y, const std::string& text, Color colo
     }
 }
 
+/**
+ * @brief Renders a text string vertically (rotated 90 degrees counter-clockwise).
+ * 
+ * Primarily used for drawing vertical Y-axis labels.
+ * 
+ * @param canvas Destination Canvas buffer.
+ * @param x Left pixel coordinate of the rotated text bounding area.
+ * @param y Bottom pixel coordinate of the rotated text bounding area.
+ * @param text String to render.
+ * @param color Color of the text glyphs.
+ * @param scale Integer scaling multiplier for font size.
+ */
 void draw_text_vertical(Canvas& canvas, int x, int y, const std::string& text, Color color, int scale) {
     if (text.empty()) return;
     int s = std::max(1, scale);

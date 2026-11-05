@@ -1,3 +1,11 @@
+/**
+ * @file swarmplot.cpp
+ * @brief Implementation of categorical swarm / beeswarm plots with collision avoidance.
+ *
+ * Implements deterministic 1D/2D circle packing to prevent overlapping point marks,
+ * showing the full distribution and density of observations within discrete categories.
+ */
+
 #include "intriviz/swarmplot.hpp"
 
 #include <algorithm>
@@ -16,6 +24,20 @@
 
 namespace intriviz {
 
+/**
+ * @brief Computes non-overlapping 2D coordinates for dots in a category band using collision detection.
+ * 
+ * Sorts points by vertical position and iteratively tests horizontal candidate offsets alternating
+ * left and right from `center_x` in steps of `radius * 0.5`. Points are placed at the closest
+ * collision-free position within the available band width, maintaining the original point ordering in the return vector.
+ * 
+ * @param y_pixels Vector of mapped Y-pixel coordinates for data points.
+ * @param center_x Pixel center coordinate of the category band.
+ * @param band_width Total horizontal pixel width of the category band.
+ * @param radius Radius of each marker circle in pixels.
+ * @return Vector of PointI positions corresponding to input points in their original order.
+ * @throws InvalidArgument If radius <= 0 or band_width <= 0.
+ */
 std::vector<PointI> swarm_layout(const std::vector<double>& y_pixels, double center_x,
                                 double band_width, int radius) {
     if (radius <= 0) {
@@ -107,10 +129,36 @@ std::vector<PointI> swarm_layout(const std::vector<double>& y_pixels, double cen
     return result;
 }
 
+/**
+ * @brief Overload of swarm_layout assuming center_x = 0.0.
+ * 
+ * @param y_pixels Vector of mapped Y-pixel coordinates for data points.
+ * @param band_width Total horizontal pixel width of the category band.
+ * @param radius Radius of each marker circle in pixels.
+ * @return Vector of PointI positions with X coordinates relative to 0.0.
+ */
 std::vector<PointI> swarm_layout(const std::vector<double>& y_pixels, double band_width, int radius) {
     return swarm_layout(y_pixels, 0.0, band_width, radius);
 }
 
+/**
+ * @brief Renders a beeswarm plot showing all individual observations grouped by category.
+ * 
+ * Execution workflow:
+ * 1. Validates inputs and groups observation values by category.
+ * 2. Computes scales (CategoricalScale for X, LinearScale for Y with 8% padding).
+ * 3. Draws axes background, grid, and ticks.
+ * 4. Packs individual points horizontally within each category band to avoid collisions.
+ * 5. Renders circular point markers using uniform or palette-based category colors.
+ * 
+ * @param ax Target Axes for plotting.
+ * @param data Source Dataset containing observations.
+ * @param x_column Categorical text column name.
+ * @param y_column Continuous numeric column name.
+ * @param options Styling configuration (marker radius, colors, color_by_category).
+ * @throws DataError If dataset is empty or contains no valid categories.
+ * @throws InvalidArgument If marker_radius <= 0.
+ */
 void swarmplot(Axes& ax, const Dataset& data, const std::string& x_column,
                const std::string& y_column, const SwarmplotOptions& options) {
     require_not_empty(data);
@@ -184,5 +232,3 @@ void swarmplot(Axes& ax, const Dataset& data, const std::string& x_column,
 }
 
 } // namespace intriviz
-
-    

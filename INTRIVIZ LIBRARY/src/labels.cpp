@@ -1,3 +1,11 @@
+/**
+ * @file labels.cpp
+ * @brief Implementation of chart titles and axis label rendering routines.
+ *
+ * Coordinates horizontal title and X-axis label positioning, as well as
+ * vertical 90-degree rotated Y-axis label placement within plot margins.
+ */
+
 #include "intriviz/labels.hpp"
 #include "intriviz/font.hpp"
 #include "intriviz/theme.hpp"
@@ -5,6 +13,15 @@
 
 namespace intriviz {
 
+/**
+ * @brief Renders a chart title centered horizontally above the plot area.
+ * 
+ * Fits the title within the top margin area, automatically reducing font scale
+ * if the text is wider than the plot area width.
+ * 
+ * @param ax Target Axes providing area boundaries, Canvas, and theme settings.
+ * @param title The text to display as the title.
+ */
 void draw_title(Axes& ax, const std::string& title) {
     if (title.empty()) {
         return;
@@ -30,6 +47,14 @@ void draw_title(Axes& ax, const std::string& title) {
     draw_text(ax.canvas(), x, y, title, ax.theme().text_color, scale);
 }
 
+/**
+ * @brief Renders the horizontal X-axis label centered beneath the X-axis tick labels.
+ * 
+ * Positions the label within the bottom margin with automatic clamping to canvas bounds.
+ * 
+ * @param ax Target Axes providing layout geometry, Canvas, and theme settings.
+ * @param label The text to display along the horizontal axis.
+ */
 void draw_xlabel(Axes& ax, const std::string& label) {
     if (label.empty()) {
         return;
@@ -60,6 +85,14 @@ void draw_xlabel(Axes& ax, const std::string& label) {
     draw_text(ax.canvas(), x, y, label, ax.theme().text_color, scale);
 }
 
+/**
+ * @brief Renders the vertical Y-axis label rotated 90 degrees counter-clockwise in the left margin.
+ * 
+ * Centers the rotated text vertically relative to the plot area height.
+ * 
+ * @param ax Target Axes providing layout geometry, Canvas, and theme settings.
+ * @param label The text to display along the vertical axis.
+ */
 void draw_ylabel(Axes& ax, const std::string& label) {
     if (label.empty()) {
         return;

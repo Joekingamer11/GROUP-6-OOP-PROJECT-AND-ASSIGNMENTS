@@ -1,3 +1,11 @@
+/**
+ * @file legend.cpp
+ * @brief Implementation of categorical color legend rendering.
+ *
+ * Renders categorized color swatches with labels and an optional title in a bordered
+ * box positioned inside the plot area (top-right corner).
+ */
+
 #include "intriviz/legend.hpp"
 #include "intriviz/draw.hpp"
 #include "intriviz/error.hpp"
@@ -6,6 +14,18 @@
 
 namespace intriviz {
 
+/**
+ * @brief Renders a categorical color legend box in the top-right corner of the plot area.
+ * 
+ * Computes bounding dimensions for category labels, draws background and border rectangles,
+ * and renders a color swatch and text label for each category item.
+ * 
+ * @param ax Target Axes providing area boundaries, Canvas, and theme settings.
+ * @param names Vector of category names to display.
+ * @param colors Vector of corresponding Color swatches.
+ * @param title Optional title displayed at the top of the legend box.
+ * @throws InvalidArgument If names.size() != colors.size().
+ */
 void draw_legend(Axes& ax, 
                  const std::vector<std::string>& names,
                  const std::vector<Color>& colors, 
@@ -77,4 +97,4 @@ void draw_legend(Axes& ax,
     }
 }
 
-}
+} // namespace intriviz

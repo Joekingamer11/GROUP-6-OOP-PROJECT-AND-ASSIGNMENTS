@@ -1,3 +1,11 @@
+/**
+ * @file annotation.cpp
+ * @brief Implementation of plot annotation tools (text, horizontal/vertical lines, arrows).
+ *
+ * Provides data-coordinate based annotations that overlay on an Axes plot area,
+ * including text callouts, reference lines (hline/vline), and directional arrows with optional labels.
+ */
+
 #include "intriviz/annotation.hpp"
 #include "intriviz/draw.hpp"
 #include "intriviz/font.hpp"
@@ -10,8 +18,12 @@ namespace intriviz {
 
 namespace {
 
-// Helper to verify that x and y scales have been assigned to the Axes object.
-// Calling x_scale() or y_scale() throws InvalidArgument if unassigned.
+/**
+ * @brief Helper to verify that both X and Y scales have been assigned to the Axes.
+ * 
+ * @param ax Axes instance to check.
+ * @throws InvalidArgument If either scale has not been initialized.
+ */
 void check_scales_set(const Axes& ax) {
     (void)ax.x_scale();
     (void)ax.y_scale();
@@ -19,6 +31,17 @@ void check_scales_set(const Axes& ax) {
 
 } // anonymous namespace
 
+/**
+ * @brief Overlays a text string at specified data coordinates (x, y).
+ * 
+ * Maps data point (x, y) into pixel coordinates and renders text using
+ * the axes theme font settings.
+ * 
+ * @param ax Target Axes object.
+ * @param x Horizontal coordinate in data space.
+ * @param y Vertical coordinate in data space.
+ * @param text Annotation text to render.
+ */
 void annotate_text(Axes& ax, double x, double y, const std::string& text) {
     check_scales_set(ax);
     if (text.empty()) {
@@ -31,6 +54,16 @@ void annotate_text(Axes& ax, double x, double y, const std::string& text) {
     draw_text(ax.canvas(), p.x, p.y, text, ax.theme().text_color, ax.theme().font_scale);
 }
 
+/**
+ * @brief Draws a horizontal reference line spanning the full width of the plot area at data height y.
+ * 
+ * Clips drawing if the resulting pixel coordinate falls outside the vertical plot bounds.
+ * 
+ * @param ax Target Axes object.
+ * @param y Vertical coordinate in data space.
+ * @param color Stroke color of the line.
+ * @param thickness Line stroke width in pixels.
+ */
 void annotate_hline(Axes& ax, double y, Color color, int thickness) {
     check_scales_set(ax);
 
@@ -49,6 +82,16 @@ void annotate_hline(Axes& ax, double y, Color color, int thickness) {
     draw_line(ax.canvas(), x0, p.y, x1, p.y, color, thickness);
 }
 
+/**
+ * @brief Draws a vertical reference line spanning the full height of the plot area at data position x.
+ * 
+ * Clips drawing if the resulting pixel coordinate falls outside the horizontal plot bounds.
+ * 
+ * @param ax Target Axes object.
+ * @param x Horizontal coordinate in data space.
+ * @param color Stroke color of the line.
+ * @param thickness Line stroke width in pixels.
+ */
 void annotate_vline(Axes& ax, double x, Color color, int thickness) {
     check_scales_set(ax);
 
@@ -67,6 +110,18 @@ void annotate_vline(Axes& ax, double x, Color color, int thickness) {
     draw_line(ax.canvas(), p.x, y0, p.x, y1, color, thickness);
 }
 
+/**
+ * @brief Draws a directional arrow between two data points with an optional text label at the arrow tail.
+ * 
+ * Computes vector angles to orient the arrow wings at +/- 150 degrees from the shaft direction.
+ * 
+ * @param ax Target Axes object.
+ * @param x_from Starting point X data coordinate.
+ * @param y_from Starting point Y data coordinate.
+ * @param x_to Target point X data coordinate (tip of arrow).
+ * @param y_to Target point Y data coordinate (tip of arrow).
+ * @param text Optional text note displayed near the arrow origin.
+ */
 void annotate_arrow(Axes& ax, double x_from, double y_from, double x_to, double y_to,
                     const std::string& text) {
     check_scales_set(ax);
@@ -106,4 +161,4 @@ void annotate_arrow(Axes& ax, double x_from, double y_from, double x_to, double 
     }
 }
 
-} 
+} // namespace intriviz
